@@ -1,0 +1,4 @@
+#Wed Jan 28 23:57:35 CST 2026
+base.0=D\:\\project\\zimuzhedang\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
