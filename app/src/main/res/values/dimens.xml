@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="overlay_min_width_dp">100dp</dimen>
+    <dimen name="overlay_min_height_dp">40dp</dimen>
+    <dimen name="overlay_resize_handle_size">24dp</dimen>
+    <dimen name="overlay_close_button_size">32dp</dimen>
+    <dimen name="overlay_snap_threshold">15dp</dimen>
+</resources>
+

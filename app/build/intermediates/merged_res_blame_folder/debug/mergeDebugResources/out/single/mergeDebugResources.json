@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-debug-33:\\drawable_ic_close.xml.flat",
+        "source": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-main-35:\\drawable\\ic_close.xml"
+    },
+    {
+        "merged": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-debug-33:\\drawable_overlay_background.xml.flat",
+        "source": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-main-35:\\drawable\\overlay_background.xml"
+    },
+    {
+        "merged": "com.zimuzhedang.subtitleblocker.app-debug-33:/layout_view_overlay_window.xml.flat",
+        "source": "com.zimuzhedang.subtitleblocker.app-main-35:/layout/view_overlay_window.xml"
+    },
+    {
+        "merged": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-debug-33:\\drawable_close_button_bg.xml.flat",
+        "source": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-main-35:\\drawable\\close_button_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-debug-33:\\drawable_resize_handle_bg.xml.flat",
+        "source": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-main-35:\\drawable\\resize_handle_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-debug-33:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-main-35:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-debug-33:\\layout_view_overlay_window.xml.flat",
+        "source": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-main-35:\\layout\\view_overlay_window.xml"
+    }
+]
