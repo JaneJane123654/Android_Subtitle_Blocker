@@ -34,7 +34,6 @@ public final class OverlayRuntime {
     private final Handler handler = new Handler(Looper.getMainLooper());
     private AnimationSpec pendingAnim;
     private boolean started;
-    private Runnable stopCallback;
     /** 用于精确取消隐藏任务的 Runnable 引用 */
     private Runnable hideRunnable;
 
@@ -62,20 +61,7 @@ public final class OverlayRuntime {
      * @param context Android 上下文
      */
     public synchronized void start(Context context) {
-        start(context, null);
-    }
-
-    /**
-     * 启动悬浮窗运行时。
-     *
-     * @param context Android 上下文
-     * @param stopCallback 当悬浮窗停止显示时的回调
-     */
-    public synchronized void start(Context context, Runnable stopCallback) {
         if (started) {
-            if (stopCallback != null) {
-                this.stopCallback = stopCallback;
-            }
             return;
         }
         // 取消可能残留的隐藏任务，防止之前的延迟任务影响新的显示
@@ -126,7 +112,6 @@ public final class OverlayRuntime {
         viewModel.getOverlayState().observeForever(stateObserver);
         viewModel.getAnimationSpec().observeForever(animObserver);
         viewModel.getEffect().observeForever(effectObserver);
-        this.stopCallback = stopCallback;
         started = true;
     }
 
@@ -147,7 +132,6 @@ public final class OverlayRuntime {
         if (windowController != null) {
             windowController.hide();
         }
-        stopCallback = null;
         started = false;
     }
 
@@ -186,13 +170,13 @@ public final class OverlayRuntime {
         if (effect == null) {
             return;
         }
-        // 使用 consume() 确保每个副作用只被处理一次
-        if (!effect.consume()) {
-            return;
-        }
-        if (effect.type == OneShotEffect.Type.PLAY_SOUND) {
-            soundPlayer.playClick();
-        } else if (effect.type == OneShotEffect.Type.REQUEST_HIDE_AFTER_FADE) {
+        // OverlayRuntime 只处理 REQUEST_HIDE_AFTER_FADE
+        // PLAY_SOUND 和 NAVIGATE_TO_PERMISSION 由 MainActivity 处理
+        if (effect.type == OneShotEffect.Type.REQUEST_HIDE_AFTER_FADE) {
+            // 使用 consume() 确保每个副作用只被处理一次
+            if (!effect.consume()) {
+                return;
+            }
             // 先取消之前可能存在的隐藏任务，避免重复执行
             cancelPendingHide();
             hideRunnable = () -> {
@@ -203,12 +187,11 @@ public final class OverlayRuntime {
                 windowController.hide();
                 viewModel.onOverlayHidden();
                 hideRunnable = null;
-                if (stopCallback != null) {
-                    stopCallback.run();
-                }
+                // 注意：不再调用 stopCallback，避免服务自杀
             };
             handler.postDelayed(hideRunnable, 320L);
+            viewModel.clearEffect();
         }
-        viewModel.clearEffect();
+        // 其他类型的 effect 不在这里处理
     }
 }

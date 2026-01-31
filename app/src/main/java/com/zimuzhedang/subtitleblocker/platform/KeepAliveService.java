@@ -31,7 +31,9 @@ public final class KeepAliveService extends Service {
     public void onCreate() {
         super.onCreate();
         setupForeground();
-        OverlayRuntime.getInstance().start(this, this::stopSelf);
+        // 注意：不传入 stopCallback，避免隐藏遮罩时服务自杀导致应用退出
+        // 服务的停止应该由 MainActivity 通过 keepAliveController.stop() 控制
+        OverlayRuntime.getInstance().start(this);
     }
 
     /**

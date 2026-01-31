@@ -133,17 +133,21 @@ public final class MainActivity extends AppCompatActivity {
             if (effect == null) {
                 return;
             }
-            // 使用 consume() 确保每个副作用只被处理一次
-            if (!effect.consume()) {
-                return;
-            }
+            // MainActivity 只处理 NAVIGATE_TO_PERMISSION 和 PLAY_SOUND
+            // REQUEST_HIDE_AFTER_FADE 由 OverlayRuntime 处理，不在这里消费
             if (effect.type == OneShotEffect.Type.NAVIGATE_TO_PERMISSION) {
-                Toast.makeText(this, R.string.action_open_permission, Toast.LENGTH_SHORT).show();
-                permissionNavigator.openOverlayPermissionSettings(this);
+                if (effect.consume()) {
+                    Toast.makeText(this, R.string.action_open_permission, Toast.LENGTH_SHORT).show();
+                    permissionNavigator.openOverlayPermissionSettings(this);
+                    viewModel.clearEffect();
+                }
             } else if (effect.type == OneShotEffect.Type.PLAY_SOUND) {
-                soundPlayer.playClick();
+                if (effect.consume()) {
+                    soundPlayer.playClick();
+                    viewModel.clearEffect();
+                }
             }
-            viewModel.clearEffect();
+            // 注意：不处理 REQUEST_HIDE_AFTER_FADE，让 OverlayRuntime 处理
         });
     }
 
