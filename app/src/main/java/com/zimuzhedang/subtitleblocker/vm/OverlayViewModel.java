@@ -15,17 +15,36 @@ import com.zimuzhedang.subtitleblocker.domain.ScreenBounds;
 import com.zimuzhedang.subtitleblocker.domain.Settings;
 import com.zimuzhedang.subtitleblocker.platform.ScreenInfoProvider;
 
+/**
+ * 悬浮窗视图模型，负责处理悬浮窗的业务逻辑和状态管理。
+ * 处理用户的拖拽、缩放、点击等交互，并根据约束条件更新悬浮窗状态。
+ *
+ * @author Trae
+ * @since 2026-01-30
+ */
 public final class OverlayViewModel extends ViewModel {
+    /** 移动动画时长 (毫秒) */
     private static final long MOVE_ANIM_MS = 150L;
+    /** 缩放动画时长 (毫秒) */
     private static final long RESIZE_ANIM_MS = 200L;
+    /** 淡入淡出动画时长 (毫秒) */
     private static final long FADE_ANIM_MS = 300L;
 
     private final SettingsRepository settingsRepository;
     private final ScreenInfoProvider screenInfoProvider;
+    /** 悬浮窗当前状态的 LiveData */
     private final MutableLiveData<OverlayState> overlayState = new MutableLiveData<>();
+    /** 动画规格的 LiveData */
     private final MutableLiveData<AnimationSpec> animationSpec = new MutableLiveData<>();
+    /** 一次性副作用的 LiveData (如播放声音、跳转权限页) */
     private final MutableLiveData<OneShotEffect> effect = new MutableLiveData<>();
 
+    /**
+     * 构造函数。
+     *
+     * @param settingsRepository 设置仓库，用于持久化和加载配置
+     * @param screenInfoProvider 屏幕信息提供者，用于获取屏幕尺寸和密度
+     */
     public OverlayViewModel(SettingsRepository settingsRepository, ScreenInfoProvider screenInfoProvider) {
         this.settingsRepository = settingsRepository;
         this.screenInfoProvider = screenInfoProvider;
@@ -33,18 +52,31 @@ public final class OverlayViewModel extends ViewModel {
         overlayState.setValue(buildDefaultState(settings));
     }
 
+    /** @return 悬浮窗状态的只读 LiveData */
     public LiveData<OverlayState> getOverlayState() {
         return overlayState;
     }
 
+    /** @return 动画规格的只读 LiveData */
     public LiveData<AnimationSpec> getAnimationSpec() {
         return animationSpec;
     }
 
+    /** @return 副作用的只读 LiveData */
     public LiveData<OneShotEffect> getEffect() {
         return effect;
     }
 
+    /** 清除当前的副作用。 */
+    public void clearEffect() {
+        effect.setValue(null);
+    }
+
+    /**
+     * 请求显示悬浮窗。
+     *
+     * @param hasPermission 是否已获得悬浮窗权限
+     */
     public void onRequestShow(boolean hasPermission) {
         if (!hasPermission) {
             effect.setValue(new OneShotEffect(OneShotEffect.Type.NAVIGATE_TO_PERMISSION));
@@ -62,8 +94,10 @@ public final class OverlayViewModel extends ViewModel {
         updated = OverlayConstraints.clampPosition(updated, bounds);
         overlayState.setValue(updated);
         animationSpec.setValue(null);
+        effect.setValue(null);
     }
 
+    /** 请求隐藏悬浮窗。 */
     public void onRequestHide() {
         OverlayState current = requireState();
         if (current.soundEnabled) {
@@ -74,11 +108,13 @@ public final class OverlayViewModel extends ViewModel {
         effect.setValue(new OneShotEffect(OneShotEffect.Type.REQUEST_HIDE_AFTER_FADE));
     }
 
+    /** 当悬浮窗完全隐藏后的回调。 */
     public void onOverlayHidden() {
         OverlayState current = requireState();
         overlayState.setValue(current.withVisibility(false));
     }
 
+    /** 点击关闭按钮时的处理。 */
     public void onCloseClick() {
         OverlayState current = requireState();
         if (current.soundEnabled) {
@@ -89,12 +125,19 @@ public final class OverlayViewModel extends ViewModel {
         effect.setValue(new OneShotEffect(OneShotEffect.Type.REQUEST_HIDE_AFTER_FADE));
     }
 
+    /** 开始拖拽时的处理。 */
     public void onDragStart() {
         OverlayState current = requireState();
         overlayState.setValue(current.withDragging(true));
         animationSpec.setValue(null);
     }
 
+    /**
+     * 拖拽过程中的处理。
+     *
+     * @param dxPx X轴偏移量 (像素)
+     * @param dyPx Y轴偏移量 (像素)
+     */
     public void onDragMove(int dxPx, int dyPx) {
         OverlayState current = requireState();
         OverlayState moved = current.withPosition(current.xPx + dxPx, current.yPx + dyPx);
@@ -104,6 +147,7 @@ public final class OverlayViewModel extends ViewModel {
         animationSpec.setValue(null);
     }
 
+    /** 拖拽结束时的处理，会进行边缘吸附。 */
     public void onDragEnd() {
         OverlayState current = requireState().withDragging(false);
         ScreenBounds bounds = screenInfoProvider.getCurrentBounds();
@@ -115,12 +159,19 @@ public final class OverlayViewModel extends ViewModel {
         animationSpec.setValue(new AnimationSpec(MOVE_ANIM_MS, AnimType.MOVE));
     }
 
+    /** 开始缩放时的处理。 */
     public void onResizeStart() {
         OverlayState current = requireState();
         overlayState.setValue(current.withResizing(true));
         animationSpec.setValue(null);
     }
 
+    /**
+     * 缩放过程中的处理。
+     *
+     * @param dwPx 宽度增量 (像素)
+     * @param dhPx 高度增量 (像素)
+     */
     public void onResizeMove(int dwPx, int dhPx) {
         OverlayState current = requireState();
         OverlayState resized = current.withSize(current.widthPx + dwPx, current.heightPx + dhPx);
@@ -133,6 +184,7 @@ public final class OverlayViewModel extends ViewModel {
         animationSpec.setValue(null);
     }
 
+    /** 缩放结束时的处理。 */
     public void onResizeEnd() {
         OverlayState current = requireState().withResizing(false);
         overlayState.setValue(current);
@@ -140,6 +192,7 @@ public final class OverlayViewModel extends ViewModel {
         animationSpec.setValue(new AnimationSpec(RESIZE_ANIM_MS, AnimType.RESIZE));
     }
 
+    /** 屏幕边界改变时的处理 (如旋转屏幕)。 */
     public void onBoundsChanged() {
         OverlayState current = requireState();
         ScreenBounds bounds = screenInfoProvider.getCurrentBounds();
@@ -151,6 +204,11 @@ public final class OverlayViewModel extends ViewModel {
         animationSpec.setValue(new AnimationSpec(MOVE_ANIM_MS, AnimType.MOVE));
     }
 
+    /**
+     * 关闭按钮位置改变。
+     *
+     * @param position 新的位置
+     */
     public void onCloseButtonPositionChanged(CloseButtonPosition position) {
         Settings settings = settingsRepository.loadSettings().withCloseButtonPosition(position);
         settingsRepository.saveSettings(settings);
@@ -158,6 +216,11 @@ public final class OverlayViewModel extends ViewModel {
         overlayState.setValue(current.withCloseButtonPosition(position));
     }
 
+    /**
+     * 提示音开关改变。
+     *
+     * @param enabled 是否启用
+     */
     public void onSoundEnabledChanged(boolean enabled) {
         Settings settings = settingsRepository.loadSettings().withSoundEnabled(enabled);
         settingsRepository.saveSettings(settings);
@@ -165,6 +228,11 @@ public final class OverlayViewModel extends ViewModel {
         overlayState.setValue(current.withSoundEnabled(enabled));
     }
 
+    /**
+     * 常驻通知开关改变。
+     *
+     * @param enabled 是否启用
+     */
     public void onKeepAliveChanged(boolean enabled) {
         Settings settings = settingsRepository.loadSettings().withKeepAliveEnabled(enabled);
         settingsRepository.saveSettings(settings);
@@ -172,6 +240,12 @@ public final class OverlayViewModel extends ViewModel {
         overlayState.setValue(current.withKeepAliveEnabled(enabled));
     }
 
+    /**
+     * 应用导入的状态。
+     *
+     * @param importedState 导入的悬浮窗状态
+     * @param settings 导入的配置
+     */
     public void applyImportedState(OverlayState importedState, Settings settings) {
         settingsRepository.saveSettings(settings);
         settingsRepository.saveLastOverlayState(importedState);

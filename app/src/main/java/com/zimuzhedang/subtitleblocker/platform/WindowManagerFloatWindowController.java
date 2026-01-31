@@ -15,12 +15,25 @@ import com.zimuzhedang.subtitleblocker.domain.AnimType;
 import com.zimuzhedang.subtitleblocker.domain.AnimationSpec;
 import com.zimuzhedang.subtitleblocker.infra.Logger;
 
+/**
+ * 基于 {@link WindowManager} 实现的悬浮窗控制器。
+ * 使用系统的 WindowManager API 来添加、更新和移除悬浮窗视图。
+ * 支持平移动画、缩放动画和淡出动画。
+ *
+ * @author Trae
+ * @since 2026-01-30
+ */
 public final class WindowManagerFloatWindowController implements FloatWindowController {
     private final Context context;
     private final WindowManager windowManager;
     private View contentView;
     private WindowManager.LayoutParams layoutParams;
 
+    /**
+     * 构造函数。
+     *
+     * @param context Android 上下文，用于获取 WindowManager 服务
+     */
     public WindowManagerFloatWindowController(Context context) {
         this.context = context.getApplicationContext();
         this.windowManager = (WindowManager) this.context.getSystemService(Context.WINDOW_SERVICE);

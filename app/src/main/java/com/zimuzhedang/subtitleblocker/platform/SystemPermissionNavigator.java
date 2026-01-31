@@ -7,9 +7,21 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 
+/**
+ * 系统权限导航器的具体实现。
+ * 使用 Android 系统 API 进行权限检查和跳转。
+ *
+ * @author Trae
+ * @since 2026-01-30
+ */
 public final class SystemPermissionNavigator implements PermissionNavigator {
     private final Context context;
 
+    /**
+     * 构造函数。
+     *
+     * @param context 上下文
+     */
     public SystemPermissionNavigator(Context context) {
         this.context = context.getApplicationContext();
     }

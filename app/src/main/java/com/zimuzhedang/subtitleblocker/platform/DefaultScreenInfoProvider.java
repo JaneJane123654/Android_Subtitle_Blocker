@@ -10,10 +10,22 @@ import androidx.core.graphics.Insets;
 
 import com.zimuzhedang.subtitleblocker.domain.ScreenBounds;
 
+/**
+ * 屏幕信息提供者的默认实现。
+ * 使用 {@link WindowManager} 和 {@link android.view.WindowMetrics} 获取实时屏幕数据。
+ *
+ * @author Trae
+ * @since 2026-01-30
+ */
 public final class DefaultScreenInfoProvider implements ScreenInfoProvider {
     private final Context context;
     private final WindowManager windowManager;
 
+    /**
+     * 构造函数。
+     *
+     * @param context 上下文
+     */
     public DefaultScreenInfoProvider(Context context) {
         this.context = context.getApplicationContext();
         this.windowManager = (WindowManager) this.context.getSystemService(Context.WINDOW_SERVICE);

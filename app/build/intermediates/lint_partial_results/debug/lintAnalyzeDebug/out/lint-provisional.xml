@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.13.0" type="conditional_incidents">
+
+    <incident
+        id="ForegroundServicePermission"
+        severity="error"
+        message="foregroundServiceType:dataSync requires permission:[android.permission.FOREGROUND_SERVICE_DATA_SYNC]">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="23"
+            column="9"
+            startOffset="857"
+            endLine="26"
+            endColumn="56"
+            endOffset="1012"/>
+        <map>
+            <condition targetGE="34"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; `SDK_INT` is always >= 21">
+        <fix-replace
+            description="Delete tools:targetApi"
+            replacement=""
+            priority="0">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/themes.xml"
+                startOffset="199"
+                endOffset="218"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/themes.xml"
+            line="3"
+            column="45"
+            startOffset="199"
+            endLine="3"
+            endColumn="64"
+            endOffset="218"/>
+        <map>
+            <condition minGE="21-∞"/>
+        </map>
+    </incident>
+
+    <incident
+        id="KeyboardInaccessibleWidget"
+        severity="warning"
+        message="&apos;clickable&apos; attribute found, please also add &apos;focusable&apos;">
+        <fix-attribute
+            description="Set focusable=&quot;true&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="focusable"
+            value="true"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/view_overlay_window.xml"
+            line="14"
+            column="9"
+            startOffset="518"
+            endLine="14"
+            endColumn="33"
+            endOffset="542"/>
+        <map>
+            <condition minLT="26-∞"/>
+        </map>
+    </incident>
+
+    <incident
+        id="KeyboardInaccessibleWidget"
+        severity="warning"
+        message="&apos;clickable&apos; attribute found, please also add &apos;focusable&apos;">
+        <fix-attribute
+            description="Set focusable=&quot;true&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="focusable"
+            value="true"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/view_overlay_window.xml"
+            line="22"
+            column="9"
+            startOffset="787"
+            endLine="22"
+            endColumn="33"
+            endOffset="811"/>
+        <map>
+            <condition minLT="26-∞"/>
+        </map>
+    </incident>
+
+    <incident
+        id="KeyboardInaccessibleWidget"
+        severity="warning"
+        message="&apos;clickable&apos; attribute found, please also add &apos;focusable&apos;">
+        <fix-attribute
+            description="Set focusable=&quot;true&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="focusable"
+            value="true"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/view_overlay_window.xml"
+            line="30"
+            column="9"
+            startOffset="1104"
+            endLine="30"
+            endColumn="33"
+            endOffset="1128"/>
+        <map>
+            <condition minLT="26-∞"/>
+        </map>
+    </incident>
+
+</incidents>

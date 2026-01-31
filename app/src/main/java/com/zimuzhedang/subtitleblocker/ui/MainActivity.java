@@ -5,8 +5,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -16,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -27,31 +24,37 @@ import com.zimuzhedang.subtitleblocker.data.SoundPlayer;
 import com.zimuzhedang.subtitleblocker.data.ToneSoundPlayer;
 import com.zimuzhedang.subtitleblocker.domain.CloseButtonPosition;
 import com.zimuzhedang.subtitleblocker.domain.OneShotEffect;
+import com.zimuzhedang.subtitleblocker.domain.OverlayManager;
 import com.zimuzhedang.subtitleblocker.domain.OverlayState;
 import com.zimuzhedang.subtitleblocker.domain.Settings;
 import com.zimuzhedang.subtitleblocker.platform.DefaultKeepAliveController;
-import com.zimuzhedang.subtitleblocker.platform.DefaultScreenInfoProvider;
-import com.zimuzhedang.subtitleblocker.platform.FloatWindowController;
 import com.zimuzhedang.subtitleblocker.platform.KeepAliveController;
+import com.zimuzhedang.subtitleblocker.platform.OverlayRuntime;
 import com.zimuzhedang.subtitleblocker.platform.PermissionNavigator;
 import com.zimuzhedang.subtitleblocker.platform.SystemPermissionNavigator;
-import com.zimuzhedang.subtitleblocker.platform.WindowManagerFloatWindowController;
 import com.zimuzhedang.subtitleblocker.vm.OverlayViewModel;
-import com.zimuzhedang.subtitleblocker.vm.OverlayViewModelFactory;
 
+/**
+ * 应用主界面。
+ * 负责展示设置项、控制悬浮窗的开启与关闭、处理权限申请以及配置的导入导出。
+ *
+ * @author Trae
+ * @since 2026-01-30
+ */
 public final class MainActivity extends AppCompatActivity {
+    /** 通知权限请求码 */
     private static final int REQUEST_POST_NOTIFICATIONS = 1001;
 
     private OverlayViewModel viewModel;
-    private OverlayViewBinder viewBinder;
-    private OverlayWindowView overlayView;
-    private FloatWindowController windowController;
+    /** 权限导航器 */
     private PermissionNavigator permissionNavigator;
+    /** 常驻后台控制器 */
     private KeepAliveController keepAliveController;
+    /** 音效播放器 */
     private SoundPlayer soundPlayer;
-    private final Handler handler = new Handler(Looper.getMainLooper());
-    private com.zimuzhedang.subtitleblocker.domain.AnimationSpec pendingAnim;
+    /** 配置仓库 */
     private SettingsRepository settingsRepository;
+    /** 当前悬浮窗状态缓存 */
     private OverlayState currentState;
 
     private MaterialButton btnEnable;
@@ -71,22 +74,19 @@ public final class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         settingsRepository = new SharedPreferencesSettingsRepository(this);
-        DefaultScreenInfoProvider screenInfoProvider = new DefaultScreenInfoProvider(this);
-        viewModel = new ViewModelProvider(this, new OverlayViewModelFactory(settingsRepository, screenInfoProvider))
-                .get(OverlayViewModel.class);
+        viewModel = OverlayManager.getInstance().getViewModel(this);
         permissionNavigator = new SystemPermissionNavigator(this);
         keepAliveController = new DefaultKeepAliveController(this);
         soundPlayer = new ToneSoundPlayer();
-        overlayView = new OverlayWindowView(this);
-        windowController = new WindowManagerFloatWindowController(this);
-        viewBinder = new OverlayViewBinder(windowController, overlayView);
 
         bindViews();
-        bindOverlayEvents();
         bindViewModel();
         setupSettingsUi(settingsRepository.loadSettings());
     }
 
+    /**
+     * 绑定视图组件并设置监听器。
+     */
     private void bindViews() {
         btnEnable = findViewById(R.id.btnEnable);
         btnDisable = findViewById(R.id.btnDisable);
@@ -124,50 +124,17 @@ public final class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void bindOverlayEvents() {
-        overlayView.setListener(new OverlayWindowView.Listener() {
-            @Override
-            public void onClose() {
-                viewModel.onCloseClick();
-            }
-
-            @Override
-            public void onDragStart() {
-                viewModel.onDragStart();
-            }
-
-            @Override
-            public void onDragMove(int dxPx, int dyPx) {
-                viewModel.onDragMove(dxPx, dyPx);
-            }
-
-            @Override
-            public void onDragEnd() {
-                viewModel.onDragEnd();
-            }
-
-            @Override
-            public void onResizeStart() {
-                viewModel.onResizeStart();
-            }
-
-            @Override
-            public void onResizeMove(int dwPx, int dhPx) {
-                viewModel.onResizeMove(dwPx, dhPx);
-            }
-
-            @Override
-            public void onResizeEnd() {
-                viewModel.onResizeEnd();
-            }
-        });
-    }
-
+    /**
+     * 绑定 ViewModel 数据流。
+     */
     private void bindViewModel() {
         viewModel.getOverlayState().observe(this, this::renderOverlay);
-        viewModel.getAnimationSpec().observe(this, spec -> pendingAnim = spec);
         viewModel.getEffect().observe(this, effect -> {
             if (effect == null) {
+                return;
+            }
+            // 使用 consume() 确保每个副作用只被处理一次
+            if (!effect.consume()) {
                 return;
             }
             if (effect.type == OneShotEffect.Type.NAVIGATE_TO_PERMISSION) {
@@ -175,31 +142,40 @@ public final class MainActivity extends AppCompatActivity {
                 permissionNavigator.openOverlayPermissionSettings(this);
             } else if (effect.type == OneShotEffect.Type.PLAY_SOUND) {
                 soundPlayer.playClick();
-            } else if (effect.type == OneShotEffect.Type.REQUEST_HIDE_AFTER_FADE) {
-                handler.postDelayed(() -> {
-                    windowController.hide();
-                    viewModel.onOverlayHidden();
-                    keepAliveController.stop();
-                }, 320L);
             }
+            viewModel.clearEffect();
         });
     }
 
+    /**
+     * 根据状态渲染悬浮窗。
+     *
+     * @param state 悬浮窗状态
+     */
     private void renderOverlay(OverlayState state) {
         if (state == null) {
             return;
         }
         currentState = state;
         soundPlayer.setEnabled(state.soundEnabled);
-        viewBinder.bind(state, pendingAnim);
-        pendingAnim = null;
-        if (state.visible && state.keepAliveEnabled) {
-            keepAliveController.start();
-        } else if (!state.visible) {
+        if (state.visible) {
+            OverlayRuntime.getInstance().start(this);
+            if (state.keepAliveEnabled) {
+                keepAliveController.start();
+            } else {
+                keepAliveController.stop();
+            }
+        } else {
             keepAliveController.stop();
+            OverlayRuntime.getInstance().stop();
         }
     }
 
+    /**
+     * 初始化设置界面的 UI 状态。
+     *
+     * @param settings 持久化配置
+     */
     private void setupSettingsUi(Settings settings) {
         if (settings.closeButtonPosition == CloseButtonPosition.LEFT_TOP) {
             rbLeftTop.setChecked(true);
@@ -210,6 +186,9 @@ public final class MainActivity extends AppCompatActivity {
         switchKeepAlive.setChecked(settings.keepAliveEnabled);
     }
 
+    /**
+     * 导出当前配置到剪贴板（JSON 格式）。
+     */
     private void exportConfig() {
         try {
             Settings settings = settingsRepository.loadSettings();
@@ -234,6 +213,9 @@ public final class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 从剪贴板导入 JSON 配置。
+     */
     private void importConfig() {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         if (clipboard == null || !clipboard.hasPrimaryClip()) {
@@ -286,6 +268,11 @@ public final class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 检查是否已授予发送通知权限（Android 13+）。
+     *
+     * @return true 表示已授权或版本低于 Android 13
+     */
     private boolean hasPostNotificationsPermission() {
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.TIRAMISU) {
             return true;
@@ -294,6 +281,9 @@ public final class MainActivity extends AppCompatActivity {
                 == PackageManager.PERMISSION_GRANTED;
     }
 
+    /**
+     * 请求发送通知权限（Android 13+）。
+     */
     private void requestPostNotificationsPermission() {
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.TIRAMISU) {
             return;

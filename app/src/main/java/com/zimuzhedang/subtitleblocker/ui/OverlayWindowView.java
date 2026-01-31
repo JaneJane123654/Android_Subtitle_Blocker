@@ -12,20 +12,47 @@ import androidx.annotation.NonNull;
 import com.zimuzhedang.subtitleblocker.R;
 import com.zimuzhedang.subtitleblocker.domain.CloseButtonPosition;
 
+/**
+ * 悬浮窗自定义视图类。
+ * 负责渲染悬浮窗 UI（遮挡区域、关闭按钮、缩放手柄）并分发触摸事件（拖拽、缩放）。
+ *
+ * @author Trae
+ * @since 2026-01-30
+ */
 public final class OverlayWindowView extends FrameLayout {
+    /**
+     * 悬浮窗交互事件监听器接口。
+     */
     public interface Listener {
+        /** 点击关闭按钮时触发 */
         void onClose();
 
+        /** 开始拖拽悬浮窗时触发 */
         void onDragStart();
 
+        /**
+         * 正在拖拽悬浮窗时触发。
+         *
+         * @param dxPx X 轴偏移量 (像素)
+         * @param dyPx Y 轴偏移量 (像素)
+         */
         void onDragMove(int dxPx, int dyPx);
 
+        /** 结束拖拽悬浮窗时触发 */
         void onDragEnd();
 
+        /** 开始缩放悬浮窗时触发 */
         void onResizeStart();
 
+        /**
+         * 正在缩放悬浮窗时触发。
+         *
+         * @param dwPx 宽度变化量 (像素)
+         * @param dhPx 高度变化量 (像素)
+         */
         void onResizeMove(int dwPx, int dhPx);
 
+        /** 结束缩放悬浮窗时触发 */
         void onResizeEnd();
     }
 
@@ -41,6 +68,12 @@ public final class OverlayWindowView extends FrameLayout {
     private float lastResizeX;
     private float lastResizeY;
 
+    /**
+     * 构造函数。
+     * 初始化布局、查找子控件并设置触摸监听器。
+     *
+     * @param context Android 上下文
+     */
     public OverlayWindowView(@NonNull Context context) {
         super(context);
         LayoutInflater.from(context).inflate(R.layout.view_overlay_window, this, true);

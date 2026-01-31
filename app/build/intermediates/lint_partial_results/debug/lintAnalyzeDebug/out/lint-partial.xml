@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.13.0" type="partial_results">
+    <map id="UnsafeImplicitIntentLaunch">
+            <map id="actionsSent">
+                    <map id="android.settings.action.MANAGE_OVERLAY_PERMISSION (used to start an activity)">
+                        <location id="0"
+                            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/zimuzhedang/subtitleblocker/platform/SystemPermissionNavigator.java"
+                            line="30"
+                            column="25"
+                            startOffset="862"
+                            endLine="30"
+                            endColumn="129"
+                            endOffset="966"/>
+                    </map>
+            </map>
+    </map>
+    <map id="UnsafeIntentLaunch">
+            <map id="unprotected">
+                <entry
+                    name="com.zimuzhedang.subtitleblocker.ui.MainActivity"
+                    boolean="true"/>
+            </map>
+    </map>
+    <map id="UnusedResources">
+        <location id="R.dimen.overlay_min_height_dp"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/dimens.xml"
+            line="3"
+            column="12"
+            startOffset="76"
+            endLine="3"
+            endColumn="40"
+            endOffset="104"/>
+        <location id="R.dimen.overlay_min_width_dp"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/dimens.xml"
+            line="2"
+            column="12"
+            startOffset="23"
+            endLine="2"
+            endColumn="39"
+            endOffset="50"/>
+        <location id="R.dimen.overlay_snap_threshold"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/dimens.xml"
+            line="6"
+            column="12"
+            startOffset="244"
+            endLine="6"
+            endColumn="41"
+            endOffset="273"/>
+        <entry
+            name="model"
+            string="attr[colorSurface(R)],color[black_opaque(U),border_gray(U)],dimen[overlay_resize_handle_size(U),overlay_close_button_size(U),overlay_min_width_dp(D),overlay_min_height_dp(D),overlay_snap_threshold(D)],drawable[close_button_bg(U),ic_close(U),overlay_background(U),resize_handle_bg(U)],id[btnEnable(U),btnDisable(U),btnOpenPermission(U),btnExportConfig(U),btnImportConfig(U),rgClosePosition(U),rbLeftTop(U),rbRightTop(U),switchSound(U),switchKeepAlive(U),overlayRoot(D),resizeHandleRight(U),resizeHandleBottom(U),resizeHandle(U),btnClose(U)],layout[activity_main(U),view_overlay_window(U)],string[app_name(U),action_enable_overlay(U),action_disable_overlay(U),action_open_permission(U),action_export_config(U),action_import_config(U),label_close_button_position(U),label_close_button_left(U),label_close_button_right(U),label_sound_enabled(U),label_keep_alive(U),notification_keep_alive_title(U),notification_keep_alive_text(U),toast_import_success(U),toast_import_failed(U),toast_exported(U)],style[Theme_SubtitleBlocker(U),Theme_MaterialComponents_DayNight_NoActionBar(R)];a^1^2,b^2,1b^1e^1f^20^21^22^23^24^25^26^27,1c^a^b^3^8^1f^4^9,2d^2e^0;;;"/>
+    </map>
+
+</incidents>

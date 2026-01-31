@@ -1,0 +1,155 @@
+D:\project\zimuzhedang\app\build.gradle:12: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
+        targetSdk 34
+        ~~~~~~~~~~~~
+
+   Explanation for issues of type "OldTargetApi":
+   When your application or sdk runs on a version of Android that is more
+   recent than your targetSdkVersion specifies that it has been tested with,
+   various compatibility modes kick in. This ensures that your application
+   continues to work, but it may look out of place. For example, if the
+   targetSdkVersion is less than 14, your app may get an option button in the
+   UI.
+
+   To fix this issue, set the targetSdkVersion to the highest available value.
+   Then test your app to make sure everything works correctly. You may want to
+   consult the compatibility notes to see what changes apply to each version
+   you are adding support for:
+   https://developer.android.com/reference/android/os/Build.VERSION_CODES.html
+   as well as follow this guide:
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.
+   html
+
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.html
+
+D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:23: Error: foregroundServiceType:dataSync requires permission:[android.permission.FOREGROUND_SERVICE_DATA_SYNC] [ForegroundServicePermission]
+        <service
+        ^
+
+   Explanation for issues of type "ForegroundServicePermission":
+   For targetSdkVersion >= 34, each foregroundServiceType listed in the
+   <service> element requires specific sets of permissions to be declared in
+   the manifest. If permissions are missing, then when the foreground service
+   is started with a foregroundServiceType that has missing permissions, a
+   SecurityException will be thrown.
+
+D:\project\zimuzhedang\app\build.gradle:7: Warning: A newer version of compileSdkVersion than 34 is available: 36 [GradleDependency]
+    compileSdk 34
+    ~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\build.gradle:45: Warning: A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.1 [GradleDependency]
+    implementation "androidx.appcompat:appcompat:1.6.1"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\build.gradle:46: Warning: A newer version of com.google.android.material:material than 1.11.0 is available: 1.13.0 [GradleDependency]
+    implementation "com.google.android.material:material:1.11.0"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\build.gradle:48: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel than 2.7.0 is available: 2.10.0 [GradleDependency]
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.7.0"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\build.gradle:49: Warning: A newer version of androidx.lifecycle:lifecycle-livedata than 2.7.0 is available: 2.10.0 [GradleDependency]
+    implementation "androidx.lifecycle:lifecycle-livedata:2.7.0"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\build.gradle:51: Warning: A newer version of androidx.core:core-ktx than 1.12.0 is available: 1.17.0 [GradleDependency]
+    implementation "androidx.core:core-ktx:1.12.0"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+D:\project\zimuzhedang\app\build.gradle:55: Warning: A newer version of org.hamcrest:hamcrest than 2.2 is available: 3.0 [NewerVersionAvailable]
+    testImplementation "org.hamcrest:hamcrest:2.2"
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "NewerVersionAvailable":
+   This detector checks with a central repository to see if there are newer
+   versions available for the dependencies used by this project. This is
+   similar to the GradleDependency check, which checks for newer versions
+   available in the Android SDK tools and libraries, but this works with any
+   MavenCentral dependency, and connects to the library every time, which
+   makes it more flexible but also much slower.
+
+D:\project\zimuzhedang\app\src\main\res\values\themes.xml:3: Warning: Unnecessary; SDK_INT is always >= 21 [ObsoleteSdkInt]
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSurface</item>
+                                            ~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "ObsoleteSdkInt":
+   This check flags version checks that are not necessary, because the
+   minSdkVersion (or surrounding known API level) is already at least as high
+   as the version checked for.
+
+   Similarly, it also looks for resources in -vNN folders, such as values-v14
+   where the version qualifier is less than or equal to the minSdkVersion,
+   where the contents should be merged into the best folder.
+
+D:\project\zimuzhedang\app\src\main\res\values\dimens.xml:2: Warning: The resource R.dimen.overlay_min_width_dp appears to be unused [UnusedResources]
+    <dimen name="overlay_min_width_dp">100dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\values\dimens.xml:3: Warning: The resource R.dimen.overlay_min_height_dp appears to be unused [UnusedResources]
+    <dimen name="overlay_min_height_dp">40dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\values\dimens.xml:6: Warning: The resource R.dimen.overlay_snap_threshold appears to be unused [UnusedResources]
+    <dimen name="overlay_snap_threshold">15dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+   Available options:
+
+   **skip-libraries** (default is true):
+   Whether the unused resource check should skip reporting unused resources in libraries.
+
+   Many libraries will declare resources that are part of the library surface; other modules depending on the library will also reference the resources. To avoid reporting all these resources as unused (in the context of a library), the unused resource check normally skips reporting unused resources in libraries. Instead, run the unused resource check on the consuming app module (along with `checkDependencies=true`).
+
+   However, there are cases where you want to check that all the resources declared in a library are used; in that case, you can disable the skip option.
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UnusedResources">
+           <option name="skip-libraries" value="true" />
+       </issue>
+   </lint>
+   ```
+
+D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:8: Warning: Should explicitly set android:icon, there is no default [MissingApplicationIcon]
+    <application
+     ~~~~~~~~~~~
+
+   Explanation for issues of type "MissingApplicationIcon":
+   You should set an icon for the application as whole because there is no
+   default. This attribute must be set as a reference to a drawable resource
+   containing the image (for example @drawable/icon).
+
+   https://developer.android.com/studio/publish/preparing#publishing-configure
+
+D:\project\zimuzhedang\app\src\main\res\layout\view_overlay_window.xml:14: Warning: 'clickable' attribute found, please also add 'focusable' [KeyboardInaccessibleWidget]
+        android:clickable="true" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\layout\view_overlay_window.xml:22: Warning: 'clickable' attribute found, please also add 'focusable' [KeyboardInaccessibleWidget]
+        android:clickable="true" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\layout\view_overlay_window.xml:30: Warning: 'clickable' attribute found, please also add 'focusable' [KeyboardInaccessibleWidget]
+        android:clickable="true" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "KeyboardInaccessibleWidget":
+   A widget that is declared to be clickable but not declared to be focusable
+   is not accessible via the keyboard. Please add the focusable attribute as
+   well.
+
+1 error, 16 warnings
