@@ -2,6 +2,16 @@
 <resources xmlns:ns1="http://schemas.android.com/tools">
     <color name="black_opaque">#FF000000</color>
     <color name="border_gray">#FFB0B0B0</color>
+    <color name="card_bg">#111A2B</color>
+    <color name="card_border">#1D2A3F</color>
+    <color name="color_accent">#F6C560</color>
+    <color name="color_primary">#1EC7B4</color>
+    <color name="color_primary_dark">#0E8B7B</color>
+    <color name="icon_bg">#131D2E</color>
+    <color name="page_bg">#0B1220</color>
+    <color name="surface_dim">#152033</color>
+    <color name="text_primary">#E8EDF5</color>
+    <color name="text_secondary">#A6B3C6</color>
     <dimen name="overlay_close_button_size">32dp</dimen>
     <dimen name="overlay_min_height_dp">40dp</dimen>
     <dimen name="overlay_min_width_dp">100dp</dimen>
@@ -24,6 +34,11 @@
     <string name="toast_import_failed">剪贴板配置无效</string>
     <string name="toast_import_success">已导入配置</string>
     <style name="Theme.SubtitleBlocker" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryVariant">@color/color_primary_dark</item>
+        <item name="colorSecondary">@color/color_accent</item>
+        <item name="android:windowBackground">@color/page_bg</item>
+        <item name="android:navigationBarColor">@color/page_bg</item>
         <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorSurface</item>
     </style>
 </resources>

@@ -1,5 +1,16 @@
 <resources>
     <color name="black_opaque">#FF000000</color>
     <color name="border_gray">#FFB0B0B0</color>
+
+    <color name="color_primary">#1EC7B4</color>
+    <color name="color_primary_dark">#0E8B7B</color>
+    <color name="color_accent">#F6C560</color>
+    <color name="page_bg">#0B1220</color>
+    <color name="card_bg">#111A2B</color>
+    <color name="card_border">#1D2A3F</color>
+    <color name="text_primary">#E8EDF5</color>
+    <color name="text_secondary">#A6B3C6</color>
+    <color name="surface_dim">#152033</color>
+    <color name="icon_bg">#131D2E</color>
 </resources>
 

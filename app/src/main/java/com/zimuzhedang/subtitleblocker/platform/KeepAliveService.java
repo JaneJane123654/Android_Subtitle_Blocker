@@ -18,7 +18,8 @@ import com.zimuzhedang.subtitleblocker.ui.MainActivity;
 /**
  * 常驻后台服务。
  * 通过启动前台服务（Foreground Service）并显示通知，降低应用被系统杀死的概率。
- * 该服务还负责在后台模式下启动和停止 {@link OverlayRuntime}。
+ * 注意：该服务只负责保持应用存活，不管理悬浮窗的生命周期。
+ * 悬浮窗的显示/隐藏完全由 MainActivity 和 OverlayRuntime 管理。
  *
  * @author Trae
  * @since 2026-01-30
@@ -31,9 +32,8 @@ public final class KeepAliveService extends Service {
     public void onCreate() {
         super.onCreate();
         setupForeground();
-        // 注意：不传入 stopCallback，避免隐藏遮罩时服务自杀导致应用退出
-        // 服务的停止应该由 MainActivity 通过 keepAliveController.stop() 控制
-        OverlayRuntime.getInstance().start(this);
+        // 注意：KeepAliveService 只负责保持前台服务，不管理 OverlayRuntime
+        // OverlayRuntime 的生命周期完全由 MainActivity 管理
     }
 
     /**
@@ -68,7 +68,8 @@ public final class KeepAliveService extends Service {
 
     @Override
     public void onDestroy() {
-        OverlayRuntime.getInstance().stop();
+        // 注意：不调用 OverlayRuntime.stop()
+        // OverlayRuntime 的生命周期由 MainActivity 管理，服务停止不影响悬浮窗
         stopForeground(true);
         super.onDestroy();
     }

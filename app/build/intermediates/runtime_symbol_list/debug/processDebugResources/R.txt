@@ -1278,10 +1278,15 @@ int color button_material_dark 0x7f050029
 int color button_material_light 0x7f05002a
 int color call_notification_answer_color 0x7f05002b
 int color call_notification_decline_color 0x7f05002c
+int color card_bg 0x7f050304
+int color card_border 0x7f050305
 int color cardview_dark_background 0x7f05002d
 int color cardview_light_background 0x7f05002e
 int color cardview_shadow_end_color 0x7f05002f
 int color cardview_shadow_start_color 0x7f050030
+int color color_accent 0x7f050306
+int color color_primary 0x7f050307
+int color color_primary_dark 0x7f050308
 int color design_bottom_navigation_shadow_color 0x7f050031
 int color design_box_stroke_color 0x7f050032
 int color design_dark_default_color_background 0x7f050033
@@ -1330,6 +1335,7 @@ int color foreground_material_dark 0x7f05005d
 int color foreground_material_light 0x7f05005e
 int color highlighted_text_material_dark 0x7f05005f
 int color highlighted_text_material_light 0x7f050060
+int color icon_bg 0x7f050309
 int color m3_appbar_overlay_color 0x7f050061
 int color m3_assist_chip_icon_tint_color 0x7f050062
 int color m3_assist_chip_stroke_color 0x7f050063
@@ -1983,6 +1989,7 @@ int color mtrl_textinput_focused_box_stroke_color 0x7f0502ea
 int color mtrl_textinput_hovered_box_stroke_color 0x7f0502eb
 int color notification_action_color_filter 0x7f0502ec
 int color notification_icon_bg_color 0x7f0502ed
+int color page_bg 0x7f05030a
 int color primary_dark_material_dark 0x7f0502ee
 int color primary_dark_material_light 0x7f0502ef
 int color primary_material_dark 0x7f0502f0
@@ -1997,12 +2004,15 @@ int color secondary_text_default_material_dark 0x7f0502f8
 int color secondary_text_default_material_light 0x7f0502f9
 int color secondary_text_disabled_material_dark 0x7f0502fa
 int color secondary_text_disabled_material_light 0x7f0502fb
+int color surface_dim 0x7f05030b
 int color switch_thumb_disabled_material_dark 0x7f0502fc
 int color switch_thumb_disabled_material_light 0x7f0502fd
 int color switch_thumb_material_dark 0x7f0502fe
 int color switch_thumb_material_light 0x7f0502ff
 int color switch_thumb_normal_material_dark 0x7f050300
 int color switch_thumb_normal_material_light 0x7f050301
+int color text_primary 0x7f05030c
+int color text_secondary 0x7f05030d
 int color tooltip_background_dark 0x7f050302
 int color tooltip_background_light 0x7f050303
 int dimen abc_action_bar_content_inset_material 0x7f060000
@@ -2887,6 +2897,8 @@ int drawable abc_textfield_search_material 0x7f070075
 int drawable abc_vector_test 0x7f070076
 int drawable avd_hide_password 0x7f070077
 int drawable avd_show_password 0x7f070078
+int drawable bg_chip_info 0x7f0700e7
+int drawable bg_header_card 0x7f0700e8
 int drawable btn_checkbox_checked_mtrl 0x7f070079
 int drawable btn_checkbox_checked_to_unchecked_mtrl_animation 0x7f07007a
 int drawable btn_checkbox_unchecked_mtrl 0x7f07007b
@@ -2901,6 +2913,7 @@ int drawable design_ic_visibility 0x7f070083
 int drawable design_ic_visibility_off 0x7f070084
 int drawable design_password_eye 0x7f070085
 int drawable design_snackbar_background 0x7f070086
+int drawable ic_app_launcher 0x7f0700e9
 int drawable ic_arrow_back_black_24 0x7f070087
 int drawable ic_call_answer 0x7f070088
 int drawable ic_call_answer_low 0x7f070089

@@ -2,12 +2,25 @@ R_DEF: Internal format may change without notice
 local
 color black_opaque
 color border_gray
+color card_bg
+color card_border
+color color_accent
+color color_primary
+color color_primary_dark
+color icon_bg
+color page_bg
+color surface_dim
+color text_primary
+color text_secondary
 dimen overlay_close_button_size
 dimen overlay_min_height_dp
 dimen overlay_min_width_dp
 dimen overlay_resize_handle_size
 dimen overlay_snap_threshold
+drawable bg_chip_info
+drawable bg_header_card
 drawable close_button_bg
+drawable ic_app_launcher
 drawable ic_close
 drawable overlay_background
 drawable resize_handle_bg
