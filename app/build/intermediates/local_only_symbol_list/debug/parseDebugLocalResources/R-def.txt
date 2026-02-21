@@ -22,7 +22,9 @@ drawable bg_header_card
 drawable close_button_bg
 drawable ic_app_launcher
 drawable ic_close
+drawable ic_magnifier
 drawable overlay_background
+drawable overlay_background_transparent
 drawable resize_handle_bg
 id btnClose
 id btnDisable
@@ -30,6 +32,8 @@ id btnEnable
 id btnExportConfig
 id btnImportConfig
 id btnOpenPermission
+id btnTransparency
+id editTransparencySeconds
 id overlayRoot
 id rbLeftTop
 id rbRightTop
@@ -39,6 +43,8 @@ id resizeHandleRight
 id rgClosePosition
 id switchKeepAlive
 id switchSound
+id switchTransparencyAutoRestore
+id switchTransparencyToggle
 layout activity_main
 layout view_overlay_window
 string action_disable_overlay
@@ -46,12 +52,16 @@ string action_enable_overlay
 string action_export_config
 string action_import_config
 string action_open_permission
+string action_toggle_transparency
 string app_name
 string label_close_button_left
 string label_close_button_position
 string label_close_button_right
 string label_keep_alive
 string label_sound_enabled
+string label_transparency_auto_restore
+string label_transparency_restore_seconds
+string label_transparency_toggle
 string notification_keep_alive_text
 string notification_keep_alive_title
 string toast_exported

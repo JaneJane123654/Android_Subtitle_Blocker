@@ -21,6 +21,8 @@ public final class OverlayConstraintsTest {
                 false,
                 false,
                 false,
+                false,
+                false,
                 false
         );
         OverlayState clamped = OverlayConstraints.clampPosition(state, bounds);
@@ -38,6 +40,8 @@ public final class OverlayConstraintsTest {
                 0,
                 true,
                 CloseButtonPosition.RIGHT_TOP,
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -61,10 +65,11 @@ public final class OverlayConstraintsTest {
                 false,
                 false,
                 false,
+                false,
+                false,
                 false
         );
         OverlayState snapped = OverlayConstraints.snapToEdgeIfNeeded(state, bounds, 15);
         assertThat(snapped.xPx, is(0));
     }
 }
-

@@ -2929,6 +2929,7 @@ drawable ic_keyboard_black_24dp
 drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
 drawable ic_m3_chip_close
+drawable ic_magnifier
 drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
@@ -3007,6 +3008,7 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable overlay_background
+drawable overlay_background_transparent
 drawable resize_handle_bg
 drawable test_level_drawable
 drawable tooltip_frame_dark
@@ -3105,6 +3107,7 @@ id btnEnable
 id btnExportConfig
 id btnImportConfig
 id btnOpenPermission
+id btnTransparency
 id buttonPanel
 id cancel_button
 id center
@@ -3165,6 +3168,7 @@ id easeIn
 id easeInOut
 id easeOut
 id edge
+id editTransparencySeconds
 id edit_query
 id edit_text_id
 id elastic
@@ -3413,6 +3417,8 @@ id submenuarrow
 id submit_area
 id switchKeepAlive
 id switchSound
+id switchTransparencyAutoRestore
+id switchTransparencyToggle
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -3704,6 +3710,7 @@ string action_enable_overlay
 string action_export_config
 string action_import_config
 string action_open_permission
+string action_toggle_transparency
 string androidx_startup
 string app_name
 string appbar_scrolling_view_behavior
@@ -3737,6 +3744,9 @@ string label_close_button_position
 string label_close_button_right
 string label_keep_alive
 string label_sound_enabled
+string label_transparency_auto_restore
+string label_transparency_restore_seconds
+string label_transparency_toggle
 string m3_exceed_max_badge_text_suffix
 string m3_ref_typeface_brand_medium
 string m3_ref_typeface_brand_regular

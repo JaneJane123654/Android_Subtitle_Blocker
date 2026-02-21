@@ -22,7 +22,7 @@ public final class OverlayViewModelTest {
     public final InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
     private static final class FakeSettingsRepository implements SettingsRepository {
-        private Settings settings = new Settings(CloseButtonPosition.RIGHT_TOP, true, true);
+        private Settings settings = new Settings(CloseButtonPosition.RIGHT_TOP, true, true, false, false, 5);
         private OverlayState lastState;
         @Override
         public Settings loadSettings() {

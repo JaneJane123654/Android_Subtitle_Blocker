@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
@@ -26,6 +27,7 @@ public final class OverlayWindowView extends FrameLayout {
     public interface Listener {
         /** 点击关闭按钮时触发 */
         void onClose();
+        void onTransparencyToggle();
 
         /** 开始拖拽悬浮窗时触发 */
         void onDragStart();
@@ -58,15 +60,22 @@ public final class OverlayWindowView extends FrameLayout {
 
     private Listener listener;
     private final ImageButton closeButton;
+    private final ImageButton transparencyButton;
+    private final View overlayRoot;
     private final View resizeHandle;
     private final View resizeHandleRight;
     private final View resizeHandleBottom;
     private boolean draggingActive;
     private boolean resizingActive;
+    private boolean transparencyToggleEnabled;
+    private boolean possibleClick;
+    private float downRawX;
+    private float downRawY;
     private float lastRawX;
     private float lastRawY;
     private float lastResizeX;
     private float lastResizeY;
+    private final int touchSlop;
 
     /**
      * 构造函数。
@@ -77,7 +86,9 @@ public final class OverlayWindowView extends FrameLayout {
     public OverlayWindowView(@NonNull Context context) {
         super(context);
         LayoutInflater.from(context).inflate(R.layout.view_overlay_window, this, true);
+        overlayRoot = findViewById(R.id.overlayRoot);
         closeButton = findViewById(R.id.btnClose);
+        transparencyButton = findViewById(R.id.btnTransparency);
         resizeHandle = findViewById(R.id.resizeHandle);
         resizeHandleRight = findViewById(R.id.resizeHandleRight);
         resizeHandleBottom = findViewById(R.id.resizeHandleBottom);
@@ -86,10 +97,16 @@ public final class OverlayWindowView extends FrameLayout {
                 listener.onClose();
             }
         });
+        transparencyButton.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onTransparencyToggle();
+            }
+        });
         setOnTouchListener(this::handleDragTouch);
         resizeHandle.setOnTouchListener(this::handleResizeTouch);
         resizeHandleRight.setOnTouchListener(this::handleResizeRightTouch);
         resizeHandleBottom.setOnTouchListener(this::handleResizeBottomTouch);
+        touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
     }
 
     public void setListener(Listener listener) {
@@ -106,6 +123,15 @@ public final class OverlayWindowView extends FrameLayout {
         closeButton.setLayoutParams(params);
     }
 
+    public void updateTransparencyToggleEnabled(boolean enabled) {
+        transparencyToggleEnabled = enabled;
+        transparencyButton.setVisibility(enabled ? View.VISIBLE : View.GONE);
+    }
+
+    public void updateTransparentMode(boolean enabled) {
+        overlayRoot.setBackgroundResource(enabled ? R.drawable.overlay_background_transparent : R.drawable.overlay_background);
+    }
+
     private boolean handleDragTouch(View view, MotionEvent event) {
         if (resizingActive) {
             return false;
@@ -113,6 +139,9 @@ public final class OverlayWindowView extends FrameLayout {
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
                 draggingActive = true;
+                possibleClick = true;
+                downRawX = event.getRawX();
+                downRawY = event.getRawY();
                 lastRawX = event.getRawX();
                 lastRawY = event.getRawY();
                 if (listener != null) {
@@ -125,6 +154,11 @@ public final class OverlayWindowView extends FrameLayout {
                 }
                 int dx = Math.round(event.getRawX() - lastRawX);
                 int dy = Math.round(event.getRawY() - lastRawY);
+                float totalDx = event.getRawX() - downRawX;
+                float totalDy = event.getRawY() - downRawY;
+                if (possibleClick && Math.hypot(totalDx, totalDy) > touchSlop) {
+                    possibleClick = false;
+                }
                 lastRawX = event.getRawX();
                 lastRawY = event.getRawY();
                 if (listener != null) {
@@ -133,6 +167,9 @@ public final class OverlayWindowView extends FrameLayout {
                 return true;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
+                if (possibleClick && transparencyToggleEnabled && listener != null) {
+                    listener.onTransparencyToggle();
+                }
                 if (draggingActive && listener != null) {
                     listener.onDragEnd();
                 }

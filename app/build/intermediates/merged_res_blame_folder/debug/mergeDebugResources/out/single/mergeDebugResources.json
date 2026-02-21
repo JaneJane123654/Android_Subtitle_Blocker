@@ -4,8 +4,8 @@
         "source": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-main-35:\\drawable\\ic_close.xml"
     },
     {
-        "merged": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-debug-33:\\drawable_ic_app_launcher.xml.flat",
-        "source": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-main-35:\\drawable\\ic_app_launcher.xml"
+        "merged": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-debug-33:\\drawable_ic_magnifier.xml.flat",
+        "source": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-main-35:\\drawable\\ic_magnifier.xml"
     },
     {
         "merged": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-debug-33:\\drawable_overlay_background.xml.flat",
@@ -14,14 +14,6 @@
     {
         "merged": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-debug-33:\\drawable_bg_header_card.xml.flat",
         "source": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-main-35:\\drawable\\bg_header_card.xml"
-    },
-    {
-        "merged": "com.zimuzhedang.subtitleblocker.app-debug-33:/layout_activity_main.xml.flat",
-        "source": "com.zimuzhedang.subtitleblocker.app-main-35:/layout/activity_main.xml"
-    },
-    {
-        "merged": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-debug-33:\\drawable_close_button_bg.xml.flat",
-        "source": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-main-35:\\drawable\\close_button_bg.xml"
     },
     {
         "merged": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-debug-33:\\drawable_resize_handle_bg.xml.flat",
@@ -38,5 +30,21 @@
     {
         "merged": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-debug-33:\\layout_view_overlay_window.xml.flat",
         "source": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-main-35:\\layout\\view_overlay_window.xml"
+    },
+    {
+        "merged": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-debug-33:\\drawable_overlay_background_transparent.xml.flat",
+        "source": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-main-35:\\drawable\\overlay_background_transparent.xml"
+    },
+    {
+        "merged": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-debug-33:\\drawable_ic_app_launcher.xml.flat",
+        "source": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-main-35:\\drawable\\ic_app_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-debug-33:\\drawable_close_button_bg.xml.flat",
+        "source": "C:\\Users\\jane\\.gradle\\daemon\\9.0-milestone-1\\com.zimuzhedang.subtitleblocker.app-main-35:\\drawable\\close_button_bg.xml"
+    },
+    {
+        "merged": "com.zimuzhedang.subtitleblocker.app-debug-33:/drawable_ic_magnifier.xml.flat",
+        "source": "com.zimuzhedang.subtitleblocker.app-main-35:/drawable/ic_magnifier.xml"
     }
 ]

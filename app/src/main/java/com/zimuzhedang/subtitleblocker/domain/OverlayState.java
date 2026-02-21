@@ -24,6 +24,8 @@ public final class OverlayState {
     public final boolean soundEnabled;
     /** 是否开启常驻通知保持活跃 */
     public final boolean keepAliveEnabled;
+    public final boolean transparencyToggleEnabled;
+    public final boolean transparentMode;
     /** 是否正在被拖拽 */
     public final boolean isDragging;
     /** 是否正在被缩放 */
@@ -41,6 +43,8 @@ public final class OverlayState {
             CloseButtonPosition closeButtonPosition,
             boolean soundEnabled,
             boolean keepAliveEnabled,
+            boolean transparencyToggleEnabled,
+            boolean transparentMode,
             boolean isDragging,
             boolean isResizing
     ) {
@@ -52,6 +56,8 @@ public final class OverlayState {
         this.closeButtonPosition = closeButtonPosition;
         this.soundEnabled = soundEnabled;
         this.keepAliveEnabled = keepAliveEnabled;
+        this.transparencyToggleEnabled = transparencyToggleEnabled;
+        this.transparentMode = transparentMode;
         this.isDragging = isDragging;
         this.isResizing = isResizing;
     }
@@ -73,6 +79,8 @@ public final class OverlayState {
                 closeButtonPosition,
                 soundEnabled,
                 keepAliveEnabled,
+                transparencyToggleEnabled,
+                transparentMode,
                 isDragging,
                 isResizing
         );
@@ -95,6 +103,8 @@ public final class OverlayState {
                 closeButtonPosition,
                 soundEnabled,
                 keepAliveEnabled,
+                transparencyToggleEnabled,
+                transparentMode,
                 isDragging,
                 isResizing
         );
@@ -116,6 +126,8 @@ public final class OverlayState {
                 closeButtonPosition,
                 soundEnabled,
                 keepAliveEnabled,
+                transparencyToggleEnabled,
+                transparentMode,
                 isDragging,
                 isResizing
         );
@@ -137,6 +149,8 @@ public final class OverlayState {
                 position,
                 soundEnabled,
                 keepAliveEnabled,
+                transparencyToggleEnabled,
+                transparentMode,
                 isDragging,
                 isResizing
         );
@@ -158,6 +172,8 @@ public final class OverlayState {
                 closeButtonPosition,
                 enabled,
                 keepAliveEnabled,
+                transparencyToggleEnabled,
+                transparentMode,
                 isDragging,
                 isResizing
         );
@@ -178,6 +194,42 @@ public final class OverlayState {
                 visible,
                 closeButtonPosition,
                 soundEnabled,
+                enabled,
+                transparencyToggleEnabled,
+                transparentMode,
+                isDragging,
+                isResizing
+        );
+    }
+
+    public OverlayState withTransparencyToggleEnabled(boolean enabled) {
+        return new OverlayState(
+                widthPx,
+                heightPx,
+                xPx,
+                yPx,
+                visible,
+                closeButtonPosition,
+                soundEnabled,
+                keepAliveEnabled,
+                enabled,
+                transparentMode,
+                isDragging,
+                isResizing
+        );
+    }
+
+    public OverlayState withTransparentMode(boolean enabled) {
+        return new OverlayState(
+                widthPx,
+                heightPx,
+                xPx,
+                yPx,
+                visible,
+                closeButtonPosition,
+                soundEnabled,
+                keepAliveEnabled,
+                transparencyToggleEnabled,
                 enabled,
                 isDragging,
                 isResizing
@@ -200,6 +252,8 @@ public final class OverlayState {
                 closeButtonPosition,
                 soundEnabled,
                 keepAliveEnabled,
+                transparencyToggleEnabled,
+                transparentMode,
                 dragging,
                 isResizing
         );
@@ -221,9 +275,10 @@ public final class OverlayState {
                 closeButtonPosition,
                 soundEnabled,
                 keepAliveEnabled,
+                transparencyToggleEnabled,
+                transparentMode,
                 isDragging,
                 resizing
         );
     }
 }
-

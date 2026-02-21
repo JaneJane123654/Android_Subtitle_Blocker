@@ -2,19 +2,198 @@
 <incidents format="6" by="lint 8.13.0" type="conditional_incidents">
 
     <incident
-        id="ForegroundServicePermission"
-        severity="error"
-        message="foregroundServiceType:dataSync requires permission:[android.permission.FOREGROUND_SERVICE_DATA_SYNC]">
+        id="VectorRaster"
+        severity="warning"
+        message="">
         <location
-            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
-            line="23"
-            column="9"
-            startOffset="857"
-            endLine="26"
-            endColumn="56"
-            endOffset="1012"/>
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_app_launcher.xml"
+            line="8"
+            column="28"
+            startOffset="269"
+            endLine="8"
+            endColumn="42"
+            endOffset="283"/>
         <map>
-            <condition targetGE="34"/>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_app_launcher.xml"
+            line="11"
+            column="28"
+            startOffset="374"
+            endLine="11"
+            endColumn="48"
+            endOffset="394"/>
+        <map>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_app_launcher.xml"
+            line="14"
+            column="28"
+            startOffset="548"
+            endLine="14"
+            endColumn="46"
+            endOffset="566"/>
+        <map>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_app_launcher.xml"
+            line="17"
+            column="28"
+            startOffset="720"
+            endLine="17"
+            endColumn="47"
+            endOffset="739"/>
+        <map>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_app_launcher.xml"
+            line="20"
+            column="28"
+            startOffset="890"
+            endLine="20"
+            endColumn="47"
+            endOffset="909"/>
+        <map>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_app_launcher.xml"
+            line="23"
+            column="28"
+            startOffset="1017"
+            endLine="23"
+            endColumn="47"
+            endOffset="1036"/>
+        <map>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
+        </map>
+    </incident>
+
+    <incident
+        id="VectorRaster"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_magnifier.xml"
+            line="7"
+            column="28"
+            startOffset="219"
+            endLine="7"
+            endColumn="47"
+            endOffset="238"/>
+        <map>
+            <entry
+                name="containsFillType"
+                boolean="false"/>
+            <entry
+                name="containsGradient"
+                boolean="false"/>
+            <entry
+                name="folderVersion"
+                int="-1"/>
+            <entry
+                name="message"
+                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
         </map>
     </incident>
 
@@ -28,17 +207,17 @@
             priority="0">
             <range
                 file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/themes.xml"
-                startOffset="199"
-                endOffset="218"/>
+                startOffset="536"
+                endOffset="555"/>
         </fix-replace>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/themes.xml"
-            line="3"
+            line="8"
             column="45"
-            startOffset="199"
-            endLine="3"
+            startOffset="536"
+            endLine="8"
             endColumn="64"
-            endOffset="218"/>
+            endOffset="555"/>
         <map>
             <condition minGE="21-∞"/>
         </map>
@@ -107,6 +286,28 @@
             endOffset="1128"/>
         <map>
             <condition minLT="26-∞"/>
+        </map>
+    </incident>
+
+    <incident
+        id="LabelFor"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="289"
+            column="22"
+            startOffset="13096"
+            endLine="289"
+            endColumn="30"
+            endOffset="13104"/>
+        <map>
+            <entry
+                name="hint"
+                boolean="false"/>
+            <entry
+                name="label"
+                boolean="false"/>
         </map>
     </incident>
 

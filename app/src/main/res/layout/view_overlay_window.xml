@@ -39,4 +39,15 @@
         android:contentDescription="@string/action_disable_overlay"
         android:src="@drawable/ic_close" />
 
+    <ImageButton
+        android:id="@+id/btnTransparency"
+        android:layout_width="@dimen/overlay_close_button_size"
+        android:layout_height="@dimen/overlay_close_button_size"
+        android:layout_gravity="top|start"
+        android:layout_margin="6dp"
+        android:background="@drawable/close_button_bg"
+        android:contentDescription="@string/action_toggle_transparency"
+        android:src="@drawable/ic_magnifier"
+        android:visibility="gone" />
+
 </FrameLayout>

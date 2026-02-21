@@ -5,6 +5,9 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -67,6 +70,10 @@ public final class MainActivity extends AppCompatActivity {
     private RadioButton rbRightTop;
     private SwitchMaterial switchSound;
     private SwitchMaterial switchKeepAlive;
+    private SwitchMaterial switchTransparencyToggle;
+    private SwitchMaterial switchTransparencyAutoRestore;
+    private EditText editTransparencySeconds;
+    private boolean updatingTransparencySeconds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +105,9 @@ public final class MainActivity extends AppCompatActivity {
         rbRightTop = findViewById(R.id.rbRightTop);
         switchSound = findViewById(R.id.switchSound);
         switchKeepAlive = findViewById(R.id.switchKeepAlive);
+        switchTransparencyToggle = findViewById(R.id.switchTransparencyToggle);
+        switchTransparencyAutoRestore = findViewById(R.id.switchTransparencyAutoRestore);
+        editTransparencySeconds = findViewById(R.id.editTransparencySeconds);
 
         btnEnable.setOnClickListener(v -> viewModel.onRequestShow(permissionNavigator.canDrawOverlays()));
         btnDisable.setOnClickListener(v -> viewModel.onRequestHide());
@@ -121,6 +131,33 @@ public final class MainActivity extends AppCompatActivity {
                 return;
             }
             viewModel.onKeepAliveChanged(isChecked);
+        });
+        switchTransparencyToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            viewModel.onTransparencyToggleEnabledChanged(isChecked);
+            if (!isChecked) {
+                switchTransparencyAutoRestore.setChecked(false);
+            }
+            updateTransparencySettingsUi();
+        });
+        switchTransparencyAutoRestore.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            viewModel.onTransparencyAutoRestoreEnabledChanged(isChecked);
+            updateTransparencySettingsUi();
+        });
+        editTransparencySeconds.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (updatingTransparencySeconds) {
+                    return;
+                }
+                int seconds = parseAutoRestoreSeconds(s.toString());
+                viewModel.onTransparencyAutoRestoreSecondsChanged(seconds);
+            }
         });
     }
 
@@ -188,6 +225,13 @@ public final class MainActivity extends AppCompatActivity {
         }
         switchSound.setChecked(settings.soundEnabled);
         switchKeepAlive.setChecked(settings.keepAliveEnabled);
+        switchTransparencyToggle.setChecked(settings.transparencyToggleEnabled);
+        switchTransparencyAutoRestore.setChecked(settings.transparencyAutoRestoreEnabled);
+        updatingTransparencySeconds = true;
+        editTransparencySeconds.setText(String.valueOf(settings.transparencyAutoRestoreSeconds));
+        editTransparencySeconds.setSelection(editTransparencySeconds.getText().length());
+        updatingTransparencySeconds = false;
+        updateTransparencySettingsUi();
     }
 
     /**
@@ -209,6 +253,9 @@ public final class MainActivity extends AppCompatActivity {
             json.put("closeButtonPosition", settings.closeButtonPosition.name());
             json.put("soundEnabled", settings.soundEnabled);
             json.put("keepAliveEnabled", settings.keepAliveEnabled);
+            json.put("transparencyToggleEnabled", settings.transparencyToggleEnabled);
+            json.put("transparencyAutoRestoreEnabled", settings.transparencyAutoRestoreEnabled);
+            json.put("transparencyAutoRestoreSeconds", settings.transparencyAutoRestoreSeconds);
             ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
             clipboard.setPrimaryClip(ClipData.newPlainText("overlay_config", json.toString()));
             Toast.makeText(this, R.string.toast_exported, Toast.LENGTH_SHORT).show();
@@ -241,7 +288,17 @@ public final class MainActivity extends AppCompatActivity {
             CloseButtonPosition position = CloseButtonPosition.valueOf(json.getString("closeButtonPosition"));
             boolean soundEnabled = json.getBoolean("soundEnabled");
             boolean keepAliveEnabled = json.getBoolean("keepAliveEnabled");
-            Settings settings = new Settings(position, soundEnabled, keepAliveEnabled);
+            boolean transparencyToggleEnabled = json.optBoolean("transparencyToggleEnabled", false);
+            boolean transparencyAutoRestoreEnabled = json.optBoolean("transparencyAutoRestoreEnabled", false);
+            int transparencyAutoRestoreSeconds = json.optInt("transparencyAutoRestoreSeconds", 5);
+            Settings settings = new Settings(
+                    position,
+                    soundEnabled,
+                    keepAliveEnabled,
+                    transparencyToggleEnabled,
+                    transparencyAutoRestoreEnabled,
+                    transparencyAutoRestoreSeconds
+            );
             OverlayState state = new OverlayState(
                     width,
                     height,
@@ -251,6 +308,8 @@ public final class MainActivity extends AppCompatActivity {
                     position,
                     soundEnabled,
                     keepAliveEnabled,
+                    transparencyToggleEnabled,
+                    false,
                     false,
                     false
             );
@@ -293,5 +352,23 @@ public final class MainActivity extends AppCompatActivity {
             return;
         }
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_POST_NOTIFICATIONS);
+    }
+
+    private void updateTransparencySettingsUi() {
+        boolean toggleEnabled = switchTransparencyToggle.isChecked();
+        boolean autoRestoreEnabled = switchTransparencyAutoRestore.isChecked();
+        switchTransparencyAutoRestore.setEnabled(toggleEnabled);
+        editTransparencySeconds.setEnabled(toggleEnabled && autoRestoreEnabled);
+    }
+
+    private int parseAutoRestoreSeconds(String raw) {
+        if (raw == null || raw.trim().isEmpty()) {
+            return 5;
+        }
+        try {
+            return Integer.parseInt(raw.trim());
+        } catch (NumberFormatException e) {
+            return 5;
+        }
     }
 }

@@ -14,6 +14,9 @@ public final class Settings {
     public final boolean soundEnabled;
     /** 是否启用常驻后台服务 */
     public final boolean keepAliveEnabled;
+    public final boolean transparencyToggleEnabled;
+    public final boolean transparencyAutoRestoreEnabled;
+    public final int transparencyAutoRestoreSeconds;
 
     /**
      * 构造函数。
@@ -25,11 +28,17 @@ public final class Settings {
     public Settings(
             CloseButtonPosition closeButtonPosition,
             boolean soundEnabled,
-            boolean keepAliveEnabled
+            boolean keepAliveEnabled,
+            boolean transparencyToggleEnabled,
+            boolean transparencyAutoRestoreEnabled,
+            int transparencyAutoRestoreSeconds
     ) {
         this.closeButtonPosition = closeButtonPosition;
         this.soundEnabled = soundEnabled;
         this.keepAliveEnabled = keepAliveEnabled;
+        this.transparencyToggleEnabled = transparencyToggleEnabled;
+        this.transparencyAutoRestoreEnabled = transparencyAutoRestoreEnabled;
+        this.transparencyAutoRestoreSeconds = transparencyAutoRestoreSeconds;
     }
 
     /**
@@ -38,19 +47,30 @@ public final class Settings {
      * @return 默认设置对象
      */
     public static Settings defaultValue() {
-        return new Settings(CloseButtonPosition.RIGHT_TOP, false, false);
+        return new Settings(CloseButtonPosition.RIGHT_TOP, false, false, false, false, 5);
     }
 
     public Settings withCloseButtonPosition(CloseButtonPosition position) {
-        return new Settings(position, soundEnabled, keepAliveEnabled);
+        return new Settings(position, soundEnabled, keepAliveEnabled, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
     }
 
     public Settings withSoundEnabled(boolean enabled) {
-        return new Settings(closeButtonPosition, enabled, keepAliveEnabled);
+        return new Settings(closeButtonPosition, enabled, keepAliveEnabled, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
     }
 
     public Settings withKeepAliveEnabled(boolean enabled) {
-        return new Settings(closeButtonPosition, soundEnabled, enabled);
+        return new Settings(closeButtonPosition, soundEnabled, enabled, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
+    }
+
+    public Settings withTransparencyToggleEnabled(boolean enabled) {
+        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, enabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
+    }
+
+    public Settings withTransparencyAutoRestoreEnabled(boolean enabled) {
+        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, transparencyToggleEnabled, enabled, transparencyAutoRestoreSeconds);
+    }
+
+    public Settings withTransparencyAutoRestoreSeconds(int seconds) {
+        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, transparencyToggleEnabled, transparencyAutoRestoreEnabled, seconds);
     }
 }
-

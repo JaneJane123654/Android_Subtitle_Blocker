@@ -37,6 +37,8 @@ public final class OverlayViewBinder {
      */
     public void bind(OverlayState state, AnimationSpec anim) {
         overlayView.updateCloseButtonPosition(state.closeButtonPosition);
+        overlayView.updateTransparencyToggleEnabled(state.transparencyToggleEnabled);
+        overlayView.updateTransparentMode(state.transparentMode);
         if (!state.visible) {
             if (windowController.isShowing()) {
                 windowController.hide();
@@ -50,4 +52,3 @@ public final class OverlayViewBinder {
         windowController.update(rect, anim);
     }
 }
-

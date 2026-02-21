@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.zimuzhedang.subtitleblocker.vm.OverlayViewModelTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-02-21T09:14:34.839Z" hostname="LAPTOP-O47JJP4T" time="31.03">
+  <properties/>
+  <testcase name="show_doesNotTriggerAutoHideEffect" classname="com.zimuzhedang.subtitleblocker.vm.OverlayViewModelTest" time="0.01"/>
+  <testcase name="hide_triggersFadeAndHideEffect" classname="com.zimuzhedang.subtitleblocker.vm.OverlayViewModelTest" time="0.001"/>
+  <testcase name="show_keepsVisible_after30Seconds" classname="com.zimuzhedang.subtitleblocker.vm.OverlayViewModelTest" time="31.017"/>
+  <testcase name="show_keepsVisible_untilExplicitHide" classname="com.zimuzhedang.subtitleblocker.vm.OverlayViewModelTest" time="0.0"/>
+  <testcase name="close_triggersFadeAndHideEffect" classname="com.zimuzhedang.subtitleblocker.vm.OverlayViewModelTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

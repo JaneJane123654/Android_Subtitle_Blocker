@@ -36,6 +36,7 @@ public final class OverlayRuntime {
     private boolean started;
     /** 用于精确取消隐藏任务的 Runnable 引用 */
     private Runnable hideRunnable;
+    private Runnable restoreRunnable;
 
     private final Observer<OverlayState> stateObserver = this::renderOverlay;
     private final Observer<AnimationSpec> animObserver = spec -> pendingAnim = spec;
@@ -66,6 +67,7 @@ public final class OverlayRuntime {
         }
         // 取消可能残留的隐藏任务，防止之前的延迟任务影响新的显示
         cancelPendingHide();
+        cancelPendingRestore();
         viewModel = OverlayManager.getInstance().getViewModel(context.getApplicationContext());
         windowController = new WindowManagerFloatWindowController(context.getApplicationContext());
         overlayView = new OverlayWindowView(context.getApplicationContext());
@@ -76,6 +78,11 @@ public final class OverlayRuntime {
             @Override
             public void onClose() {
                 viewModel.onCloseClick();
+            }
+
+            @Override
+            public void onTransparencyToggle() {
+                viewModel.onTransparencyToggleRequested();
             }
 
             @Override
@@ -124,6 +131,7 @@ public final class OverlayRuntime {
         }
         // 取消所有待执行的 Handler 任务，防止已注册的隐藏任务在 stop 后仍然执行
         cancelPendingHide();
+        cancelPendingRestore();
         if (viewModel != null) {
             viewModel.getOverlayState().removeObserver(stateObserver);
             viewModel.getAnimationSpec().removeObserver(animObserver);
@@ -145,6 +153,13 @@ public final class OverlayRuntime {
         }
         // 额外清除所有可能残留的回调
         handler.removeCallbacksAndMessages(null);
+    }
+
+    private void cancelPendingRestore() {
+        if (restoreRunnable != null) {
+            handler.removeCallbacks(restoreRunnable);
+            restoreRunnable = null;
+        }
     }
 
     /**
@@ -179,6 +194,7 @@ public final class OverlayRuntime {
             }
             // 先取消之前可能存在的隐藏任务，避免重复执行
             cancelPendingHide();
+            cancelPendingRestore();
             hideRunnable = () -> {
                 if (!started) {
                     // 如果已经停止，不执行隐藏操作
@@ -190,6 +206,29 @@ public final class OverlayRuntime {
                 // 注意：不再调用 stopCallback，避免服务自杀
             };
             handler.postDelayed(hideRunnable, 320L);
+            viewModel.clearEffect();
+        }
+        if (effect.type == OneShotEffect.Type.REQUEST_RESTORE_AFTER_DELAY) {
+            if (!effect.consume()) {
+                return;
+            }
+            cancelPendingRestore();
+            restoreRunnable = () -> {
+                if (!started) {
+                    return;
+                }
+                viewModel.onTransparencyAutoRestoreTimeout();
+                restoreRunnable = null;
+            };
+            long delay = Math.max(0L, effect.delayMs);
+            handler.postDelayed(restoreRunnable, delay);
+            viewModel.clearEffect();
+        }
+        if (effect.type == OneShotEffect.Type.CANCEL_RESTORE_DELAY) {
+            if (!effect.consume()) {
+                return;
+            }
+            cancelPendingRestore();
             viewModel.clearEffect();
         }
         // 其他类型的 effect 不在这里处理

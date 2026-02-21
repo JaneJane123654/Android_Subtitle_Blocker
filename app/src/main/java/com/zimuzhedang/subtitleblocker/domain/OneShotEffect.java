@@ -16,11 +16,14 @@ public final class OneShotEffect {
         /** 在淡出动画后请求隐藏悬浮窗 */
         REQUEST_HIDE_AFTER_FADE,
         /** 跳转到系统悬浮窗权限设置页 */
-        NAVIGATE_TO_PERMISSION
+        NAVIGATE_TO_PERMISSION,
+        REQUEST_RESTORE_AFTER_DELAY,
+        CANCEL_RESTORE_DELAY
     }
 
     /** 当前副作用类型 */
     public final Type type;
+    public final long delayMs;
     
     /** 标记该副作用是否已被消费 */
     private boolean consumed = false;
@@ -32,6 +35,12 @@ public final class OneShotEffect {
      */
     public OneShotEffect(Type type) {
         this.type = type;
+        this.delayMs = 0L;
+    }
+
+    public OneShotEffect(Type type, long delayMs) {
+        this.type = type;
+        this.delayMs = delayMs;
     }
     
     /**
@@ -57,4 +66,3 @@ public final class OneShotEffect {
         return consumed;
     }
 }
-

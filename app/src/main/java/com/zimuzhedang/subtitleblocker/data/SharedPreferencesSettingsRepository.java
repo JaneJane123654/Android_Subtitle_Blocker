@@ -25,6 +25,9 @@ public final class SharedPreferencesSettingsRepository implements SettingsReposi
     private static final String KEY_SOUND_ENABLED = "sound_enabled";
     /** 常驻通知开关的键名 */
     private static final String KEY_KEEP_ALIVE = "keep_alive_enabled";
+    private static final String KEY_TRANSPARENCY_TOGGLE_ENABLED = "transparency_toggle_enabled";
+    private static final String KEY_TRANSPARENCY_AUTO_RESTORE_ENABLED = "transparency_auto_restore_enabled";
+    private static final String KEY_TRANSPARENCY_AUTO_RESTORE_SECONDS = "transparency_auto_restore_seconds";
     /** 上次宽度的键名 */
     private static final String KEY_LAST_WIDTH = "last_width_px";
     /** 上次高度的键名 */
@@ -51,7 +54,17 @@ public final class SharedPreferencesSettingsRepository implements SettingsReposi
         CloseButtonPosition position = CloseButtonPosition.valueOf(positionRaw);
         boolean soundEnabled = sharedPreferences.getBoolean(KEY_SOUND_ENABLED, false);
         boolean keepAlive = sharedPreferences.getBoolean(KEY_KEEP_ALIVE, false);
-        return new Settings(position, soundEnabled, keepAlive);
+        boolean transparencyToggleEnabled = sharedPreferences.getBoolean(KEY_TRANSPARENCY_TOGGLE_ENABLED, false);
+        boolean transparencyAutoRestoreEnabled = sharedPreferences.getBoolean(KEY_TRANSPARENCY_AUTO_RESTORE_ENABLED, false);
+        int transparencyAutoRestoreSeconds = sharedPreferences.getInt(KEY_TRANSPARENCY_AUTO_RESTORE_SECONDS, 5);
+        return new Settings(
+                position,
+                soundEnabled,
+                keepAlive,
+                transparencyToggleEnabled,
+                transparencyAutoRestoreEnabled,
+                transparencyAutoRestoreSeconds
+        );
     }
 
     @Override
@@ -60,6 +73,9 @@ public final class SharedPreferencesSettingsRepository implements SettingsReposi
                 .putString(KEY_CLOSE_POSITION, settings.closeButtonPosition.name())
                 .putBoolean(KEY_SOUND_ENABLED, settings.soundEnabled)
                 .putBoolean(KEY_KEEP_ALIVE, settings.keepAliveEnabled)
+                .putBoolean(KEY_TRANSPARENCY_TOGGLE_ENABLED, settings.transparencyToggleEnabled)
+                .putBoolean(KEY_TRANSPARENCY_AUTO_RESTORE_ENABLED, settings.transparencyAutoRestoreEnabled)
+                .putInt(KEY_TRANSPARENCY_AUTO_RESTORE_SECONDS, settings.transparencyAutoRestoreSeconds)
                 .apply();
     }
 
@@ -83,6 +99,8 @@ public final class SharedPreferencesSettingsRepository implements SettingsReposi
                 settings.closeButtonPosition,
                 settings.soundEnabled,
                 settings.keepAliveEnabled,
+                settings.transparencyToggleEnabled,
+                false,
                 false,
                 false
         );
@@ -98,4 +116,3 @@ public final class SharedPreferencesSettingsRepository implements SettingsReposi
                 .apply();
     }
 }
-

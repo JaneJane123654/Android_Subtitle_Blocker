@@ -22,12 +22,16 @@
     <string name="action_export_config">导出配置</string>
     <string name="action_import_config">导入配置</string>
     <string name="action_open_permission">去开启悬浮窗权限</string>
+    <string name="action_toggle_transparency">切换透明</string>
     <string name="app_name">字幕遮挡器</string>
     <string name="label_close_button_left">左上</string>
     <string name="label_close_button_position">关闭按钮位置</string>
     <string name="label_close_button_right">右上</string>
     <string name="label_keep_alive">后台保活</string>
     <string name="label_sound_enabled">音效</string>
+    <string name="label_transparency_auto_restore">透明后自动恢复</string>
+    <string name="label_transparency_restore_seconds">自动恢复秒数</string>
+    <string name="label_transparency_toggle">透明查看开关</string>
     <string name="notification_keep_alive_text">点击回到应用</string>
     <string name="notification_keep_alive_title">字幕遮挡器运行中</string>
     <string name="toast_exported">已复制配置到剪贴板</string>

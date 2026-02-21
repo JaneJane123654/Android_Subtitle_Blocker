@@ -21,33 +21,13 @@ D:\project\zimuzhedang\app\build.gradle:12: Warning: Not targeting the latest ve
 
    https://developer.android.com/distribute/best-practices/develop/target-sdk.html
 
-D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:23: Error: foregroundServiceType:dataSync requires permission:[android.permission.FOREGROUND_SERVICE_DATA_SYNC] [ForegroundServicePermission]
-        <service
-        ^
-
-   Explanation for issues of type "ForegroundServicePermission":
-   For targetSdkVersion >= 34, each foregroundServiceType listed in the
-   <service> element requires specific sets of permissions to be declared in
-   the manifest. If permissions are missing, then when the foreground service
-   is started with a foregroundServiceType that has missing permissions, a
-   SecurityException will be thrown.
-
 D:\project\zimuzhedang\app\build.gradle:7: Warning: A newer version of compileSdkVersion than 34 is available: 36 [GradleDependency]
     compileSdk 34
     ~~~~~~~~~~~~~
 D:\project\zimuzhedang\app\build.gradle:45: Warning: A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.1 [GradleDependency]
     implementation "androidx.appcompat:appcompat:1.6.1"
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-D:\project\zimuzhedang\app\build.gradle:46: Warning: A newer version of com.google.android.material:material than 1.11.0 is available: 1.13.0 [GradleDependency]
-    implementation "com.google.android.material:material:1.11.0"
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-D:\project\zimuzhedang\app\build.gradle:48: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel than 2.7.0 is available: 2.10.0 [GradleDependency]
-    implementation "androidx.lifecycle:lifecycle-viewmodel:2.7.0"
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-D:\project\zimuzhedang\app\build.gradle:49: Warning: A newer version of androidx.lifecycle:lifecycle-livedata than 2.7.0 is available: 2.10.0 [GradleDependency]
-    implementation "androidx.lifecycle:lifecycle-livedata:2.7.0"
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-D:\project\zimuzhedang\app\build.gradle:51: Warning: A newer version of androidx.core:core-ktx than 1.12.0 is available: 1.17.0 [GradleDependency]
+D:\project\zimuzhedang\app\build.gradle:51: Warning: A newer version of androidx.core:core-ktx than 1.12.0 is available: 1.13.0 [GradleDependency]
     implementation "androidx.core:core-ktx:1.12.0"
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -70,7 +50,7 @@ D:\project\zimuzhedang\app\build.gradle:55: Warning: A newer version of org.hamc
    MavenCentral dependency, and connects to the library every time, which
    makes it more flexible but also much slower.
 
-D:\project\zimuzhedang\app\src\main\res\values\themes.xml:3: Warning: Unnecessary; SDK_INT is always >= 21 [ObsoleteSdkInt]
+D:\project\zimuzhedang\app\src\main\res\values\themes.xml:8: Warning: Unnecessary; SDK_INT is always >= 21 [ObsoleteSdkInt]
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSurface</item>
                                             ~~~~~~~~~~~~~~~~~~~
 
@@ -82,6 +62,31 @@ D:\project\zimuzhedang\app\src\main\res\values\themes.xml:3: Warning: Unnecessar
    Similarly, it also looks for resources in -vNN folders, such as values-v14
    where the version qualifier is less than or equal to the minSdkVersion,
    where the contents should be merged into the best folder.
+
+D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:6: Warning: Possible overdraw: Root element paints background @color/page_bg with a theme that also paints a background (inferred theme is @style/Theme.SubtitleBlocker) [Overdraw]
+    android:background="@color/page_bg">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "Overdraw":
+   If you set a background drawable on a root view, then you should use a
+   custom theme where the theme background is null. Otherwise, the theme
+   background will be painted first, only to have your custom background
+   completely cover it; this is called "overdraw".
+
+   NOTE: This detector relies on figuring out which layouts are associated
+   with which activities based on scanning the Java code, and it's currently
+   doing that using an inexact pattern matching algorithm. Therefore, it can
+   incorrectly conclude which activity the layout is associated with and then
+   wrongly complain that a background-theme is hidden.
+
+   If you want your custom background on multiple pages, then you should
+   consider making a custom theme with your custom background and just using
+   that theme instead of a root element background.
+
+   Of course it's possible that your custom drawable is translucent and you
+   want it to be mixed with the background. However, you will get better
+   performance if you pre-mix the background with your drawable and use that
+   resulting image or color as a custom theme background instead.
 
 D:\project\zimuzhedang\app\src\main\res\values\dimens.xml:2: Warning: The resource R.dimen.overlay_min_width_dp appears to be unused [UnusedResources]
     <dimen name="overlay_min_width_dp">100dp</dimen>
@@ -126,16 +131,29 @@ D:\project\zimuzhedang\app\src\main\res\values\dimens.xml:6: Warning: The resour
    </lint>
    ```
 
-D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:8: Warning: Should explicitly set android:icon, there is no default [MissingApplicationIcon]
-    <application
-     ~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:289: Warning: Missing autofillHints attribute [Autofill]
+                    <EditText
+                     ~~~~~~~~
 
-   Explanation for issues of type "MissingApplicationIcon":
-   You should set an icon for the application as whole because there is no
-   default. This attribute must be set as a reference to a drawable resource
-   containing the image (for example @drawable/icon).
+   Explanation for issues of type "Autofill":
+   Specify an autofillHints attribute when targeting SDK version 26 or higher
+   or explicitly specify that the view is not important for autofill. Your app
+   can help an autofill service classify the data correctly by providing the
+   meaning of each view that could be autofillable, such as views representing
+   usernames, passwords, credit card fields, email addresses, etc.
 
-   https://developer.android.com/studio/publish/preparing#publishing-configure
+   The hints can have any value, but it is recommended to use predefined
+   values like 'username' for a username or 'creditCardNumber' for a credit
+   card number. For a list of all predefined autofill hint constants, see the
+   AUTOFILL_HINT_ constants in the View reference at
+   https://developer.android.com/reference/android/view/View.html.
+
+   You can mark a view unimportant for autofill by specifying an
+   importantForAutofill attribute on that view or a parent view. See
+   https://developer.android.com/reference/android/view/View.html#setImportant
+   ForAutofill(int).
+
+   https://developer.android.com/guide/topics/text/autofill.html
 
 D:\project\zimuzhedang\app\src\main\res\layout\view_overlay_window.xml:14: Warning: 'clickable' attribute found, please also add 'focusable' [KeyboardInaccessibleWidget]
         android:clickable="true" />
@@ -152,4 +170,73 @@ D:\project\zimuzhedang\app\src\main\res\layout\view_overlay_window.xml:30: Warni
    is not accessible via the keyboard. Please add the focusable attribute as
    well.
 
-1 error, 16 warnings
+D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:289: Warning: Missing accessibility label: provide either a view with an android:labelFor that references this view or provide an android:hint [LabelFor]
+                    <EditText
+                     ~~~~~~~~
+
+   Explanation for issues of type "LabelFor":
+   Editable text fields should provide an android:hint or, provided your
+   minSdkVersion is at least 17, they may be referenced by a view with a
+   android:labelFor attribute.
+
+   When using android:labelFor, be sure to provide an android:text or an
+   android:contentDescription.
+
+   If your view is labeled but by a label in a different layout which includes
+   this one, just suppress this warning from lint.
+
+D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:43: Warning: Hardcoded string "一键遮挡字幕 / 还原画面专注度", should use @string resource [HardcodedText]
+                    android:text="一键遮挡字幕 / 还原画面专注度"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:57: Warning: Hardcoded string "白线内拖入即可调整", should use @string resource [HardcodedText]
+                    android:text="白线内拖入即可调整"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:65: Warning: Hardcoded string "• 按住框体移动位置", should use @string resource [HardcodedText]
+                    android:text="• 按住框体移动位置"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:73: Warning: Hardcoded string "• 白色角点拖入扩大或缩小范围", should use @string resource [HardcodedText]
+                    android:text="• 白色角点拖入扩大或缩小范围"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:81: Warning: Hardcoded string "• 白色右边线拖动调宽", should use @string resource [HardcodedText]
+                    android:text="• 白色右边线拖动调宽"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:89: Warning: Hardcoded string "• 白色下边线拖动调长", should use @string resource [HardcodedText]
+                    android:text="• 白色下边线拖动调长"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:114: Warning: Hardcoded string "悬浮窗控制", should use @string resource [HardcodedText]
+                    android:text="悬浮窗控制"
+                    ~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:123: Warning: Hardcoded string "开启后可拖拽窗口遮挡字幕，需先授权悬浮窗权限", should use @string resource [HardcodedText]
+                    android:text="开启后可拖拽窗口遮挡字幕，需先授权悬浮窗权限"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:174: Warning: Hardcoded string "首次使用请先允许悬浮窗权限，再点击开启遮挡", should use @string resource [HardcodedText]
+                    android:text="首次使用请先允许悬浮窗权限，再点击开启遮挡"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:199: Warning: Hardcoded string "交互偏好", should use @string resource [HardcodedText]
+                    android:text="交互偏好"
+                    ~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:208: Warning: Hardcoded string "选择关闭按钮位置、开关音效与后台保活", should use @string resource [HardcodedText]
+                    android:text="选择关闭按钮位置、开关音效与后台保活"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:321: Warning: Hardcoded string "配置 / 导入导出", should use @string resource [HardcodedText]
+                    android:text="配置 / 导入导出"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:330: Warning: Hardcoded string "剪贴板导入导出 JSON，方便在不同设备复用配置", should use @string resource [HardcodedText]
+                    android:text="剪贴板导入导出 JSON，方便在不同设备复用配置"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "HardcodedText":
+   Hardcoding text attributes directly in layout files is bad for several
+   reasons:
+
+   * When creating configuration variations (for example for landscape or
+   portrait) you have to repeat the actual text (and keep it up to date when
+   making changes)
+
+   * The application cannot be translated to other languages by just adding
+   new translations for existing string resources.
+
+   There are quickfixes to automatically extract this hardcoded string into a
+   resource lookup.
+
+0 errors, 28 warnings

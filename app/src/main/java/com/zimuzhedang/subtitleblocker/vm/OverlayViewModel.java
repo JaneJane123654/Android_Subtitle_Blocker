@@ -29,6 +29,8 @@ public final class OverlayViewModel extends ViewModel {
     private static final long RESIZE_ANIM_MS = 200L;
     /** 淡入淡出动画时长 (毫秒) */
     private static final long FADE_ANIM_MS = 300L;
+    private static final int MIN_AUTO_RESTORE_SECONDS = 1;
+    private static final int MAX_AUTO_RESTORE_SECONDS = 60;
 
     private final SettingsRepository settingsRepository;
     private final ScreenInfoProvider screenInfoProvider;
@@ -89,6 +91,8 @@ public final class OverlayViewModel extends ViewModel {
                 .withCloseButtonPosition(settings.closeButtonPosition)
                 .withSoundEnabled(settings.soundEnabled)
                 .withKeepAliveEnabled(settings.keepAliveEnabled)
+                .withTransparencyToggleEnabled(settings.transparencyToggleEnabled)
+                .withTransparentMode(false)
                 .withVisibility(true);
         ScreenBounds bounds = screenInfoProvider.getCurrentBounds();
         updated = OverlayConstraints.clampPosition(updated, bounds);
@@ -240,6 +244,62 @@ public final class OverlayViewModel extends ViewModel {
         overlayState.setValue(current.withKeepAliveEnabled(enabled));
     }
 
+    public void onTransparencyToggleEnabledChanged(boolean enabled) {
+        Settings settings = settingsRepository.loadSettings().withTransparencyToggleEnabled(enabled);
+        settingsRepository.saveSettings(settings);
+        OverlayState current = requireState();
+        OverlayState updated = current.withTransparencyToggleEnabled(enabled);
+        if (!enabled && current.transparentMode) {
+            updated = updated.withTransparentMode(false);
+            effect.setValue(new OneShotEffect(OneShotEffect.Type.CANCEL_RESTORE_DELAY));
+        }
+        overlayState.setValue(updated);
+    }
+
+    public void onTransparencyAutoRestoreEnabledChanged(boolean enabled) {
+        Settings settings = settingsRepository.loadSettings().withTransparencyAutoRestoreEnabled(enabled);
+        settingsRepository.saveSettings(settings);
+        if (!enabled) {
+            effect.setValue(new OneShotEffect(OneShotEffect.Type.CANCEL_RESTORE_DELAY));
+        }
+    }
+
+    public void onTransparencyAutoRestoreSecondsChanged(int seconds) {
+        int normalized = normalizeSeconds(seconds);
+        Settings settings = settingsRepository.loadSettings().withTransparencyAutoRestoreSeconds(normalized);
+        settingsRepository.saveSettings(settings);
+        OverlayState current = requireState();
+        if (current.transparentMode && settings.transparencyAutoRestoreEnabled) {
+            effect.setValue(new OneShotEffect(OneShotEffect.Type.REQUEST_RESTORE_AFTER_DELAY, normalized * 1000L));
+        }
+    }
+
+    public void onTransparencyToggleRequested() {
+        OverlayState current = requireState();
+        Settings settings = settingsRepository.loadSettings();
+        if (!settings.transparencyToggleEnabled) {
+            return;
+        }
+        boolean nextTransparent = !current.transparentMode;
+        overlayState.setValue(current.withTransparentMode(nextTransparent));
+        if (nextTransparent) {
+            if (settings.transparencyAutoRestoreEnabled) {
+                int seconds = normalizeSeconds(settings.transparencyAutoRestoreSeconds);
+                effect.setValue(new OneShotEffect(OneShotEffect.Type.REQUEST_RESTORE_AFTER_DELAY, seconds * 1000L));
+            }
+        } else {
+            effect.setValue(new OneShotEffect(OneShotEffect.Type.CANCEL_RESTORE_DELAY));
+        }
+    }
+
+    public void onTransparencyAutoRestoreTimeout() {
+        OverlayState current = requireState();
+        if (!current.transparentMode) {
+            return;
+        }
+        overlayState.setValue(current.withTransparentMode(false));
+    }
+
     /**
      * 应用导入的状态。
      *
@@ -259,6 +319,8 @@ public final class OverlayViewModel extends ViewModel {
                 settings.closeButtonPosition,
                 settings.soundEnabled,
                 settings.keepAliveEnabled,
+                settings.transparencyToggleEnabled,
+                false,
                 current.isDragging,
                 current.isResizing
         );
@@ -290,8 +352,20 @@ public final class OverlayViewModel extends ViewModel {
                 settings.closeButtonPosition,
                 settings.soundEnabled,
                 settings.keepAliveEnabled,
+                settings.transparencyToggleEnabled,
+                false,
                 false,
                 false
         );
+    }
+
+    private int normalizeSeconds(int seconds) {
+        if (seconds < MIN_AUTO_RESTORE_SECONDS) {
+            return MIN_AUTO_RESTORE_SECONDS;
+        }
+        if (seconds > MAX_AUTO_RESTORE_SECONDS) {
+            return MAX_AUTO_RESTORE_SECONDS;
+        }
+        return seconds;
     }
 }
