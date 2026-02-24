@@ -33,6 +33,7 @@ id btnExportConfig
 id btnImportConfig
 id btnOpenPermission
 id btnTransparency
+id btnUsage
 id editTransparencySeconds
 id overlayRoot
 id rbLangAr
@@ -54,6 +55,7 @@ id switchSound
 id switchTransparencyAutoRestore
 id switchTransparencyToggle
 layout activity_main
+layout activity_usage
 layout view_overlay_window
 string action_disable_overlay
 string action_enable_overlay
@@ -61,6 +63,7 @@ string action_export_config
 string action_import_config
 string action_open_permission
 string action_toggle_transparency
+string action_view_usage
 string app_name
 string hint_drag_adjust
 string instruction_move
@@ -92,9 +95,13 @@ string section_language
 string section_language_desc
 string section_overlay_control
 string section_overlay_desc
+string section_usage
+string section_usage_desc
 string tagline_focus
 string tip_first_use_permission
 string toast_exported
 string toast_import_failed
 string toast_import_success
+string usage_content
+string usage_title
 style Theme.SubtitleBlocker

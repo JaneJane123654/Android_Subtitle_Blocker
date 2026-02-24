@@ -6,6 +6,7 @@
     <string name="action_import_config">Import config</string>
     <string name="action_open_permission">Enable overlay permission</string>
     <string name="action_toggle_transparency">Toggle transparency</string>
+    <string name="action_view_usage">View usage guide</string>
     <string name="app_name">Subtitle Blocker</string>
     <string name="hint_drag_adjust">Drag within the white line to adjust</string>
     <string name="instruction_move">• Press and drag the block to move</string>
@@ -36,10 +37,14 @@
     <string name="section_language">Language</string>
     <string name="section_language_desc">Follow system language or choose a fixed language below.</string>
     <string name="section_overlay_control">Overlay Controls</string>
-    <string name="section_overlay_desc">After enabling, drag the window to block subtitles. Overlay permission required.</string>
-    <string name="tagline_focus">One-tap subtitle blocking / restore visual focus</string>
+    <string name="section_overlay_desc">After enabling, drag the window to block native subtitles for bilingual video learning.</string>
+    <string name="section_usage">Usage Guide</string>
+    <string name="section_usage_desc">Learn the learning scenario and what each setting does</string>
+    <string name="tagline_focus">Hide native subtitles / focus on target language</string>
     <string name="tip_first_use_permission">First time: allow overlay permission, then tap Enable.</string>
     <string name="toast_exported">Configuration copied to clipboard</string>
     <string name="toast_import_failed">Invalid clipboard configuration</string>
     <string name="toast_import_success">Configuration imported</string>
+    <string name="usage_content">Use case: when watching bilingual videos, block native-language subtitles while keeping target subtitles or the picture to support language learning.\n\nMain actions:\n• Enable Blocking: show the blocker and drag/resize it\n• Disable Blocking: hide the blocker\n• Overlay permission: required for first use\n\nSettings:\n• Close button position: choose where the close button appears\n• Sound effects: toggle interaction sounds\n• Keep alive in background: keep a foreground notification to reduce system cleanup\n• Transparency toggle: temporarily make the blocker transparent to view target subtitles or picture\n• Auto-restore after transparency: restore blocking automatically\n• Auto-restore seconds: how long transparency lasts\n• Language: follow system or lock to a language\n• Import/Export: save or restore settings via clipboard</string>
+    <string name="usage_title">Usage Guide</string>
 </resources>

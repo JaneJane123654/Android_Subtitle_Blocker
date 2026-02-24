@@ -37,6 +37,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.zimuzhedang.subtitleblocker.ui.UsageActivity"
+            android:exported="false" />
 
         <service
             android:name="com.zimuzhedang.subtitleblocker.platform.KeepAliveService"

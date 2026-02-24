@@ -54,15 +54,15 @@
     <string name="section_language">语言设置</string>
     <string name="section_language_desc">根据系统语言自动切换，或在下方选择固定语言</string>
     <string name="section_overlay_control">悬浮窗控制</string>
-    <string name="section_overlay_desc">开启后可拖拽窗口遮挡字幕，需先授权悬浮窗权限</string>
+    <string name="section_overlay_desc">开启后可拖拽窗口遮挡母语字幕，适合双语视频语言学习</string>
     <string name="section_usage">使用说明</string>
-    <string name="section_usage_desc">查看软件功能与各项配置作用</string>
-    <string name="tagline_focus">一键遮挡字幕 / 还原画面专注度</string>
+    <string name="section_usage_desc">了解应用场景与各项配置作用</string>
+    <string name="tagline_focus">遮挡母语字幕 / 专注听读目标语言</string>
     <string name="tip_first_use_permission">首次使用请先允许悬浮窗权限，再点击开启遮挡</string>
     <string name="toast_exported">已复制配置到剪贴板</string>
     <string name="toast_import_failed">剪贴板配置无效</string>
     <string name="toast_import_success">已导入配置</string>
-    <string name="usage_content">软件功能：在屏幕上创建可拖动的遮挡层，覆盖字幕区域，减少干扰。\n\n主要操作：\n• 开启遮挡：显示遮挡层并可拖拽/缩放调整位置与大小\n• 关闭遮挡：隐藏遮挡层\n• 悬浮窗权限：首次使用必须开启\n\n配置说明：\n• 关闭按钮位置：选择遮挡层上的关闭按钮位置\n• 音效：操作提示音开关\n• 后台保活：开启后保持常驻通知，降低被系统清理概率\n• 透明查看开关：临时切换为透明以查看画面\n• 透明后自动恢复：透明状态自动恢复为遮挡\n• 自动恢复秒数：透明状态保持时长\n• 语言设置：跟随系统或固定为指定语言\n• 配置导入/导出：通过剪贴板保存或恢复设置</string>
+    <string name="usage_content">应用场景：观看双语视频时遮挡母语字幕，保留外语字幕或画面，帮助学习语言。\n\n主要操作：\n• 开启遮挡：显示遮挡层并可拖拽/缩放调整位置与大小\n• 关闭遮挡：隐藏遮挡层\n• 悬浮窗权限：首次使用必须开启\n\n配置说明：\n• 关闭按钮位置：选择遮挡层上的关闭按钮位置\n• 音效：操作提示音开关\n• 后台保活：开启后保持常驻通知，降低被系统清理概率\n• 透明查看开关：临时切换为透明以查看外语字幕或画面\n• 透明后自动恢复：透明状态自动恢复为遮挡\n• 自动恢复秒数：透明状态保持时长\n• 语言设置：跟随系统或固定为指定语言\n• 配置导入/导出：通过剪贴板保存或恢复设置</string>
     <string name="usage_title">使用说明</string>
     <style name="Theme.SubtitleBlocker" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/color_primary</item>

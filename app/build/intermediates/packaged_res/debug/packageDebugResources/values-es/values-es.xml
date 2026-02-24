@@ -37,14 +37,14 @@
     <string name="section_language">Idioma</string>
     <string name="section_language_desc">Sigue el idioma del sistema o elige un idioma fijo abajo.</string>
     <string name="section_overlay_control">Control de ventana flotante</string>
-    <string name="section_overlay_desc">Al activar, arrastra la ventana para ocultar subtítulos. Se requiere permiso de superposición.</string>
+    <string name="section_overlay_desc">Al activar, arrastra la ventana para ocultar subtítulos nativos, ideal para aprender con videos bilingües.</string>
     <string name="section_usage">Guía de uso</string>
-    <string name="section_usage_desc">Explica funciones y el propósito de cada ajuste</string>
-    <string name="tagline_focus">Bloqueo de subtítulos en un toque / recuperar la concentración</string>
+    <string name="section_usage_desc">Conoce el escenario de aprendizaje y cada ajuste</string>
+    <string name="tagline_focus">Oculta subtítulos nativos / enfócate en el idioma objetivo</string>
     <string name="tip_first_use_permission">Primer uso: permite la superposición y luego pulsa Activar.</string>
     <string name="toast_exported">Configuración copiada al portapapeles</string>
     <string name="toast_import_failed">Configuración del portapapeles no válida</string>
     <string name="toast_import_success">Configuración importada</string>
-    <string name="usage_content">Función: crea un bloqueador movible para cubrir subtítulos y reducir distracciones.\n\nAcciones principales:\n• Activar bloqueo: muestra el bloqueador y permite moverlo/redimensionarlo\n• Desactivar bloqueo: oculta el bloqueador\n• Permiso de superposición: requerido en el primer uso\n\nAjustes:\n• Posición del botón de cierre: define dónde aparece el botón\n• Efectos de sonido: activa o desactiva sonidos\n• Mantener en segundo plano: conserva una notificación en primer plano para reducir cierres del sistema\n• Interruptor de transparencia: vuelve el bloqueador transparente temporalmente\n• Restaurar automáticamente tras transparencia: vuelve al bloqueo automáticamente\n• Segundos para restaurar: duración de la transparencia\n• Idioma: seguir el sistema o fijar un idioma\n• Importar/Exportar: guardar o restaurar ajustes desde el portapapeles</string>
+    <string name="usage_content">Escenario: al ver videos bilingües, oculta los subtítulos en tu idioma nativo y deja los del idioma objetivo o la imagen para apoyar el aprendizaje.\n\nAcciones principales:\n• Activar bloqueo: muestra el bloqueador y permite moverlo/redimensionarlo\n• Desactivar bloqueo: oculta el bloqueador\n• Permiso de superposición: requerido en el primer uso\n\nAjustes:\n• Posición del botón de cierre: define dónde aparece el botón\n• Efectos de sonido: activa o desactiva sonidos\n• Mantener en segundo plano: conserva una notificación en primer plano para reducir cierres del sistema\n• Interruptor de transparencia: vuelve el bloqueador transparente temporalmente para ver subtítulos del idioma objetivo o la imagen\n• Restaurar automáticamente tras transparencia: vuelve al bloqueo automáticamente\n• Segundos para restaurar: duración de la transparencia\n• Idioma: seguir el sistema o fijar un idioma\n• Importar/Exportar: guardar o restaurar ajustes desde el portapapeles</string>
     <string name="usage_title">Guía de uso</string>
 </resources>
