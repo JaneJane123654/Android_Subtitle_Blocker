@@ -114,6 +114,20 @@
     </incident>
 
     <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/page_bg` with a theme that also paints a background (inferred theme is `@style/Theme.SubtitleBlocker`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_usage.xml"
+            line="5"
+            column="5"
+            startOffset="195"
+            endLine="5"
+            endColumn="40"
+            endOffset="230"/>
+    </incident>
+
+    <incident
         id="Autofill"
         severity="warning"
         message="Missing `autofillHints` attribute">
@@ -135,192 +149,10 @@
             file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
             line="289"
             column="22"
-            startOffset="13096"
+            startOffset="13271"
             endLine="289"
             endColumn="30"
-            endOffset="13104"/>
-    </incident>
-
-    <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;一键遮挡字幕 / 还原画面专注度&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
-            line="43"
-            column="21"
-            startOffset="1736"
-            endLine="43"
-            endColumn="52"
-            endOffset="1767"/>
-    </incident>
-
-    <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;白线内拖入即可调整&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
-            line="57"
-            column="21"
-            startOffset="2386"
-            endLine="57"
-            endColumn="45"
-            endOffset="2410"/>
-    </incident>
-
-    <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;• 按住框体移动位置&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
-            line="65"
-            column="21"
-            startOffset="2730"
-            endLine="65"
-            endColumn="46"
-            endOffset="2755"/>
-    </incident>
-
-    <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;• 白色角点拖入扩大或缩小范围&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
-            line="73"
-            column="21"
-            startOffset="3074"
-            endLine="73"
-            endColumn="51"
-            endOffset="3104"/>
-    </incident>
-
-    <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;• 白色右边线拖动调宽&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
-            line="81"
-            column="21"
-            startOffset="3423"
-            endLine="81"
-            endColumn="47"
-            endOffset="3449"/>
-    </incident>
-
-    <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;• 白色下边线拖动调长&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
-            line="89"
-            column="21"
-            startOffset="3768"
-            endLine="89"
-            endColumn="47"
-            endOffset="3794"/>
-    </incident>
-
-    <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;悬浮窗控制&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
-            line="114"
-            column="21"
-            startOffset="4791"
-            endLine="114"
-            endColumn="41"
-            endOffset="4811"/>
-    </incident>
-
-    <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;开启后可拖拽窗口遮挡字幕，需先授权悬浮窗权限&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
-            line="123"
-            column="21"
-            startOffset="5175"
-            endLine="123"
-            endColumn="58"
-            endOffset="5212"/>
-    </incident>
-
-    <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;首次使用请先允许悬浮窗权限，再点击开启遮挡&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
-            line="174"
-            column="21"
-            startOffset="7681"
-            endLine="174"
-            endColumn="57"
-            endOffset="7717"/>
-    </incident>
-
-    <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;交互偏好&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
-            line="199"
-            column="21"
-            startOffset="8716"
-            endLine="199"
-            endColumn="40"
-            endOffset="8735"/>
-    </incident>
-
-    <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;选择关闭按钮位置、开关音效与后台保活&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
-            line="208"
-            column="21"
-            startOffset="9099"
-            endLine="208"
-            endColumn="54"
-            endOffset="9132"/>
-    </incident>
-
-    <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;配置 / 导入导出&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
-            line="321"
-            column="21"
-            startOffset="14474"
-            endLine="321"
-            endColumn="45"
-            endOffset="14498"/>
-    </incident>
-
-    <incident
-        id="HardcodedText"
-        severity="warning"
-        message="Hardcoded string &quot;剪贴板导入导出 JSON，方便在不同设备复用配置&quot;, should use `@string` resource">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
-            line="330"
-            column="21"
-            startOffset="14862"
-            endLine="330"
-            endColumn="60"
-            endOffset="14901"/>
+            endOffset="13279"/>
     </incident>
 
 </incidents>

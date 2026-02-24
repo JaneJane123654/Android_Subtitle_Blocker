@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:2:1-32:12
+ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:2:1-33:12
+INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:2:1-33:12
+INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:2:1-33:12
+INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:2:1-33:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\6f5fa7d5ad17a7333aa0c9844df1cc49\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [io.github.petterpx:floatingx:2.3.7] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\bffdf128b8bc528b6178e4ea51d85d05\transformed\jetified-floatingx-2.3.7\AndroidManifest.xml:2:1-15:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\e1d7e38f58b8866ae1ab369598a29f38\transformed\constraintlayout-2.0.1\AndroidManifest.xml:2:1-11:12
@@ -63,13 +63,17 @@ uses-permission#android.permission.FOREGROUND_SERVICE
 ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:5:5-77
 	android:name
 		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:5:22-74
-uses-permission#android.permission.POST_NOTIFICATIONS
-ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:6:5-77
+uses-permission#android.permission.FOREGROUND_SERVICE_DATA_SYNC
+ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:6:5-87
 	android:name
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:6:22-74
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:6:22-84
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:7:5-77
+	android:name
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:7:22-74
 application
-ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:8:5-30:19
-INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:8:5-30:19
+ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:9:5-31:19
+INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:9:5-31:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\6f5fa7d5ad17a7333aa0c9844df1cc49\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\6f5fa7d5ad17a7333aa0c9844df1cc49\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [io.github.petterpx:floatingx:2.3.7] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\bffdf128b8bc528b6178e4ea51d85d05\transformed\jetified-floatingx-2.3.7\AndroidManifest.xml:7:5-13:19
@@ -93,41 +97,41 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ja
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\fac3093fc400b37ce40f3649451c6993\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:13:9-35
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:14:9-35
 	android:label
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:12:9-41
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:13:9-41
 	android:roundIcon
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:11:9-54
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:12:9-54
 	android:icon
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:10:9-49
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:11:9-49
 	android:allowBackup
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:9:9-35
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:10:9-35
 	android:theme
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:14:9-53
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:15:9-53
 activity#com.zimuzhedang.subtitleblocker.ui.MainActivity
-ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:16:9-23:20
+ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:17:9-24:20
 	android:exported
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:18:13-36
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:19:13-36
 	android:name
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:17:13-44
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:18:13-44
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:19:13-22:29
+ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:20:13-23:29
 action#android.intent.action.MAIN
-ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:20:17-69
+ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:21:17-69
 	android:name
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:20:25-66
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:21:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:21:17-77
+ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:22:17-77
 	android:name
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:21:27-74
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:22:27-74
 service#com.zimuzhedang.subtitleblocker.platform.KeepAliveService
-ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:25:9-28:56
+ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:26:9-29:56
 	android:exported
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:27:13-37
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:28:13-37
 	android:foregroundServiceType
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:28:13-53
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:29:13-53
 	android:name
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:26:13-54
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:27:13-54
 uses-sdk
 INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml

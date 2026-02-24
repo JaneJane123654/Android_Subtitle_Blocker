@@ -21,6 +21,18 @@ D:\project\zimuzhedang\app\build.gradle:12: Warning: Not targeting the latest ve
 
    https://developer.android.com/distribute/best-practices/develop/target-sdk.html
 
+D:\project\zimuzhedang\app\src\main\java\com\zimuzhedang\subtitleblocker\platform\KeepAliveService.java:122: Warning: Found dynamic locale changes, but did not find corresponding Play Core library calls for downloading languages and splitting by language is not disabled in the bundle configuration [AppBundleLocaleChanges]
+            config.setLocales(new LocaleList(locale));
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "AppBundleLocaleChanges":
+   When changing locales at runtime (e.g. to provide an in-app language
+   switcher), the Android App Bundle must be configured to not split by locale
+   or the Play Core library must be used to download additional locales at
+   runtime.
+
+   https://developer.android.com/guide/app-bundle/configure-base#handling_language_changes
+
 D:\project\zimuzhedang\app\build.gradle:7: Warning: A newer version of compileSdkVersion than 34 is available: 36 [GradleDependency]
     compileSdk 34
     ~~~~~~~~~~~~~
@@ -64,6 +76,9 @@ D:\project\zimuzhedang\app\src\main\res\values\themes.xml:8: Warning: Unnecessar
    where the contents should be merged into the best folder.
 
 D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:6: Warning: Possible overdraw: Root element paints background @color/page_bg with a theme that also paints a background (inferred theme is @style/Theme.SubtitleBlocker) [Overdraw]
+    android:background="@color/page_bg">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\project\zimuzhedang\app\src\main\res\layout\activity_usage.xml:5: Warning: Possible overdraw: Root element paints background @color/page_bg with a theme that also paints a background (inferred theme is @style/Theme.SubtitleBlocker) [Overdraw]
     android:background="@color/page_bg">
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -185,58 +200,4 @@ D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:289: Warning: M
    If your view is labeled but by a label in a different layout which includes
    this one, just suppress this warning from lint.
 
-D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:43: Warning: Hardcoded string "一键遮挡字幕 / 还原画面专注度", should use @string resource [HardcodedText]
-                    android:text="一键遮挡字幕 / 还原画面专注度"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:57: Warning: Hardcoded string "白线内拖入即可调整", should use @string resource [HardcodedText]
-                    android:text="白线内拖入即可调整"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~
-D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:65: Warning: Hardcoded string "• 按住框体移动位置", should use @string resource [HardcodedText]
-                    android:text="• 按住框体移动位置"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~
-D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:73: Warning: Hardcoded string "• 白色角点拖入扩大或缩小范围", should use @string resource [HardcodedText]
-                    android:text="• 白色角点拖入扩大或缩小范围"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:81: Warning: Hardcoded string "• 白色右边线拖动调宽", should use @string resource [HardcodedText]
-                    android:text="• 白色右边线拖动调宽"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~
-D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:89: Warning: Hardcoded string "• 白色下边线拖动调长", should use @string resource [HardcodedText]
-                    android:text="• 白色下边线拖动调长"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~
-D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:114: Warning: Hardcoded string "悬浮窗控制", should use @string resource [HardcodedText]
-                    android:text="悬浮窗控制"
-                    ~~~~~~~~~~~~~~~~~~~~
-D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:123: Warning: Hardcoded string "开启后可拖拽窗口遮挡字幕，需先授权悬浮窗权限", should use @string resource [HardcodedText]
-                    android:text="开启后可拖拽窗口遮挡字幕，需先授权悬浮窗权限"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:174: Warning: Hardcoded string "首次使用请先允许悬浮窗权限，再点击开启遮挡", should use @string resource [HardcodedText]
-                    android:text="首次使用请先允许悬浮窗权限，再点击开启遮挡"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:199: Warning: Hardcoded string "交互偏好", should use @string resource [HardcodedText]
-                    android:text="交互偏好"
-                    ~~~~~~~~~~~~~~~~~~~
-D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:208: Warning: Hardcoded string "选择关闭按钮位置、开关音效与后台保活", should use @string resource [HardcodedText]
-                    android:text="选择关闭按钮位置、开关音效与后台保活"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:321: Warning: Hardcoded string "配置 / 导入导出", should use @string resource [HardcodedText]
-                    android:text="配置 / 导入导出"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~
-D:\project\zimuzhedang\app\src\main\res\layout\activity_main.xml:330: Warning: Hardcoded string "剪贴板导入导出 JSON，方便在不同设备复用配置", should use @string resource [HardcodedText]
-                    android:text="剪贴板导入导出 JSON，方便在不同设备复用配置"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-   Explanation for issues of type "HardcodedText":
-   Hardcoding text attributes directly in layout files is bad for several
-   reasons:
-
-   * When creating configuration variations (for example for landscape or
-   portrait) you have to repeat the actual text (and keep it up to date when
-   making changes)
-
-   * The application cannot be translated to other languages by just adding
-   new translations for existing string resources.
-
-   There are quickfixes to automatically extract this hardcoded string into a
-   resource lookup.
-
-0 errors, 28 warnings
+0 errors, 17 warnings

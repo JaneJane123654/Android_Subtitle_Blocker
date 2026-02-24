@@ -25,6 +25,7 @@ public final class SharedPreferencesSettingsRepository implements SettingsReposi
     private static final String KEY_SOUND_ENABLED = "sound_enabled";
     /** 常驻通知开关的键名 */
     private static final String KEY_KEEP_ALIVE = "keep_alive_enabled";
+    private static final String KEY_LANGUAGE = "app_language";
     private static final String KEY_TRANSPARENCY_TOGGLE_ENABLED = "transparency_toggle_enabled";
     private static final String KEY_TRANSPARENCY_AUTO_RESTORE_ENABLED = "transparency_auto_restore_enabled";
     private static final String KEY_TRANSPARENCY_AUTO_RESTORE_SECONDS = "transparency_auto_restore_seconds";
@@ -54,6 +55,9 @@ public final class SharedPreferencesSettingsRepository implements SettingsReposi
         CloseButtonPosition position = CloseButtonPosition.valueOf(positionRaw);
         boolean soundEnabled = sharedPreferences.getBoolean(KEY_SOUND_ENABLED, false);
         boolean keepAlive = sharedPreferences.getBoolean(KEY_KEEP_ALIVE, false);
+        Settings.AppLanguage appLanguage = Settings.AppLanguage.fromValue(
+                sharedPreferences.getString(KEY_LANGUAGE, Settings.AppLanguage.SYSTEM.value)
+        );
         boolean transparencyToggleEnabled = sharedPreferences.getBoolean(KEY_TRANSPARENCY_TOGGLE_ENABLED, false);
         boolean transparencyAutoRestoreEnabled = sharedPreferences.getBoolean(KEY_TRANSPARENCY_AUTO_RESTORE_ENABLED, false);
         int transparencyAutoRestoreSeconds = sharedPreferences.getInt(KEY_TRANSPARENCY_AUTO_RESTORE_SECONDS, 5);
@@ -61,6 +65,7 @@ public final class SharedPreferencesSettingsRepository implements SettingsReposi
                 position,
                 soundEnabled,
                 keepAlive,
+                appLanguage,
                 transparencyToggleEnabled,
                 transparencyAutoRestoreEnabled,
                 transparencyAutoRestoreSeconds
@@ -73,6 +78,7 @@ public final class SharedPreferencesSettingsRepository implements SettingsReposi
                 .putString(KEY_CLOSE_POSITION, settings.closeButtonPosition.name())
                 .putBoolean(KEY_SOUND_ENABLED, settings.soundEnabled)
                 .putBoolean(KEY_KEEP_ALIVE, settings.keepAliveEnabled)
+                .putString(KEY_LANGUAGE, settings.appLanguage.value)
                 .putBoolean(KEY_TRANSPARENCY_TOGGLE_ENABLED, settings.transparencyToggleEnabled)
                 .putBoolean(KEY_TRANSPARENCY_AUTO_RESTORE_ENABLED, settings.transparencyAutoRestoreEnabled)
                 .putInt(KEY_TRANSPARENCY_AUTO_RESTORE_SECONDS, settings.transparencyAutoRestoreSeconds)

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:2:1-33:12
-INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:2:1-33:12
-INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:2:1-33:12
-INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:2:1-33:12
+ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:2:1-36:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\6f5fa7d5ad17a7333aa0c9844df1cc49\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [io.github.petterpx:floatingx:2.3.7] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\bffdf128b8bc528b6178e4ea51d85d05\transformed\jetified-floatingx-2.3.7\AndroidManifest.xml:2:1-15:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\e1d7e38f58b8866ae1ab369598a29f38\transformed\constraintlayout-2.0.1\AndroidManifest.xml:2:1-11:12
@@ -72,8 +72,8 @@ ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:7:5-77
 	android:name
 		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:7:22-74
 application
-ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:9:5-31:19
-INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:9:5-31:19
+ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:9:5-34:19
+INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:9:5-34:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\6f5fa7d5ad17a7333aa0c9844df1cc49\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\6f5fa7d5ad17a7333aa0c9844df1cc49\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [io.github.petterpx:floatingx:2.3.7] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\bffdf128b8bc528b6178e4ea51d85d05\transformed\jetified-floatingx-2.3.7\AndroidManifest.xml:7:5-13:19
@@ -124,14 +124,20 @@ category#android.intent.category.LAUNCHER
 ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:22:17-77
 	android:name
 		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:22:27-74
-service#com.zimuzhedang.subtitleblocker.platform.KeepAliveService
-ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:26:9-29:56
+activity#com.zimuzhedang.subtitleblocker.ui.UsageActivity
+ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:25:9-27:40
 	android:exported
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:28:13-37
-	android:foregroundServiceType
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:29:13-53
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:27:13-37
 	android:name
-		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:27:13-54
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:26:13-45
+service#com.zimuzhedang.subtitleblocker.platform.KeepAliveService
+ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:29:9-32:56
+	android:exported
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:31:13-37
+	android:foregroundServiceType
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:32:13-53
+	android:name
+		ADDED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:30:13-54
 uses-sdk
 INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\project\zimuzhedang\app\src\main\AndroidManifest.xml

@@ -33,6 +33,13 @@
     <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Поделиться с помощью"</string>
     <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Поделиться с помощью <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Свернуть"</string>
+    <string name="action_disable_overlay">Выключить блокировку</string>
+    <string name="action_enable_overlay">Включить блокировку</string>
+    <string name="action_export_config">Экспортировать настройки</string>
+    <string name="action_import_config">Импортировать настройки</string>
+    <string name="action_open_permission">Включить разрешение наложения</string>
+    <string name="action_toggle_transparency">Переключить прозрачность</string>
+    <string name="app_name">Блокировщик субтитров</string>
     <string name="bottomsheet_action_collapse">Свернуть нижний экран</string>
     <string name="bottomsheet_action_expand">Развернуть нижний экран</string>
     <string name="bottomsheet_action_expand_halfway">Развернуть наполовину</string>
@@ -50,8 +57,28 @@
     <string name="clear_text_end_icon_content_description">Очистить текстовое поле</string>
     <string name="error_icon_content_description">Ошибка</string>
     <string name="exposed_dropdown_menu_content_description">Показать раскрывающееся меню</string>
+    <string name="hint_drag_adjust">Перетаскивайте внутри белой линии для настройки</string>
     <string name="icon_content_description">Значок диалогового окна</string>
+    <string name="instruction_move">• Удерживайте и перетаскивайте, чтобы переместить</string>
+    <string name="instruction_resize_corner">• Тяните белый угол для изменения размера</string>
+    <string name="instruction_resize_height">• Тяните белый нижний край для изменения высоты</string>
+    <string name="instruction_resize_width">• Тяните белый правый край для изменения ширины</string>
     <string name="item_view_role_description">Вкладка</string>
+    <string name="label_close_button_left">Слева сверху</string>
+    <string name="label_close_button_position">Положение кнопки закрытия</string>
+    <string name="label_close_button_right">Справа сверху</string>
+    <string name="label_keep_alive">Работа в фоне</string>
+    <string name="label_sound_enabled">Звуковые эффекты</string>
+    <string name="label_transparency_auto_restore">Автовосстановление после прозрачности</string>
+    <string name="label_transparency_restore_seconds">Секунды до восстановления</string>
+    <string name="label_transparency_toggle">Переключатель прозрачности</string>
+    <string name="language_arabic">Арабский</string>
+    <string name="language_chinese">Китайский</string>
+    <string name="language_english">Английский</string>
+    <string name="language_follow_system">Язык системы</string>
+    <string name="language_french">Французский</string>
+    <string name="language_russian">Русский</string>
+    <string name="language_spanish">Испанский</string>
     <string name="material_clock_toggle_content_description">Выберите AM (до полудня) или PM (после полудня)</string>
     <string name="material_hour_24h_suffix">%1$s ч.</string>
     <string name="material_hour_selection">Выберите час</string>
@@ -107,7 +134,22 @@
     <string name="mtrl_picker_toggle_to_year_selection">Нажмите, чтобы выбрать год</string>
     <string name="mtrl_timepicker_cancel">Отмена</string>
     <string name="mtrl_timepicker_confirm">ОК</string>
+    <string name="notification_keep_alive_text">Нажмите, чтобы вернуться в приложение</string>
+    <string name="notification_keep_alive_title">Блокировщик субтитров работает</string>
     <string name="password_toggle_content_description">Показать пароль</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Поиск"</string>
+    <string name="section_config">Настройки / Импорт и экспорт</string>
+    <string name="section_config_desc">Импорт/экспорт JSON через буфер обмена для использования на других устройствах</string>
+    <string name="section_interaction">Параметры взаимодействия</string>
+    <string name="section_interaction_desc">Выберите положение кнопки закрытия, звук и работу в фоне.</string>
+    <string name="section_language">Язык</string>
+    <string name="section_language_desc">Следовать языку системы или выбрать фиксированный язык ниже.</string>
+    <string name="section_overlay_control">Управление плавающим окном</string>
+    <string name="section_overlay_desc">После включения можно перетаскивать окно для скрытия субтитров. Требуется разрешение наложения.</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">">999"</string>
+    <string name="tagline_focus">Быстрая блокировка субтитров / вернуть фокус на изображение</string>
+    <string name="tip_first_use_permission">Первый запуск: разрешите наложение, затем нажмите Включить.</string>
+    <string name="toast_exported">Настройки скопированы в буфер обмена</string>
+    <string name="toast_import_failed">Неверная конфигурация в буфере обмена</string>
+    <string name="toast_import_success">Настройки импортированы</string>
 </resources>

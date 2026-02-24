@@ -14,140 +14,143 @@
 12    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 12-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:5:5-77
 12-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:5:22-74
-13    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-13-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:6:5-77
-13-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:6:22-74
-14
-15    <permission
-15-->[androidx.core:core:1.13.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\fac3093fc400b37ce40f3649451c6993\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
-16        android:name="com.zimuzhedang.subtitleblocker.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-16-->[androidx.core:core:1.13.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\fac3093fc400b37ce40f3649451c6993\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
-17        android:protectionLevel="signature" />
-17-->[androidx.core:core:1.13.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\fac3093fc400b37ce40f3649451c6993\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
-18
-19    <uses-permission android:name="com.zimuzhedang.subtitleblocker.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-19-->[androidx.core:core:1.13.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\fac3093fc400b37ce40f3649451c6993\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
-19-->[androidx.core:core:1.13.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\fac3093fc400b37ce40f3649451c6993\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
-20
-21    <application
-21-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:8:5-30:19
-22        android:allowBackup="true"
-22-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:9:9-35
-23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-23-->[androidx.core:core:1.13.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\fac3093fc400b37ce40f3649451c6993\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
-24        android:extractNativeLibs="true"
-25        android:icon="@drawable/ic_app_launcher"
-25-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:10:9-49
-26        android:label="@string/app_name"
-26-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:12:9-41
-27        android:roundIcon="@drawable/ic_app_launcher"
-27-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:11:9-54
-28        android:supportsRtl="true"
-28-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:13:9-35
-29        android:theme="@style/Theme.SubtitleBlocker" >
-29-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:14:9-53
-30        <activity
-30-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:16:9-23:20
-31            android:name="com.zimuzhedang.subtitleblocker.ui.MainActivity"
-31-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:17:13-44
-32            android:exported="true" >
-32-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:18:13-36
-33            <intent-filter>
-33-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:19:13-22:29
-34                <action android:name="android.intent.action.MAIN" />
-34-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:20:17-69
-34-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:20:25-66
-35
-36                <category android:name="android.intent.category.LAUNCHER" />
-36-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:21:17-77
-36-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:21:27-74
-37            </intent-filter>
-38        </activity>
-39
-40        <service
-40-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:25:9-28:56
-41            android:name="com.zimuzhedang.subtitleblocker.platform.KeepAliveService"
-41-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:26:13-54
-42            android:exported="false"
-42-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:27:13-37
-43            android:foregroundServiceType="dataSync" />
-43-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:28:13-53
-44
-45        <provider
-45-->[io.github.petterpx:floatingx:2.3.7] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\bffdf128b8bc528b6178e4ea51d85d05\transformed\jetified-floatingx-2.3.7\AndroidManifest.xml:8:9-12:43
-46            android:name="com.petterp.floatingx.assist.FxContentProvider"
-46-->[io.github.petterpx:floatingx:2.3.7] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\bffdf128b8bc528b6178e4ea51d85d05\transformed\jetified-floatingx-2.3.7\AndroidManifest.xml:9:13-74
-47            android:authorities="com.zimuzhedang.subtitleblocker.fx.provider"
-47-->[io.github.petterpx:floatingx:2.3.7] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\bffdf128b8bc528b6178e4ea51d85d05\transformed\jetified-floatingx-2.3.7\AndroidManifest.xml:10:13-63
-48            android:exported="false"
-48-->[io.github.petterpx:floatingx:2.3.7] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\bffdf128b8bc528b6178e4ea51d85d05\transformed\jetified-floatingx-2.3.7\AndroidManifest.xml:11:13-37
-49            android:multiprocess="true" />
-49-->[io.github.petterpx:floatingx:2.3.7] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\bffdf128b8bc528b6178e4ea51d85d05\transformed\jetified-floatingx-2.3.7\AndroidManifest.xml:12:13-40
-50        <provider
-50-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\8de5008fbe486be9013944efad3a8fa0\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
-51            android:name="androidx.startup.InitializationProvider"
-51-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\8de5008fbe486be9013944efad3a8fa0\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:25:13-67
-52            android:authorities="com.zimuzhedang.subtitleblocker.androidx-startup"
-52-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\8de5008fbe486be9013944efad3a8fa0\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:26:13-68
-53            android:exported="false" >
-53-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\8de5008fbe486be9013944efad3a8fa0\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:27:13-37
-54            <meta-data
-54-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\8de5008fbe486be9013944efad3a8fa0\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
-55                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-55-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\8de5008fbe486be9013944efad3a8fa0\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:30:17-75
-56                android:value="androidx.startup" />
-56-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\8de5008fbe486be9013944efad3a8fa0\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:31:17-49
-57            <meta-data
-57-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\b9983708d6e37cca3f817d4339b6e3d2\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
-58                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-58-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\b9983708d6e37cca3f817d4339b6e3d2\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
-59                android:value="androidx.startup" />
-59-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\b9983708d6e37cca3f817d4339b6e3d2\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
-60            <meta-data
-60-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
-61                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-61-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
-62                android:value="androidx.startup" />
-62-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
-63        </provider>
-64
-65        <receiver
-65-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
-66            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-66-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
-67            android:directBootAware="false"
-67-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
-68            android:enabled="true"
-68-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
-69            android:exported="true"
-69-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
-70            android:permission="android.permission.DUMP" >
-70-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
-71            <intent-filter>
-71-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
-72                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-72-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
-72-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
-73            </intent-filter>
-74            <intent-filter>
-74-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
-75                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-75-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
-75-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
-76            </intent-filter>
-77            <intent-filter>
-77-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
-78                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-78-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
-78-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
-79            </intent-filter>
-80            <intent-filter>
-80-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
-81                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-81-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
-81-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
-82            </intent-filter>
-83        </receiver>
-84    </application>
-85
-86</manifest>
+13    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+13-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:6:5-87
+13-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:6:22-84
+14    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+14-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:7:5-77
+14-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:7:22-74
+15
+16    <permission
+16-->[androidx.core:core:1.13.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\fac3093fc400b37ce40f3649451c6993\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
+17        android:name="com.zimuzhedang.subtitleblocker.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+17-->[androidx.core:core:1.13.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\fac3093fc400b37ce40f3649451c6993\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
+18        android:protectionLevel="signature" />
+18-->[androidx.core:core:1.13.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\fac3093fc400b37ce40f3649451c6993\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
+19
+20    <uses-permission android:name="com.zimuzhedang.subtitleblocker.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+20-->[androidx.core:core:1.13.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\fac3093fc400b37ce40f3649451c6993\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
+20-->[androidx.core:core:1.13.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\fac3093fc400b37ce40f3649451c6993\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
+21
+22    <application
+22-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:9:5-31:19
+23        android:allowBackup="true"
+23-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:10:9-35
+24        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+24-->[androidx.core:core:1.13.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\fac3093fc400b37ce40f3649451c6993\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
+25        android:extractNativeLibs="true"
+26        android:icon="@drawable/ic_app_launcher"
+26-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:11:9-49
+27        android:label="@string/app_name"
+27-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:13:9-41
+28        android:roundIcon="@drawable/ic_app_launcher"
+28-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:12:9-54
+29        android:supportsRtl="true"
+29-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:14:9-35
+30        android:theme="@style/Theme.SubtitleBlocker" >
+30-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:15:9-53
+31        <activity
+31-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:17:9-24:20
+32            android:name="com.zimuzhedang.subtitleblocker.ui.MainActivity"
+32-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:18:13-44
+33            android:exported="true" >
+33-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:19:13-36
+34            <intent-filter>
+34-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:20:13-23:29
+35                <action android:name="android.intent.action.MAIN" />
+35-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:21:17-69
+35-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:21:25-66
+36
+37                <category android:name="android.intent.category.LAUNCHER" />
+37-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:22:17-77
+37-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:22:27-74
+38            </intent-filter>
+39        </activity>
+40
+41        <service
+41-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:26:9-29:56
+42            android:name="com.zimuzhedang.subtitleblocker.platform.KeepAliveService"
+42-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:27:13-54
+43            android:exported="false"
+43-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:28:13-37
+44            android:foregroundServiceType="dataSync" />
+44-->D:\project\zimuzhedang\app\src\main\AndroidManifest.xml:29:13-53
+45
+46        <provider
+46-->[io.github.petterpx:floatingx:2.3.7] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\bffdf128b8bc528b6178e4ea51d85d05\transformed\jetified-floatingx-2.3.7\AndroidManifest.xml:8:9-12:43
+47            android:name="com.petterp.floatingx.assist.FxContentProvider"
+47-->[io.github.petterpx:floatingx:2.3.7] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\bffdf128b8bc528b6178e4ea51d85d05\transformed\jetified-floatingx-2.3.7\AndroidManifest.xml:9:13-74
+48            android:authorities="com.zimuzhedang.subtitleblocker.fx.provider"
+48-->[io.github.petterpx:floatingx:2.3.7] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\bffdf128b8bc528b6178e4ea51d85d05\transformed\jetified-floatingx-2.3.7\AndroidManifest.xml:10:13-63
+49            android:exported="false"
+49-->[io.github.petterpx:floatingx:2.3.7] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\bffdf128b8bc528b6178e4ea51d85d05\transformed\jetified-floatingx-2.3.7\AndroidManifest.xml:11:13-37
+50            android:multiprocess="true" />
+50-->[io.github.petterpx:floatingx:2.3.7] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\bffdf128b8bc528b6178e4ea51d85d05\transformed\jetified-floatingx-2.3.7\AndroidManifest.xml:12:13-40
+51        <provider
+51-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\8de5008fbe486be9013944efad3a8fa0\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+52            android:name="androidx.startup.InitializationProvider"
+52-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\8de5008fbe486be9013944efad3a8fa0\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:25:13-67
+53            android:authorities="com.zimuzhedang.subtitleblocker.androidx-startup"
+53-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\8de5008fbe486be9013944efad3a8fa0\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:26:13-68
+54            android:exported="false" >
+54-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\8de5008fbe486be9013944efad3a8fa0\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:27:13-37
+55            <meta-data
+55-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\8de5008fbe486be9013944efad3a8fa0\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+56                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+56-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\8de5008fbe486be9013944efad3a8fa0\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:30:17-75
+57                android:value="androidx.startup" />
+57-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\8de5008fbe486be9013944efad3a8fa0\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:31:17-49
+58            <meta-data
+58-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\b9983708d6e37cca3f817d4339b6e3d2\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+59                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+59-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\b9983708d6e37cca3f817d4339b6e3d2\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+60                android:value="androidx.startup" />
+60-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\b9983708d6e37cca3f817d4339b6e3d2\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+61            <meta-data
+61-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+62                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+62-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+63                android:value="androidx.startup" />
+63-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+64        </provider>
+65
+66        <receiver
+66-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+67            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+67-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+68            android:directBootAware="false"
+68-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+69            android:enabled="true"
+69-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+70            android:exported="true"
+70-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+71            android:permission="android.permission.DUMP" >
+71-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+72            <intent-filter>
+72-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+73                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+73-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+73-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+74            </intent-filter>
+75            <intent-filter>
+75-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+76                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+76-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+76-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+77            </intent-filter>
+78            <intent-filter>
+78-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+79                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+79-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+79-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+80            </intent-filter>
+81            <intent-filter>
+81-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+82                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+82-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+82-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\jane\.gradle\caches\9.0-milestone-1\transforms\3015d442fe1cb8e9c04e1379bc0dd32e\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+83            </intent-filter>
+84        </receiver>
+85    </application>
+86
+87</manifest>

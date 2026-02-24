@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_disable_overlay">Desactivar bloqueo</string>
+    <string name="action_enable_overlay">Activar bloqueo</string>
+    <string name="action_export_config">Exportar configuración</string>
+    <string name="action_import_config">Importar configuración</string>
+    <string name="action_open_permission">Habilitar permiso de superposición</string>
+    <string name="action_toggle_transparency">Cambiar transparencia</string>
+    <string name="app_name">Bloqueador de subtítulos</string>
+    <string name="hint_drag_adjust">Arrastra dentro de la línea blanca para ajustar</string>
+    <string name="instruction_move">• Mantén pulsado y arrastra para mover</string>
+    <string name="instruction_resize_corner">• Arrastra la esquina blanca para cambiar el tamaño</string>
+    <string name="instruction_resize_height">• Arrastra el borde inferior blanco para ajustar el alto</string>
+    <string name="instruction_resize_width">• Arrastra el borde derecho blanco para ajustar el ancho</string>
+    <string name="label_close_button_left">Arriba a la izquierda</string>
+    <string name="label_close_button_position">Posición del botón de cierre</string>
+    <string name="label_close_button_right">Arriba a la derecha</string>
+    <string name="label_keep_alive">Mantener en segundo plano</string>
+    <string name="label_sound_enabled">Efectos de sonido</string>
+    <string name="label_transparency_auto_restore">Restaurar automáticamente tras transparencia</string>
+    <string name="label_transparency_restore_seconds">Segundos para restaurar</string>
+    <string name="label_transparency_toggle">Interruptor de transparencia</string>
+    <string name="language_arabic">Árabe</string>
+    <string name="language_chinese">Chino</string>
+    <string name="language_english">Inglés</string>
+    <string name="language_follow_system">Seguir el sistema</string>
+    <string name="language_french">Francés</string>
+    <string name="language_russian">Ruso</string>
+    <string name="language_spanish">Español</string>
+    <string name="notification_keep_alive_text">Toca para volver a la app</string>
+    <string name="notification_keep_alive_title">Bloqueador de subtítulos en ejecución</string>
+    <string name="section_config">Configuración / Importar y exportar</string>
+    <string name="section_config_desc">Importa/exporta JSON mediante el portapapeles para reutilizar en otros dispositivos</string>
+    <string name="section_interaction">Preferencias de interacción</string>
+    <string name="section_interaction_desc">Elige posición del botón de cierre, efectos de sonido y permanencia en segundo plano.</string>
+    <string name="section_language">Idioma</string>
+    <string name="section_language_desc">Sigue el idioma del sistema o elige un idioma fijo abajo.</string>
+    <string name="section_overlay_control">Control de ventana flotante</string>
+    <string name="section_overlay_desc">Al activar, arrastra la ventana para ocultar subtítulos. Se requiere permiso de superposición.</string>
+    <string name="tagline_focus">Bloqueo de subtítulos en un toque / recuperar la concentración</string>
+    <string name="tip_first_use_permission">Primer uso: permite la superposición y luego pulsa Activar.</string>
+    <string name="toast_exported">Configuración copiada al portapapeles</string>
+    <string name="toast_import_failed">Configuración del portapapeles no válida</string>
+    <string name="toast_import_success">Configuración importada</string>
+</resources>

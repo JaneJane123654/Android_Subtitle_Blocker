@@ -3,8 +3,12 @@ package com.zimuzhedang.subtitleblocker.ui;
 import android.Manifest;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.LocaleList;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
@@ -12,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import org.json.JSONObject;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -65,15 +70,33 @@ public final class MainActivity extends AppCompatActivity {
     private MaterialButton btnOpenPermission;
     private MaterialButton btnExportConfig;
     private MaterialButton btnImportConfig;
+    private MaterialButton btnUsage;
     private RadioGroup rgClosePosition;
     private RadioButton rbLeftTop;
     private RadioButton rbRightTop;
+    private RadioGroup rgLanguage;
+    private RadioButton rbLangSystem;
+    private RadioButton rbLangZh;
+    private RadioButton rbLangEn;
+    private RadioButton rbLangFr;
+    private RadioButton rbLangEs;
+    private RadioButton rbLangRu;
+    private RadioButton rbLangAr;
     private SwitchMaterial switchSound;
     private SwitchMaterial switchKeepAlive;
     private SwitchMaterial switchTransparencyToggle;
     private SwitchMaterial switchTransparencyAutoRestore;
     private EditText editTransparencySeconds;
     private boolean updatingTransparencySeconds;
+    private boolean updatingLanguage;
+    private Settings.AppLanguage currentAppLanguage;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        SettingsRepository repository = new SharedPreferencesSettingsRepository(newBase);
+        Settings settings = repository.loadSettings();
+        super.attachBaseContext(applyLanguage(newBase, settings.appLanguage));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +111,9 @@ public final class MainActivity extends AppCompatActivity {
 
         bindViews();
         bindViewModel();
-        setupSettingsUi(settingsRepository.loadSettings());
+        Settings settings = settingsRepository.loadSettings();
+        currentAppLanguage = settings.appLanguage;
+        setupSettingsUi(settings);
     }
 
     /**
@@ -100,9 +125,18 @@ public final class MainActivity extends AppCompatActivity {
         btnOpenPermission = findViewById(R.id.btnOpenPermission);
         btnExportConfig = findViewById(R.id.btnExportConfig);
         btnImportConfig = findViewById(R.id.btnImportConfig);
+        btnUsage = findViewById(R.id.btnUsage);
         rgClosePosition = findViewById(R.id.rgClosePosition);
         rbLeftTop = findViewById(R.id.rbLeftTop);
         rbRightTop = findViewById(R.id.rbRightTop);
+        rgLanguage = findViewById(R.id.rgLanguage);
+        rbLangSystem = findViewById(R.id.rbLangSystem);
+        rbLangZh = findViewById(R.id.rbLangZh);
+        rbLangEn = findViewById(R.id.rbLangEn);
+        rbLangFr = findViewById(R.id.rbLangFr);
+        rbLangEs = findViewById(R.id.rbLangEs);
+        rbLangRu = findViewById(R.id.rbLangRu);
+        rbLangAr = findViewById(R.id.rbLangAr);
         switchSound = findViewById(R.id.switchSound);
         switchKeepAlive = findViewById(R.id.switchKeepAlive);
         switchTransparencyToggle = findViewById(R.id.switchTransparencyToggle);
@@ -114,6 +148,7 @@ public final class MainActivity extends AppCompatActivity {
         btnOpenPermission.setOnClickListener(v -> permissionNavigator.openOverlayPermissionSettings(this));
         btnExportConfig.setOnClickListener(v -> exportConfig());
         btnImportConfig.setOnClickListener(v -> importConfig());
+        btnUsage.setOnClickListener(v -> startActivity(new android.content.Intent(this, UsageActivity.class)));
 
         rgClosePosition.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.rbLeftTop) {
@@ -121,6 +156,16 @@ public final class MainActivity extends AppCompatActivity {
             } else if (checkedId == R.id.rbRightTop) {
                 viewModel.onCloseButtonPositionChanged(CloseButtonPosition.RIGHT_TOP);
             }
+        });
+
+        rgLanguage.setOnCheckedChangeListener((group, checkedId) -> {
+            if (updatingLanguage) {
+                return;
+            }
+            Settings.AppLanguage language = resolveLanguageById(checkedId);
+            Settings settings = settingsRepository.loadSettings().withAppLanguage(language);
+            settingsRepository.saveSettings(settings);
+            applyLanguageChange(language);
         });
 
         switchSound.setOnCheckedChangeListener((buttonView, isChecked) -> viewModel.onSoundEnabledChanged(isChecked));
@@ -223,6 +268,32 @@ public final class MainActivity extends AppCompatActivity {
         } else {
             rbRightTop.setChecked(true);
         }
+        updatingLanguage = true;
+        switch (settings.appLanguage) {
+            case ZH:
+                rbLangZh.setChecked(true);
+                break;
+            case EN:
+                rbLangEn.setChecked(true);
+                break;
+            case FR:
+                rbLangFr.setChecked(true);
+                break;
+            case ES:
+                rbLangEs.setChecked(true);
+                break;
+            case RU:
+                rbLangRu.setChecked(true);
+                break;
+            case AR:
+                rbLangAr.setChecked(true);
+                break;
+            case SYSTEM:
+            default:
+                rbLangSystem.setChecked(true);
+                break;
+        }
+        updatingLanguage = false;
         switchSound.setChecked(settings.soundEnabled);
         switchKeepAlive.setChecked(settings.keepAliveEnabled);
         switchTransparencyToggle.setChecked(settings.transparencyToggleEnabled);
@@ -253,6 +324,7 @@ public final class MainActivity extends AppCompatActivity {
             json.put("closeButtonPosition", settings.closeButtonPosition.name());
             json.put("soundEnabled", settings.soundEnabled);
             json.put("keepAliveEnabled", settings.keepAliveEnabled);
+            json.put("appLanguage", settings.appLanguage.value);
             json.put("transparencyToggleEnabled", settings.transparencyToggleEnabled);
             json.put("transparencyAutoRestoreEnabled", settings.transparencyAutoRestoreEnabled);
             json.put("transparencyAutoRestoreSeconds", settings.transparencyAutoRestoreSeconds);
@@ -288,6 +360,7 @@ public final class MainActivity extends AppCompatActivity {
             CloseButtonPosition position = CloseButtonPosition.valueOf(json.getString("closeButtonPosition"));
             boolean soundEnabled = json.getBoolean("soundEnabled");
             boolean keepAliveEnabled = json.getBoolean("keepAliveEnabled");
+            Settings.AppLanguage appLanguage = Settings.AppLanguage.fromValue(json.optString("appLanguage"));
             boolean transparencyToggleEnabled = json.optBoolean("transparencyToggleEnabled", false);
             boolean transparencyAutoRestoreEnabled = json.optBoolean("transparencyAutoRestoreEnabled", false);
             int transparencyAutoRestoreSeconds = json.optInt("transparencyAutoRestoreSeconds", 5);
@@ -295,6 +368,7 @@ public final class MainActivity extends AppCompatActivity {
                     position,
                     soundEnabled,
                     keepAliveEnabled,
+                    appLanguage,
                     transparencyToggleEnabled,
                     transparencyAutoRestoreEnabled,
                     transparencyAutoRestoreSeconds
@@ -315,6 +389,7 @@ public final class MainActivity extends AppCompatActivity {
             );
             viewModel.applyImportedState(state, settings);
             setupSettingsUi(settings);
+            applyLanguageChange(settings.appLanguage);
             Toast.makeText(this, R.string.toast_import_success, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(this, R.string.toast_import_failed, Toast.LENGTH_SHORT).show();
@@ -370,5 +445,49 @@ public final class MainActivity extends AppCompatActivity {
         } catch (NumberFormatException e) {
             return 5;
         }
+    }
+
+    private Settings.AppLanguage resolveLanguageById(int checkedId) {
+        if (checkedId == R.id.rbLangZh) {
+            return Settings.AppLanguage.ZH;
+        }
+        if (checkedId == R.id.rbLangEn) {
+            return Settings.AppLanguage.EN;
+        }
+        if (checkedId == R.id.rbLangFr) {
+            return Settings.AppLanguage.FR;
+        }
+        if (checkedId == R.id.rbLangEs) {
+            return Settings.AppLanguage.ES;
+        }
+        if (checkedId == R.id.rbLangRu) {
+            return Settings.AppLanguage.RU;
+        }
+        if (checkedId == R.id.rbLangAr) {
+            return Settings.AppLanguage.AR;
+        }
+        return Settings.AppLanguage.SYSTEM;
+    }
+
+    private void applyLanguageChange(Settings.AppLanguage language) {
+        if (language == currentAppLanguage) {
+            return;
+        }
+        currentAppLanguage = language;
+        recreate();
+    }
+
+    private static Context applyLanguage(Context context, Settings.AppLanguage language) {
+        if (language == Settings.AppLanguage.SYSTEM) {
+            return context;
+        }
+        Locale locale = Locale.forLanguageTag(language.languageTag);
+        Configuration config = new Configuration(context.getResources().getConfiguration());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            config.setLocales(new LocaleList(locale));
+        } else {
+            config.locale = locale;
+        }
+        return context.createConfigurationContext(config);
     }
 }

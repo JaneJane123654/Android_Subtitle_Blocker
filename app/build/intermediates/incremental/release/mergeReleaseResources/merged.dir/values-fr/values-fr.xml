@@ -31,6 +31,13 @@
     <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Partager avec"</string>
     <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Partager avec <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Réduire"</string>
+    <string name="action_disable_overlay">Désactiver le masquage</string>
+    <string name="action_enable_overlay">Activer le masquage</string>
+    <string name="action_export_config">Exporter la configuration</string>
+    <string name="action_import_config">Importer la configuration</string>
+    <string name="action_open_permission">Activer l'autorisation d'affichage flottant</string>
+    <string name="action_toggle_transparency">Basculer la transparence</string>
+    <string name="app_name">Bloqueur de sous-titres</string>
     <string name="bottomsheet_action_collapse">Réduire la bottom sheet</string>
     <string name="bottomsheet_action_expand">Développer la bottom sheet</string>
     <string name="bottomsheet_action_expand_halfway">Développer en entier</string>
@@ -48,8 +55,28 @@
     <string name="clear_text_end_icon_content_description">Effacer le texte</string>
     <string name="error_icon_content_description">Erreur</string>
     <string name="exposed_dropdown_menu_content_description">Afficher le menu déroulant</string>
+    <string name="hint_drag_adjust">Glissez dans la ligne blanche pour ajuster</string>
     <string name="icon_content_description">Icône de la boîte de dialogue</string>
+    <string name="instruction_move">• Appuyez et faites glisser pour déplacer</string>
+    <string name="instruction_resize_corner">• Faites glisser le coin blanc pour redimensionner</string>
+    <string name="instruction_resize_height">• Faites glisser le bord inférieur blanc pour ajuster la hauteur</string>
+    <string name="instruction_resize_width">• Faites glisser le bord droit blanc pour ajuster la largeur</string>
     <string name="item_view_role_description">Tabulation</string>
+    <string name="label_close_button_left">En haut à gauche</string>
+    <string name="label_close_button_position">Position du bouton de fermeture</string>
+    <string name="label_close_button_right">En haut à droite</string>
+    <string name="label_keep_alive">Maintien en arrière-plan</string>
+    <string name="label_sound_enabled">Effets sonores</string>
+    <string name="label_transparency_auto_restore">Rétablissement automatique après transparence</string>
+    <string name="label_transparency_restore_seconds">Secondes avant rétablissement</string>
+    <string name="label_transparency_toggle">Bouton de transparence</string>
+    <string name="language_arabic">Arabe</string>
+    <string name="language_chinese">Chinois</string>
+    <string name="language_english">Anglais</string>
+    <string name="language_follow_system">Suivre le système</string>
+    <string name="language_french">Français</string>
+    <string name="language_russian">Russe</string>
+    <string name="language_spanish">Espagnol</string>
     <string name="material_clock_toggle_content_description">Sélectionner le format AM ou PM</string>
     <string name="material_hour_24h_suffix">%1$s heures</string>
     <string name="material_hour_selection">Sélectionnez une heure</string>
@@ -105,7 +132,22 @@
     <string name="mtrl_picker_toggle_to_year_selection">Appuyer pour passer à la vue \"Année\"</string>
     <string name="mtrl_timepicker_cancel">Annuler</string>
     <string name="mtrl_timepicker_confirm">OK</string>
+    <string name="notification_keep_alive_text">Appuyez pour revenir à l'application</string>
+    <string name="notification_keep_alive_title">Bloqueur de sous-titres actif</string>
     <string name="password_toggle_content_description">Afficher le mot de passe</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Rechercher"</string>
+    <string name="section_config">Configuration / Importer &amp; Exporter</string>
+    <string name="section_config_desc">Importer/Exporter du JSON via le presse-papiers pour réutiliser sur d'autres appareils</string>
+    <string name="section_interaction">Préférences d'interaction</string>
+    <string name="section_interaction_desc">Choisissez la position du bouton de fermeture, les sons et le maintien en arrière-plan.</string>
+    <string name="section_language">Langue</string>
+    <string name="section_language_desc">Suivez la langue du système ou choisissez une langue fixe ci-dessous.</string>
+    <string name="section_overlay_control">Contrôle de la fenêtre flottante</string>
+    <string name="section_overlay_desc">Une fois activé, faites glisser la fenêtre pour masquer les sous-titres. Autorisation d'affichage requise.</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="tagline_focus">Blocage rapide des sous-titres / retrouver la concentration</string>
+    <string name="tip_first_use_permission">Première utilisation : autorisez l'affichage flottant, puis appuyez sur Activer.</string>
+    <string name="toast_exported">Configuration copiée dans le presse-papiers</string>
+    <string name="toast_import_failed">Configuration du presse-papiers invalide</string>
+    <string name="toast_import_success">Configuration importée</string>
 </resources>

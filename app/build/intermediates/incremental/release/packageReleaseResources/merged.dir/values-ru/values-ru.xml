@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_disable_overlay">Выключить блокировку</string>
+    <string name="action_enable_overlay">Включить блокировку</string>
+    <string name="action_export_config">Экспортировать настройки</string>
+    <string name="action_import_config">Импортировать настройки</string>
+    <string name="action_open_permission">Включить разрешение наложения</string>
+    <string name="action_toggle_transparency">Переключить прозрачность</string>
+    <string name="app_name">Блокировщик субтитров</string>
+    <string name="hint_drag_adjust">Перетаскивайте внутри белой линии для настройки</string>
+    <string name="instruction_move">• Удерживайте и перетаскивайте, чтобы переместить</string>
+    <string name="instruction_resize_corner">• Тяните белый угол для изменения размера</string>
+    <string name="instruction_resize_height">• Тяните белый нижний край для изменения высоты</string>
+    <string name="instruction_resize_width">• Тяните белый правый край для изменения ширины</string>
+    <string name="label_close_button_left">Слева сверху</string>
+    <string name="label_close_button_position">Положение кнопки закрытия</string>
+    <string name="label_close_button_right">Справа сверху</string>
+    <string name="label_keep_alive">Работа в фоне</string>
+    <string name="label_sound_enabled">Звуковые эффекты</string>
+    <string name="label_transparency_auto_restore">Автовосстановление после прозрачности</string>
+    <string name="label_transparency_restore_seconds">Секунды до восстановления</string>
+    <string name="label_transparency_toggle">Переключатель прозрачности</string>
+    <string name="language_arabic">Арабский</string>
+    <string name="language_chinese">Китайский</string>
+    <string name="language_english">Английский</string>
+    <string name="language_follow_system">Язык системы</string>
+    <string name="language_french">Французский</string>
+    <string name="language_russian">Русский</string>
+    <string name="language_spanish">Испанский</string>
+    <string name="notification_keep_alive_text">Нажмите, чтобы вернуться в приложение</string>
+    <string name="notification_keep_alive_title">Блокировщик субтитров работает</string>
+    <string name="section_config">Настройки / Импорт и экспорт</string>
+    <string name="section_config_desc">Импорт/экспорт JSON через буфер обмена для использования на других устройствах</string>
+    <string name="section_interaction">Параметры взаимодействия</string>
+    <string name="section_interaction_desc">Выберите положение кнопки закрытия, звук и работу в фоне.</string>
+    <string name="section_language">Язык</string>
+    <string name="section_language_desc">Следовать языку системы или выбрать фиксированный язык ниже.</string>
+    <string name="section_overlay_control">Управление плавающим окном</string>
+    <string name="section_overlay_desc">После включения можно перетаскивать окно для скрытия субтитров. Требуется разрешение наложения.</string>
+    <string name="tagline_focus">Быстрая блокировка субтитров / вернуть фокус на изображение</string>
+    <string name="tip_first_use_permission">Первый запуск: разрешите наложение, затем нажмите Включить.</string>
+    <string name="toast_exported">Настройки скопированы в буфер обмена</string>
+    <string name="toast_import_failed">Неверная конфигурация в буфере обмена</string>
+    <string name="toast_import_success">Настройки импортированы</string>
+</resources>

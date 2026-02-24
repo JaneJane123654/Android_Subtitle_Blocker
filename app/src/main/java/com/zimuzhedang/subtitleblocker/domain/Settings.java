@@ -14,6 +14,7 @@ public final class Settings {
     public final boolean soundEnabled;
     /** 是否启用常驻后台服务 */
     public final boolean keepAliveEnabled;
+    public final AppLanguage appLanguage;
     public final boolean transparencyToggleEnabled;
     public final boolean transparencyAutoRestoreEnabled;
     public final int transparencyAutoRestoreSeconds;
@@ -29,6 +30,7 @@ public final class Settings {
             CloseButtonPosition closeButtonPosition,
             boolean soundEnabled,
             boolean keepAliveEnabled,
+            AppLanguage appLanguage,
             boolean transparencyToggleEnabled,
             boolean transparencyAutoRestoreEnabled,
             int transparencyAutoRestoreSeconds
@@ -36,6 +38,7 @@ public final class Settings {
         this.closeButtonPosition = closeButtonPosition;
         this.soundEnabled = soundEnabled;
         this.keepAliveEnabled = keepAliveEnabled;
+        this.appLanguage = appLanguage;
         this.transparencyToggleEnabled = transparencyToggleEnabled;
         this.transparencyAutoRestoreEnabled = transparencyAutoRestoreEnabled;
         this.transparencyAutoRestoreSeconds = transparencyAutoRestoreSeconds;
@@ -47,30 +50,64 @@ public final class Settings {
      * @return 默认设置对象
      */
     public static Settings defaultValue() {
-        return new Settings(CloseButtonPosition.RIGHT_TOP, false, false, false, false, 5);
+        return new Settings(CloseButtonPosition.RIGHT_TOP, false, false, AppLanguage.SYSTEM, false, false, 5);
     }
 
     public Settings withCloseButtonPosition(CloseButtonPosition position) {
-        return new Settings(position, soundEnabled, keepAliveEnabled, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
+        return new Settings(position, soundEnabled, keepAliveEnabled, appLanguage, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
     }
 
     public Settings withSoundEnabled(boolean enabled) {
-        return new Settings(closeButtonPosition, enabled, keepAliveEnabled, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
+        return new Settings(closeButtonPosition, enabled, keepAliveEnabled, appLanguage, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
     }
 
     public Settings withKeepAliveEnabled(boolean enabled) {
-        return new Settings(closeButtonPosition, soundEnabled, enabled, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
+        return new Settings(closeButtonPosition, soundEnabled, enabled, appLanguage, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
+    }
+
+    public Settings withAppLanguage(AppLanguage language) {
+        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, language, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
     }
 
     public Settings withTransparencyToggleEnabled(boolean enabled) {
-        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, enabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
+        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, appLanguage, enabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
     }
 
     public Settings withTransparencyAutoRestoreEnabled(boolean enabled) {
-        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, transparencyToggleEnabled, enabled, transparencyAutoRestoreSeconds);
+        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, appLanguage, transparencyToggleEnabled, enabled, transparencyAutoRestoreSeconds);
     }
 
     public Settings withTransparencyAutoRestoreSeconds(int seconds) {
-        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, transparencyToggleEnabled, transparencyAutoRestoreEnabled, seconds);
+        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, appLanguage, transparencyToggleEnabled, transparencyAutoRestoreEnabled, seconds);
+    }
+
+    public enum AppLanguage {
+        SYSTEM("SYSTEM", ""),
+        ZH("ZH", "zh"),
+        EN("EN", "en"),
+        FR("FR", "fr"),
+        ES("ES", "es"),
+        RU("RU", "ru"),
+        AR("AR", "ar");
+
+        public final String value;
+        public final String languageTag;
+
+        AppLanguage(String value, String languageTag) {
+            this.value = value;
+            this.languageTag = languageTag;
+        }
+
+        public static AppLanguage fromValue(String raw) {
+            if (raw == null || raw.isEmpty()) {
+                return SYSTEM;
+            }
+            for (AppLanguage language : values()) {
+                if (language.value.equalsIgnoreCase(raw)) {
+                    return language;
+                }
+            }
+            return SYSTEM;
+        }
     }
 }

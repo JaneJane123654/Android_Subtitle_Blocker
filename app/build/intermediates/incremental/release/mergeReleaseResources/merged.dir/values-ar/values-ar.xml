@@ -35,6 +35,13 @@
     <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"مشاركة مع"</string>
     <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"مشاركة مع <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"تصغير"</string>
+    <string name="action_disable_overlay">إيقاف الحجب</string>
+    <string name="action_enable_overlay">تفعيل الحجب</string>
+    <string name="action_export_config">تصدير الإعدادات</string>
+    <string name="action_import_config">استيراد الإعدادات</string>
+    <string name="action_open_permission">تفعيل إذن التراكب</string>
+    <string name="action_toggle_transparency">تبديل الشفافية</string>
+    <string name="app_name">حاجب الترجمة</string>
     <string name="bottomsheet_action_collapse">تصغير البطاقة السفلية</string>
     <string name="bottomsheet_action_expand">توسيع البطاقة السفلية</string>
     <string name="bottomsheet_action_expand_halfway">توسيع البطاقة السفلية</string>
@@ -52,8 +59,28 @@
     <string name="clear_text_end_icon_content_description">محو النص</string>
     <string name="error_icon_content_description">خطأ</string>
     <string name="exposed_dropdown_menu_content_description">عرض القائمة المنسدلة</string>
+    <string name="hint_drag_adjust">اسحب داخل الخط الأبيض للتعديل</string>
     <string name="icon_content_description">رمز مربع الحوار</string>
+    <string name="instruction_move">• اضغط مطولاً واسحب للتحريك</string>
+    <string name="instruction_resize_corner">• اسحب الزاوية البيضاء لتغيير الحجم</string>
+    <string name="instruction_resize_height">• اسحب الحافة السفلية البيضاء لضبط الارتفاع</string>
+    <string name="instruction_resize_width">• اسحب الحافة اليمنى البيضاء لضبط العرض</string>
     <string name="item_view_role_description">علامة تبويب</string>
+    <string name="label_close_button_left">أعلى اليسار</string>
+    <string name="label_close_button_position">موضع زر الإغلاق</string>
+    <string name="label_close_button_right">أعلى اليمين</string>
+    <string name="label_keep_alive">الاستمرار في الخلفية</string>
+    <string name="label_sound_enabled">المؤثرات الصوتية</string>
+    <string name="label_transparency_auto_restore">استعادة تلقائية بعد الشفافية</string>
+    <string name="label_transparency_restore_seconds">ثواني الاستعادة</string>
+    <string name="label_transparency_toggle">مفتاح الشفافية</string>
+    <string name="language_arabic">العربية</string>
+    <string name="language_chinese">الصينية</string>
+    <string name="language_english">الإنجليزية</string>
+    <string name="language_follow_system">اتباع النظام</string>
+    <string name="language_french">الفرنسية</string>
+    <string name="language_russian">الروسية</string>
+    <string name="language_spanish">الإسبانية</string>
     <string name="material_clock_toggle_content_description">يُرجى اختيار صباحًا أو مساءً.</string>
     <string name="material_hour_24h_suffix">%1$s ساعة</string>
     <string name="material_hour_selection">تحديد الساعة</string>
@@ -109,7 +136,22 @@
     <string name="mtrl_picker_toggle_to_year_selection">يمكنك النقر للتبديل إلى عرض السنة.</string>
     <string name="mtrl_timepicker_cancel">إلغاء</string>
     <string name="mtrl_timepicker_confirm">حسنًا</string>
+    <string name="notification_keep_alive_text">اضغط للعودة إلى التطبيق</string>
+    <string name="notification_keep_alive_title">حاجب الترجمة يعمل</string>
     <string name="password_toggle_content_description">عرض كلمة المرور</string>
     <string msgid="6264217191555673260" name="search_menu_title">"البحث"</string>
+    <string name="section_config">الإعدادات / الاستيراد والتصدير</string>
+    <string name="section_config_desc">استيراد/تصدير JSON عبر الحافظة لإعادة الاستخدام على أجهزة أخرى</string>
+    <string name="section_interaction">تفضيلات التفاعل</string>
+    <string name="section_interaction_desc">اختر موضع زر الإغلاق والمؤثرات الصوتية والاستمرار في الخلفية.</string>
+    <string name="section_language">اللغة</string>
+    <string name="section_language_desc">اتبع لغة النظام أو اختر لغة ثابتة أدناه.</string>
+    <string name="section_overlay_control">التحكم في النافذة العائمة</string>
+    <string name="section_overlay_desc">بعد التفعيل، اسحب النافذة لحجب الترجمة. يتطلب إذن التراكب.</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="tagline_focus">حجب الترجمة بنقرة واحدة / استعادة التركيز على الصورة</string>
+    <string name="tip_first_use_permission">عند الاستخدام الأول: اسمح بإذن التراكب ثم اضغط تفعيل.</string>
+    <string name="toast_exported">تم نسخ الإعدادات إلى الحافظة</string>
+    <string name="toast_import_failed">إعدادات الحافظة غير صالحة</string>
+    <string name="toast_import_success">تم استيراد الإعدادات</string>
 </resources>
