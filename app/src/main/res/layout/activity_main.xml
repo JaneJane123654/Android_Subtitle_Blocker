@@ -108,6 +108,33 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCheckUpdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/surface_dim"
+                    android:text="@string/action_check_update"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_primary" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="@color/card_bg"
+            app:cardElevation="6dp"
+            app:cardUseCompatPadding="true"
+            app:strokeColor="@color/card_border"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -444,20 +471,10 @@
                     android:textSize="13sp" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnCheckUpdate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:backgroundTint="@color/surface_dim"
-                    android:text="@string/action_check_update"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_primary" />
-
-                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnExportConfig"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="12dp"
                     android:backgroundTint="@color/surface_dim"
                     android:text="@string/action_export_config"
                     android:textAllCaps="false"
