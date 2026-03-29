@@ -29,6 +29,10 @@ public final class SharedPreferencesSettingsRepository implements SettingsReposi
     private static final String KEY_TRANSPARENCY_TOGGLE_ENABLED = "transparency_toggle_enabled";
     private static final String KEY_TRANSPARENCY_AUTO_RESTORE_ENABLED = "transparency_auto_restore_enabled";
     private static final String KEY_TRANSPARENCY_AUTO_RESTORE_SECONDS = "transparency_auto_restore_seconds";
+    private static final String KEY_MINIMIZE_DOT_SIZE = "minimize_dot_size";
+    private static final String KEY_MINIMIZE_DOT_ROTATE_ENABLED = "minimize_dot_rotate_enabled";
+    private static final String KEY_IGNORED_UPDATE_VERSION = "ignored_update_version";
+    private static final int DEFAULT_MINIMIZE_DOT_SIZE_DP = 40;
     /** 上次宽度的键名 */
     private static final String KEY_LAST_WIDTH = "last_width_px";
     /** 上次高度的键名 */
@@ -58,9 +62,12 @@ public final class SharedPreferencesSettingsRepository implements SettingsReposi
         Settings.AppLanguage appLanguage = Settings.AppLanguage.fromValue(
                 sharedPreferences.getString(KEY_LANGUAGE, Settings.AppLanguage.SYSTEM.value)
         );
-        boolean transparencyToggleEnabled = sharedPreferences.getBoolean(KEY_TRANSPARENCY_TOGGLE_ENABLED, false);
+        boolean transparencyToggleEnabled = sharedPreferences.getBoolean(KEY_TRANSPARENCY_TOGGLE_ENABLED, true);
         boolean transparencyAutoRestoreEnabled = sharedPreferences.getBoolean(KEY_TRANSPARENCY_AUTO_RESTORE_ENABLED, false);
         int transparencyAutoRestoreSeconds = sharedPreferences.getInt(KEY_TRANSPARENCY_AUTO_RESTORE_SECONDS, 5);
+        int minimizeDotSize = sharedPreferences.getInt(KEY_MINIMIZE_DOT_SIZE, DEFAULT_MINIMIZE_DOT_SIZE_DP);
+        boolean minimizeDotRotateEnabled = sharedPreferences.getBoolean(KEY_MINIMIZE_DOT_ROTATE_ENABLED, false);
+        String ignoredUpdateVersion = sharedPreferences.getString(KEY_IGNORED_UPDATE_VERSION, null);
         return new Settings(
                 position,
                 soundEnabled,
@@ -68,7 +75,10 @@ public final class SharedPreferencesSettingsRepository implements SettingsReposi
                 appLanguage,
                 transparencyToggleEnabled,
                 transparencyAutoRestoreEnabled,
-                transparencyAutoRestoreSeconds
+                transparencyAutoRestoreSeconds,
+                minimizeDotSize,
+                minimizeDotRotateEnabled,
+                ignoredUpdateVersion
         );
     }
 
@@ -82,6 +92,9 @@ public final class SharedPreferencesSettingsRepository implements SettingsReposi
                 .putBoolean(KEY_TRANSPARENCY_TOGGLE_ENABLED, settings.transparencyToggleEnabled)
                 .putBoolean(KEY_TRANSPARENCY_AUTO_RESTORE_ENABLED, settings.transparencyAutoRestoreEnabled)
                 .putInt(KEY_TRANSPARENCY_AUTO_RESTORE_SECONDS, settings.transparencyAutoRestoreSeconds)
+                .putInt(KEY_MINIMIZE_DOT_SIZE, settings.minimizeDotSize)
+                .putBoolean(KEY_MINIMIZE_DOT_ROTATE_ENABLED, settings.minimizeDotRotateEnabled)
+                .putString(KEY_IGNORED_UPDATE_VERSION, settings.ignoredUpdateVersion)
                 .apply();
     }
 
@@ -108,6 +121,7 @@ public final class SharedPreferencesSettingsRepository implements SettingsReposi
                 settings.transparencyToggleEnabled,
                 false,
                 false,
+                false,
                 false
         );
     }
@@ -120,5 +134,24 @@ public final class SharedPreferencesSettingsRepository implements SettingsReposi
                 .putInt(KEY_LAST_X, state.xPx)
                 .putInt(KEY_LAST_Y, state.yPx)
                 .apply();
+    }
+
+    @Nullable
+    @Override
+    public String loadIgnoredUpdateVersion() {
+        String value = sharedPreferences.getString(KEY_IGNORED_UPDATE_VERSION, null);
+        if (value == null || value.trim().isEmpty()) {
+            return null;
+        }
+        return value;
+    }
+
+    @Override
+    public void saveIgnoredUpdateVersion(@Nullable String normalizedVersion) {
+        if (normalizedVersion == null || normalizedVersion.trim().isEmpty()) {
+            sharedPreferences.edit().remove(KEY_IGNORED_UPDATE_VERSION).apply();
+            return;
+        }
+        sharedPreferences.edit().putString(KEY_IGNORED_UPDATE_VERSION, normalizedVersion).apply();
     }
 }

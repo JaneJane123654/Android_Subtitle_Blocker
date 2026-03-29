@@ -28,9 +28,14 @@
     <string name="action_enable_overlay">تفعيل الحجب</string>
     <string name="action_disable_overlay">إيقاف الحجب</string>
     <string name="action_open_permission">تفعيل إذن التراكب</string>
+    <string name="action_check_update">التحقق من التحديثات</string>
+    <string name="action_checking_update">جارٍ التحقق من التحديثات...</string>
     <string name="action_export_config">تصدير الإعدادات</string>
     <string name="action_import_config">استيراد الإعدادات</string>
     <string name="action_toggle_transparency">تبديل الشفافية</string>
+    <string name="action_update_now">تحديث الآن</string>
+    <string name="action_remind_next_version">ذكّرني في الإصدار التالي</string>
+    <string name="action_cancel">إلغاء</string>
     <string name="label_close_button_position">موضع زر الإغلاق</string>
     <string name="label_close_button_left">أعلى اليسار</string>
     <string name="label_close_button_right">أعلى اليمين</string>
@@ -39,11 +44,27 @@
     <string name="label_transparency_toggle">مفتاح الشفافية</string>
     <string name="label_transparency_auto_restore">استعادة تلقائية بعد الشفافية</string>
     <string name="label_transparency_restore_seconds">ثواني الاستعادة</string>
+    <string name="label_minimize_dot_rotate">تدوير نقطة التوهج المصغّرة</string>
     <string name="notification_keep_alive_title">حاجب الترجمة يعمل</string>
     <string name="notification_keep_alive_text">اضغط للعودة إلى التطبيق</string>
     <string name="toast_import_success">تم استيراد الإعدادات</string>
     <string name="toast_import_failed">إعدادات الحافظة غير صالحة</string>
     <string name="toast_exported">تم نسخ الإعدادات إلى الحافظة</string>
+    <string name="toast_update_checking">جارٍ التحقق من التحديثات</string>
+    <string name="toast_update_check_failed">فشل التحقق من التحديثات. حاول لاحقًا.</string>
+    <string name="toast_already_latest">أنت تستخدم أحدث إصدار</string>
+    <string name="toast_update_ignored_until_newer">اخترت التذكير عند إصدار أحدث</string>
+    <string name="toast_update_ignore_set">سيتم التذكير عند توفر إصدار أحدث</string>
+    <string name="toast_update_downloading">جارٍ تنزيل حزمة التحديث</string>
+    <string name="toast_update_download_failed">فشل التنزيل. سيتم فتح صفحة الإصدار.</string>
+    <string name="toast_update_download_unavailable">لم يتم العثور على ملف APK. سيتم فتح صفحة الإصدار.</string>
+    <string name="toast_update_install_start">تم فتح شاشة التثبيت</string>
+    <string name="toast_update_install_failed">تعذر فتح شاشة التثبيت. يرجى التثبيت يدويًا.</string>
+    <string name="update_dialog_title">يتوفر إصدار جديد</string>
+    <string name="update_dialog_message">الإصدار الحالي: %1$s
+أحدث إصدار: %2$s
+
+هل تريد التنزيل والتثبيت الآن؟</string>
     <string name="usage_title">دليل الاستخدام</string>
     <string name="usage_content">السيناريو: عند مشاهدة فيديوهات ثنائية اللغة، احجب ترجمة لغتك مع إبقاء ترجمة اللغة المستهدفة أو الصورة لمساعدة تعلم اللغة.\n\nالإجراءات الأساسية:\n• تفعيل الحجب: إظهار الحاجب مع إمكانية السحب وتغيير الحجم\n• إيقاف الحجب: إخفاء الحاجب\n• إذن التراكب: مطلوب في أول استخدام\n\nالإعدادات:\n• موضع زر الإغلاق: اختيار مكان زر الإغلاق على الحاجب\n• المؤثرات الصوتية: تشغيل أو إيقاف أصوات التفاعل\n• الاستمرار في الخلفية: إبقاء إشعار دائم لتقليل إيقاف التطبيق من النظام\n• مفتاح الشفافية: جعل الحاجب شفافاً مؤقتاً لرؤية ترجمة اللغة المستهدفة أو الصورة\n• استعادة تلقائية بعد الشفافية: إعادة الحجب تلقائياً\n• ثواني الاستعادة: مدة بقاء الشفافية\n• اللغة: اتباع النظام أو تثبيت لغة محددة\n• الاستيراد والتصدير: حفظ الإعدادات أو استعادتها عبر الحافظة</string>
 </resources>

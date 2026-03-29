@@ -28,9 +28,14 @@
     <string name="action_enable_overlay">Включить блокировку</string>
     <string name="action_disable_overlay">Выключить блокировку</string>
     <string name="action_open_permission">Включить разрешение наложения</string>
+    <string name="action_check_update">Проверить обновления</string>
+    <string name="action_checking_update">Проверка обновлений...</string>
     <string name="action_export_config">Экспортировать настройки</string>
     <string name="action_import_config">Импортировать настройки</string>
     <string name="action_toggle_transparency">Переключить прозрачность</string>
+    <string name="action_update_now">Обновить сейчас</string>
+    <string name="action_remind_next_version">Напомнить в следующей версии</string>
+    <string name="action_cancel">Отмена</string>
     <string name="label_close_button_position">Положение кнопки закрытия</string>
     <string name="label_close_button_left">Слева сверху</string>
     <string name="label_close_button_right">Справа сверху</string>
@@ -39,11 +44,27 @@
     <string name="label_transparency_toggle">Переключатель прозрачности</string>
     <string name="label_transparency_auto_restore">Автовосстановление после прозрачности</string>
     <string name="label_transparency_restore_seconds">Секунды до восстановления</string>
+    <string name="label_minimize_dot_rotate">Вращение минимизированной светящейся точки</string>
     <string name="notification_keep_alive_title">Блокировщик субтитров работает</string>
     <string name="notification_keep_alive_text">Нажмите, чтобы вернуться в приложение</string>
     <string name="toast_import_success">Настройки импортированы</string>
     <string name="toast_import_failed">Неверная конфигурация в буфере обмена</string>
     <string name="toast_exported">Настройки скопированы в буфер обмена</string>
+    <string name="toast_update_checking">Проверка обновлений</string>
+    <string name="toast_update_check_failed">Не удалось проверить обновления. Повторите позже.</string>
+    <string name="toast_already_latest">У вас уже последняя версия</string>
+    <string name="toast_update_ignored_until_newer">Вы выбрали напоминание в более новой версии</string>
+    <string name="toast_update_ignore_set">Напоминание включится при выходе более новой версии</string>
+    <string name="toast_update_downloading">Загрузка пакета обновления</string>
+    <string name="toast_update_download_failed">Ошибка загрузки. Открываем страницу релиза.</string>
+    <string name="toast_update_download_unavailable">APK не найден. Открываем страницу релиза.</string>
+    <string name="toast_update_install_start">Установщик открыт</string>
+    <string name="toast_update_install_failed">Не удалось открыть установщик. Установите вручную.</string>
+    <string name="update_dialog_title">Доступна новая версия</string>
+    <string name="update_dialog_message">Текущая версия: %1$s
+Последняя версия: %2$s
+
+Скачать и установить сейчас?</string>
     <string name="usage_title">Инструкция</string>
     <string name="usage_content">Сценарий: при просмотре двуязычных видео скрывайте субтитры на родном языке, оставляя субтитры на языке изучения или изображение, чтобы помогать изучению языка.\n\nОсновные действия:\n• Включить блокировку: показать блокировщик и перемещать/изменять размер\n• Выключить блокировку: скрыть блокировщик\n• Разрешение наложения: требуется при первом запуске\n\nНастройки:\n• Положение кнопки закрытия: выбор места кнопки\n• Звуковые эффекты: включение звука действий\n• Работа в фоне: сохраняет уведомление для снижения риска выгрузки системой\n• Переключатель прозрачности: временно делает блокировщик прозрачным, чтобы видеть субтитры на языке изучения или изображение\n• Автовосстановление после прозрачности: возвращает блокировку автоматически\n• Секунды до восстановления: длительность прозрачности\n• Язык: следовать системе или зафиксировать язык\n• Импорт/экспорт: сохранить или восстановить настройки через буфер обмена</string>
 </resources>

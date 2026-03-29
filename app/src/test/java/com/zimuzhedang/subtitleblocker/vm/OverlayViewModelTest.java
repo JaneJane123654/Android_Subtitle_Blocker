@@ -22,7 +22,18 @@ public final class OverlayViewModelTest {
     public final InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
     private static final class FakeSettingsRepository implements SettingsRepository {
-        private Settings settings = new Settings(CloseButtonPosition.RIGHT_TOP, true, true, false, false, 5);
+        private Settings settings = new Settings(
+                CloseButtonPosition.RIGHT_TOP,
+                true,
+                true,
+                Settings.AppLanguage.SYSTEM,
+                true,
+                false,
+                5,
+                40,
+                true,
+                null
+        );
         private OverlayState lastState;
         @Override
         public Settings loadSettings() {
@@ -39,6 +50,16 @@ public final class OverlayViewModelTest {
         @Override
         public void saveLastOverlayState(OverlayState state) {
             lastState = state;
+        }
+
+        @Override
+        public String loadIgnoredUpdateVersion() {
+            return settings.ignoredUpdateVersion;
+        }
+
+        @Override
+        public void saveIgnoredUpdateVersion(String normalizedVersion) {
+            settings = settings.withIgnoredUpdateVersion(normalizedVersion);
         }
     }
 

@@ -28,9 +28,14 @@
     <string name="action_enable_overlay">Activar bloqueo</string>
     <string name="action_disable_overlay">Desactivar bloqueo</string>
     <string name="action_open_permission">Habilitar permiso de superposición</string>
+    <string name="action_check_update">Buscar actualizaciones</string>
+    <string name="action_checking_update">Buscando actualizaciones...</string>
     <string name="action_export_config">Exportar configuración</string>
     <string name="action_import_config">Importar configuración</string>
     <string name="action_toggle_transparency">Cambiar transparencia</string>
+    <string name="action_update_now">Actualizar ahora</string>
+    <string name="action_remind_next_version">Recordarme en la próxima versión</string>
+    <string name="action_cancel">Cancelar</string>
     <string name="label_close_button_position">Posición del botón de cierre</string>
     <string name="label_close_button_left">Arriba a la izquierda</string>
     <string name="label_close_button_right">Arriba a la derecha</string>
@@ -39,11 +44,27 @@
     <string name="label_transparency_toggle">Interruptor de transparencia</string>
     <string name="label_transparency_auto_restore">Restaurar automáticamente tras transparencia</string>
     <string name="label_transparency_restore_seconds">Segundos para restaurar</string>
+    <string name="label_minimize_dot_rotate">Rotación del punto luminoso minimizado</string>
     <string name="notification_keep_alive_title">Bloqueador de subtítulos en ejecución</string>
     <string name="notification_keep_alive_text">Toca para volver a la app</string>
     <string name="toast_import_success">Configuración importada</string>
     <string name="toast_import_failed">Configuración del portapapeles no válida</string>
     <string name="toast_exported">Configuración copiada al portapapeles</string>
+    <string name="toast_update_checking">Buscando actualizaciones</string>
+    <string name="toast_update_check_failed">Error al buscar actualizaciones. Inténtalo más tarde.</string>
+    <string name="toast_already_latest">Ya tienes la versión más reciente</string>
+    <string name="toast_update_ignored_until_newer">Elegiste recibir aviso en una versión más nueva</string>
+    <string name="toast_update_ignore_set">Te avisaremos cuando salga una versión más nueva</string>
+    <string name="toast_update_downloading">Descargando paquete de actualización</string>
+    <string name="toast_update_download_failed">Error de descarga. Abriendo la página de lanzamiento.</string>
+    <string name="toast_update_download_unavailable">No se encontró APK. Abriendo la página de lanzamiento.</string>
+    <string name="toast_update_install_start">Instalador abierto</string>
+    <string name="toast_update_install_failed">No se pudo abrir el instalador. Instálalo manualmente.</string>
+    <string name="update_dialog_title">Nueva versión disponible</string>
+    <string name="update_dialog_message">Versión actual: %1$s
+Última versión: %2$s
+
+¿Descargar e instalar ahora?</string>
     <string name="usage_title">Guía de uso</string>
     <string name="usage_content">Escenario: al ver videos bilingües, oculta los subtítulos en tu idioma nativo y deja los del idioma objetivo o la imagen para apoyar el aprendizaje.\n\nAcciones principales:\n• Activar bloqueo: muestra el bloqueador y permite moverlo/redimensionarlo\n• Desactivar bloqueo: oculta el bloqueador\n• Permiso de superposición: requerido en el primer uso\n\nAjustes:\n• Posición del botón de cierre: define dónde aparece el botón\n• Efectos de sonido: activa o desactiva sonidos\n• Mantener en segundo plano: conserva una notificación en primer plano para reducir cierres del sistema\n• Interruptor de transparencia: vuelve el bloqueador transparente temporalmente para ver subtítulos del idioma objetivo o la imagen\n• Restaurar automáticamente tras transparencia: vuelve al bloqueo automáticamente\n• Segundos para restaurar: duración de la transparencia\n• Idioma: seguir el sistema o fijar un idioma\n• Importar/Exportar: guardar o restaurar ajustes desde el portapapeles</string>
 </resources>

@@ -1,53 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/overlayRoot"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/overlay_background">
+    android:layout_height="match_parent">
 
-    <View
-        android:id="@+id/resizeHandleRight"
-        android:layout_width="10dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:background="@drawable/resize_handle_bg"
-        android:clickable="true" />
-
-    <View
-        android:id="@+id/resizeHandleBottom"
+    <FrameLayout
+        android:id="@+id/overlayRoot"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_gravity="bottom"
-        android:background="@drawable/resize_handle_bg"
-        android:clickable="true" />
+        android:layout_height="match_parent"
+        android:background="@drawable/overlay_background">
 
-    <View
-        android:id="@+id/resizeHandle"
-        android:layout_width="@dimen/overlay_resize_handle_size"
-        android:layout_height="@dimen/overlay_resize_handle_size"
-        android:layout_gravity="bottom|end"
-        android:background="@drawable/resize_handle_bg"
-        android:clickable="true" />
+        <View
+            android:id="@+id/resizeHandleRight"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="@drawable/resize_handle_bg"
+            android:clickable="true" />
 
-    <ImageButton
-        android:id="@+id/btnClose"
-        android:layout_width="@dimen/overlay_close_button_size"
-        android:layout_height="@dimen/overlay_close_button_size"
-        android:layout_gravity="top|end"
-        android:layout_margin="6dp"
-        android:background="@drawable/close_button_bg"
-        android:contentDescription="@string/action_disable_overlay"
-        android:src="@drawable/ic_close" />
+        <View
+            android:id="@+id/resizeHandleBottom"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/resize_handle_bg"
+            android:clickable="true" />
 
-    <ImageButton
-        android:id="@+id/btnTransparency"
-        android:layout_width="@dimen/overlay_close_button_size"
-        android:layout_height="@dimen/overlay_close_button_size"
-        android:layout_gravity="top|start"
-        android:layout_margin="6dp"
-        android:background="@drawable/close_button_bg"
-        android:contentDescription="@string/action_toggle_transparency"
-        android:src="@drawable/ic_magnifier"
+        <View
+            android:id="@+id/resizeHandle"
+            android:layout_width="@dimen/overlay_resize_handle_size"
+            android:layout_height="@dimen/overlay_resize_handle_size"
+            android:layout_gravity="bottom|end"
+            android:background="@drawable/resize_handle_bg"
+            android:clickable="true" />
+
+        <ImageButton
+            android:id="@+id/btnClose"
+            android:layout_width="@dimen/overlay_close_button_size"
+            android:layout_height="@dimen/overlay_close_button_size"
+            android:layout_gravity="top|end"
+            android:layout_margin="6dp"
+            android:background="@drawable/close_button_bg"
+            android:contentDescription="@string/action_disable_overlay"
+            android:src="@drawable/ic_close" />
+
+        <ImageButton
+            android:id="@+id/btnTransparency"
+            android:layout_width="@dimen/overlay_close_button_size"
+            android:layout_height="@dimen/overlay_close_button_size"
+            android:layout_gravity="top|start"
+            android:layout_margin="6dp"
+            android:background="@drawable/close_button_bg"
+            android:contentDescription="@string/action_toggle_transparency"
+            android:src="@drawable/ic_magnifier"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/btnMinimize"
+            android:layout_width="@dimen/overlay_close_button_size"
+            android:layout_height="@dimen/overlay_close_button_size"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_margin="6dp"
+            android:background="@drawable/close_button_bg"
+            android:contentDescription="@string/action_minimize_overlay"
+            android:src="@drawable/ic_minimize"
+            android:tint="@android:color/white"
+            android:visibility="visible" />
+    </FrameLayout>
+
+    <com.zimuzhedang.subtitleblocker.ui.GlowDotView
+        android:id="@+id/minimizedDot"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
         android:visibility="gone" />
 
 </FrameLayout>

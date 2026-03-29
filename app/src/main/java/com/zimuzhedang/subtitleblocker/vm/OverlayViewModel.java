@@ -3,6 +3,7 @@ package com.zimuzhedang.subtitleblocker.vm;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.core.graphics.Insets;
 
 import com.zimuzhedang.subtitleblocker.data.SettingsRepository;
 import com.zimuzhedang.subtitleblocker.domain.AnimType;
@@ -94,8 +95,7 @@ public final class OverlayViewModel extends ViewModel {
                 .withTransparencyToggleEnabled(settings.transparencyToggleEnabled)
                 .withTransparentMode(false)
                 .withVisibility(true);
-        ScreenBounds bounds = screenInfoProvider.getCurrentBounds();
-        updated = OverlayConstraints.clampPosition(updated, bounds);
+        updated = clampPositionForCurrentMode(updated);
         overlayState.setValue(updated);
         animationSpec.setValue(null);
         effect.setValue(null);
@@ -145,8 +145,7 @@ public final class OverlayViewModel extends ViewModel {
     public void onDragMove(int dxPx, int dyPx) {
         OverlayState current = requireState();
         OverlayState moved = current.withPosition(current.xPx + dxPx, current.yPx + dyPx);
-        ScreenBounds bounds = screenInfoProvider.getCurrentBounds();
-        OverlayState clamped = OverlayConstraints.clampPosition(moved, bounds).withDragging(true);
+        OverlayState clamped = clampPositionForCurrentMode(moved).withDragging(true);
         overlayState.setValue(clamped);
         animationSpec.setValue(null);
     }
@@ -154,10 +153,9 @@ public final class OverlayViewModel extends ViewModel {
     /** 拖拽结束时的处理，会进行边缘吸附。 */
     public void onDragEnd() {
         OverlayState current = requireState().withDragging(false);
-        ScreenBounds bounds = screenInfoProvider.getCurrentBounds();
         int threshold = screenInfoProvider.dpToPx(15);
-        OverlayState snapped = OverlayConstraints.snapToEdgeIfNeeded(current, bounds, threshold);
-        snapped = OverlayConstraints.clampPosition(snapped, bounds);
+        OverlayState snapped = snapToEdgeIfNeededForCurrentMode(current, threshold);
+        snapped = clampPositionForCurrentMode(snapped);
         overlayState.setValue(snapped);
         settingsRepository.saveLastOverlayState(snapped);
         animationSpec.setValue(new AnimationSpec(MOVE_ANIM_MS, AnimType.MOVE));
@@ -203,7 +201,7 @@ public final class OverlayViewModel extends ViewModel {
         int minWidth = screenInfoProvider.dpToPx(100);
         int minHeight = screenInfoProvider.dpToPx(40);
         OverlayState clamped = OverlayConstraints.clampSize(current, bounds, minWidth, minHeight);
-        clamped = OverlayConstraints.clampPosition(clamped, bounds);
+        clamped = clampPositionForCurrentMode(clamped);
         overlayState.setValue(clamped);
         animationSpec.setValue(new AnimationSpec(MOVE_ANIM_MS, AnimType.MOVE));
     }
@@ -274,6 +272,38 @@ public final class OverlayViewModel extends ViewModel {
         }
     }
 
+    public void onMinimizeDotSizeChanged(int size) {
+        int normalized = Math.max(10, Math.min(200, size));
+        Settings settings = settingsRepository.loadSettings().withMinimizeDotSize(normalized);
+        settingsRepository.saveSettings(settings);
+        OverlayState current = requireState();
+        OverlayState updated = current.withMinimized(current.isMinimized);
+        if (updated.isMinimized) {
+            updated = clampPositionForCurrentMode(updated);
+        }
+        overlayState.setValue(updated);
+        if (updated.visible) {
+            settingsRepository.saveLastOverlayState(updated);
+        }
+    }
+
+    public void onMinimizeDotRotateEnabledChanged(boolean enabled) {
+        Settings settings = settingsRepository.loadSettings().withMinimizeDotRotateEnabled(enabled);
+        settingsRepository.saveSettings(settings);
+        OverlayState current = requireState();
+        overlayState.setValue(current.withMinimized(current.isMinimized));
+    }
+
+    public void onMinimizeToggleRequested() {
+        OverlayState current = requireState();
+        OverlayState updated = current.withMinimized(!current.isMinimized);
+        updated = clampPositionForCurrentMode(updated);
+        overlayState.setValue(updated);
+        if (updated.visible) {
+            settingsRepository.saveLastOverlayState(updated);
+        }
+    }
+
     public void onTransparencyToggleRequested() {
         OverlayState current = requireState();
         Settings settings = settingsRepository.loadSettings();
@@ -322,7 +352,8 @@ public final class OverlayViewModel extends ViewModel {
                 settings.transparencyToggleEnabled,
                 false,
                 current.isDragging,
-                current.isResizing
+                current.isResizing,
+                current.isMinimized
         );
         overlayState.setValue(updated);
     }
@@ -355,6 +386,7 @@ public final class OverlayViewModel extends ViewModel {
                 settings.transparencyToggleEnabled,
                 false,
                 false,
+                false,
                 false
         );
     }
@@ -367,5 +399,53 @@ public final class OverlayViewModel extends ViewModel {
             return MAX_AUTO_RESTORE_SECONDS;
         }
         return seconds;
+    }
+
+    private OverlayState clampPositionForCurrentMode(OverlayState state) {
+        ScreenBounds bounds = screenInfoProvider.getCurrentBounds();
+        if (!state.isMinimized) {
+            return OverlayConstraints.clampPosition(state, bounds);
+        }
+        int dotSizePx = getMinimizedDotSizePx();
+        return clampPositionWithSize(state, bounds, dotSizePx, dotSizePx);
+    }
+
+    private OverlayState snapToEdgeIfNeededForCurrentMode(OverlayState state, int thresholdPx) {
+        ScreenBounds bounds = screenInfoProvider.getCurrentBounds();
+        if (!state.isMinimized) {
+            return OverlayConstraints.snapToEdgeIfNeeded(state, bounds, thresholdPx);
+        }
+        int dotSizePx = getMinimizedDotSizePx();
+        return snapToEdgeWithSize(state, bounds, dotSizePx, thresholdPx);
+    }
+
+    private OverlayState clampPositionWithSize(OverlayState state, ScreenBounds bounds, int widthPx, int heightPx) {
+        Insets insets = bounds.safeInsets;
+        int minX = insets.left;
+        int minY = insets.top;
+        int maxX = bounds.widthPx - insets.right - widthPx;
+        int maxY = bounds.heightPx - insets.bottom - heightPx;
+        int clampedX = OverlayConstraints.clamp(state.xPx, minX, Math.max(minX, maxX));
+        int clampedY = OverlayConstraints.clamp(state.yPx, minY, Math.max(minY, maxY));
+        return state.withPosition(clampedX, clampedY);
+    }
+
+    private OverlayState snapToEdgeWithSize(OverlayState state, ScreenBounds bounds, int widthPx, int thresholdPx) {
+        Insets insets = bounds.safeInsets;
+        int leftEdge = insets.left;
+        int rightEdge = bounds.widthPx - insets.right - widthPx;
+        int distanceLeft = Math.abs(state.xPx - leftEdge);
+        int distanceRight = Math.abs(state.xPx - rightEdge);
+        if (distanceLeft <= thresholdPx || distanceRight <= thresholdPx) {
+            int targetX = distanceLeft <= distanceRight ? leftEdge : rightEdge;
+            return state.withPosition(targetX, state.yPx);
+        }
+        return state;
+    }
+
+    private int getMinimizedDotSizePx() {
+        Settings settings = settingsRepository.loadSettings();
+        int normalizedDp = Math.max(10, Math.min(200, settings.minimizeDotSize));
+        return screenInfoProvider.dpToPx(normalizedDp);
     }
 }

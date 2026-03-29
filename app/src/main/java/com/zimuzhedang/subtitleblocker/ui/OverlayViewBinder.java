@@ -5,6 +5,8 @@ import android.graphics.Rect;
 import com.zimuzhedang.subtitleblocker.domain.AnimationSpec;
 import com.zimuzhedang.subtitleblocker.domain.OverlayState;
 import com.zimuzhedang.subtitleblocker.platform.FloatWindowController;
+import com.zimuzhedang.subtitleblocker.data.SharedPreferencesSettingsRepository;
+import com.zimuzhedang.subtitleblocker.domain.Settings;
 
 /**
  * 悬浮窗视图绑定器。
@@ -39,6 +41,9 @@ public final class OverlayViewBinder {
         overlayView.updateCloseButtonPosition(state.closeButtonPosition);
         overlayView.updateTransparencyToggleEnabled(state.transparencyToggleEnabled);
         overlayView.updateTransparentMode(state.transparentMode);
+        Settings settings = new SharedPreferencesSettingsRepository(overlayView.getContext()).loadSettings();
+        int dotSizeDp = settings.minimizeDotSize;
+        overlayView.updateMinimized(state.isMinimized, dotSizeDp, settings.minimizeDotRotateEnabled);
         if (!state.visible) {
             if (windowController.isShowing()) {
                 windowController.hide();
@@ -48,7 +53,11 @@ public final class OverlayViewBinder {
         if (!windowController.isShowing()) {
             windowController.show(overlayView);
         }
-        Rect rect = new Rect(state.xPx, state.yPx, state.xPx + state.widthPx, state.yPx + state.heightPx);
+                float density = overlayView.getContext().getResources().getDisplayMetrics().density;
+        int dotSizePx = (int) (dotSizeDp * density);
+        int w = state.isMinimized ? dotSizePx : state.widthPx;
+        int h = state.isMinimized ? dotSizePx : state.heightPx;
+        Rect rect = new Rect(state.xPx, state.yPx, state.xPx + w, state.yPx + h);
         windowController.update(rect, anim);
     }
 }

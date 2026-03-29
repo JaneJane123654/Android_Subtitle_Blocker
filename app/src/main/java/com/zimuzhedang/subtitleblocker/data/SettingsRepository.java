@@ -40,5 +40,19 @@ public interface SettingsRepository {
      * @param state 要保存的悬浮窗状态
      */
     void saveLastOverlayState(OverlayState state);
-}
 
+    /**
+     * 加载被忽略提醒的版本号。
+     *
+     * @return 被忽略的版本号；未设置则返回 null
+     */
+    @Nullable
+    String loadIgnoredUpdateVersion();
+
+    /**
+     * 保存被忽略提醒的版本号。
+     *
+     * @param normalizedVersion 版本号；为空时清除记录
+     */
+    void saveIgnoredUpdateVersion(@Nullable String normalizedVersion);
+}

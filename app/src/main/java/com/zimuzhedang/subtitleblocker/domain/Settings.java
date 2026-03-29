@@ -18,6 +18,9 @@ public final class Settings {
     public final boolean transparencyToggleEnabled;
     public final boolean transparencyAutoRestoreEnabled;
     public final int transparencyAutoRestoreSeconds;
+    public final int minimizeDotSize;
+    public final boolean minimizeDotRotateEnabled;
+    public final String ignoredUpdateVersion;
 
     /**
      * 构造函数。
@@ -33,7 +36,10 @@ public final class Settings {
             AppLanguage appLanguage,
             boolean transparencyToggleEnabled,
             boolean transparencyAutoRestoreEnabled,
-            int transparencyAutoRestoreSeconds
+            int transparencyAutoRestoreSeconds,
+            int minimizeDotSize,
+            boolean minimizeDotRotateEnabled,
+            String ignoredUpdateVersion
     ) {
         this.closeButtonPosition = closeButtonPosition;
         this.soundEnabled = soundEnabled;
@@ -42,6 +48,9 @@ public final class Settings {
         this.transparencyToggleEnabled = transparencyToggleEnabled;
         this.transparencyAutoRestoreEnabled = transparencyAutoRestoreEnabled;
         this.transparencyAutoRestoreSeconds = transparencyAutoRestoreSeconds;
+        this.minimizeDotSize = minimizeDotSize;
+        this.minimizeDotRotateEnabled = minimizeDotRotateEnabled;
+        this.ignoredUpdateVersion = ignoredUpdateVersion;
     }
 
     /**
@@ -50,35 +59,47 @@ public final class Settings {
      * @return 默认设置对象
      */
     public static Settings defaultValue() {
-        return new Settings(CloseButtonPosition.RIGHT_TOP, false, false, AppLanguage.SYSTEM, false, false, 5);
+        return new Settings(CloseButtonPosition.RIGHT_TOP, false, false, AppLanguage.SYSTEM, true, false, 5, 40, false, null);
     }
 
     public Settings withCloseButtonPosition(CloseButtonPosition position) {
-        return new Settings(position, soundEnabled, keepAliveEnabled, appLanguage, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
+        return new Settings(position, soundEnabled, keepAliveEnabled, appLanguage, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds, minimizeDotSize, minimizeDotRotateEnabled, ignoredUpdateVersion);
     }
 
     public Settings withSoundEnabled(boolean enabled) {
-        return new Settings(closeButtonPosition, enabled, keepAliveEnabled, appLanguage, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
+        return new Settings(closeButtonPosition, enabled, keepAliveEnabled, appLanguage, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds, minimizeDotSize, minimizeDotRotateEnabled, ignoredUpdateVersion);
     }
 
     public Settings withKeepAliveEnabled(boolean enabled) {
-        return new Settings(closeButtonPosition, soundEnabled, enabled, appLanguage, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
+        return new Settings(closeButtonPosition, soundEnabled, enabled, appLanguage, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds, minimizeDotSize, minimizeDotRotateEnabled, ignoredUpdateVersion);
     }
 
     public Settings withAppLanguage(AppLanguage language) {
-        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, language, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
+        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, language, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds, minimizeDotSize, minimizeDotRotateEnabled, ignoredUpdateVersion);
     }
 
     public Settings withTransparencyToggleEnabled(boolean enabled) {
-        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, appLanguage, enabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds);
+        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, appLanguage, enabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds, minimizeDotSize, minimizeDotRotateEnabled, ignoredUpdateVersion);
     }
 
     public Settings withTransparencyAutoRestoreEnabled(boolean enabled) {
-        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, appLanguage, transparencyToggleEnabled, enabled, transparencyAutoRestoreSeconds);
+        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, appLanguage, transparencyToggleEnabled, enabled, transparencyAutoRestoreSeconds, minimizeDotSize, minimizeDotRotateEnabled, ignoredUpdateVersion);
     }
 
     public Settings withTransparencyAutoRestoreSeconds(int seconds) {
-        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, appLanguage, transparencyToggleEnabled, transparencyAutoRestoreEnabled, seconds);
+        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, appLanguage, transparencyToggleEnabled, transparencyAutoRestoreEnabled, seconds, minimizeDotSize, minimizeDotRotateEnabled, ignoredUpdateVersion);
+    }
+
+    public Settings withMinimizeDotSize(int size) {
+        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, appLanguage, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds, size, minimizeDotRotateEnabled, ignoredUpdateVersion);
+    }
+
+    public Settings withMinimizeDotRotateEnabled(boolean enabled) {
+        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, appLanguage, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds, minimizeDotSize, enabled, ignoredUpdateVersion);
+    }
+
+    public Settings withIgnoredUpdateVersion(String version) {
+        return new Settings(closeButtonPosition, soundEnabled, keepAliveEnabled, appLanguage, transparencyToggleEnabled, transparencyAutoRestoreEnabled, transparencyAutoRestoreSeconds, minimizeDotSize, minimizeDotRotateEnabled, version);
     }
 
     public enum AppLanguage {

@@ -23,6 +23,7 @@ public final class OverlayConstraintsTest {
                 false,
                 false,
                 false,
+                false,
                 false
         );
         OverlayState clamped = OverlayConstraints.clampPosition(state, bounds);
@@ -45,6 +46,7 @@ public final class OverlayConstraintsTest {
                 false,
                 false,
                 false,
+                false,
                 false
         );
         OverlayState clamped = OverlayConstraints.clampSize(state, bounds, 100, 40);
@@ -62,6 +64,7 @@ public final class OverlayConstraintsTest {
                 0,
                 true,
                 CloseButtonPosition.RIGHT_TOP,
+                false,
                 false,
                 false,
                 false,

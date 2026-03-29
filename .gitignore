@@ -1,0 +1,29 @@
+# Gradle and build outputs
+.gradle/
+build/
+**/build/
+
+# Local environment
+local.properties
+
+# IDE runtime files
+.idea/caches/
+.idea/workspace.xml
+.idea/deploymentTargetSelector.xml
+.idea/deviceManager.xml
+*.iml
+
+# Logs and crash dumps
+*.log
+hs_err_pid*
+replay_pid*
+
+# Local analysis artifacts
+build_log*.txt
+build_output.txt
+build_final.txt
+compile_log.txt
+resource_log.txt
+all_deps.txt
+deps.txt
+debug_deps.txt

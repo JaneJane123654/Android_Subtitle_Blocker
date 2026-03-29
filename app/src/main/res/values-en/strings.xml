@@ -28,9 +28,14 @@
     <string name="action_enable_overlay">Enable Blocking</string>
     <string name="action_disable_overlay">Disable Blocking</string>
     <string name="action_open_permission">Enable overlay permission</string>
+    <string name="action_check_update">Check for updates</string>
+    <string name="action_checking_update">Checking updates...</string>
     <string name="action_export_config">Export config</string>
     <string name="action_import_config">Import config</string>
     <string name="action_toggle_transparency">Toggle transparency</string>
+    <string name="action_update_now">Update now</string>
+    <string name="action_remind_next_version">Remind me next version</string>
+    <string name="action_cancel">Cancel</string>
     <string name="label_close_button_position">Close button position</string>
     <string name="label_close_button_left">Top left</string>
     <string name="label_close_button_right">Top right</string>
@@ -39,11 +44,27 @@
     <string name="label_transparency_toggle">Transparency toggle</string>
     <string name="label_transparency_auto_restore">Auto-restore after transparency</string>
     <string name="label_transparency_restore_seconds">Auto-restore seconds</string>
+    <string name="label_minimize_dot_rotate">Minimized glow dot rotation</string>
     <string name="notification_keep_alive_title">Subtitle Blocker is running</string>
     <string name="notification_keep_alive_text">Tap to return to app</string>
     <string name="toast_import_success">Configuration imported</string>
     <string name="toast_import_failed">Invalid clipboard configuration</string>
     <string name="toast_exported">Configuration copied to clipboard</string>
+    <string name="toast_update_checking">Checking for updates</string>
+    <string name="toast_update_check_failed">Update check failed. Try again later.</string>
+    <string name="toast_already_latest">You already have the latest version</string>
+    <string name="toast_update_ignored_until_newer">You chose to be reminded on a newer version</string>
+    <string name="toast_update_ignore_set">You will be reminded when a newer version appears</string>
+    <string name="toast_update_downloading">Downloading update package</string>
+    <string name="toast_update_download_failed">Download failed. Opening release page.</string>
+    <string name="toast_update_download_unavailable">No APK asset found. Opening release page.</string>
+    <string name="toast_update_install_start">Installer opened</string>
+    <string name="toast_update_install_failed">Unable to open installer. Please install manually.</string>
+    <string name="update_dialog_title">New version available</string>
+    <string name="update_dialog_message">Current version: %1$s
+Latest version: %2$s
+
+Download and install now?</string>
     <string name="usage_title">Usage Guide</string>
     <string name="usage_content">Use case: when watching bilingual videos, block native-language subtitles while keeping target subtitles or the picture to support language learning.\n\nMain actions:\n• Enable Blocking: show the blocker and drag/resize it\n• Disable Blocking: hide the blocker\n• Overlay permission: required for first use\n\nSettings:\n• Close button position: choose where the close button appears\n• Sound effects: toggle interaction sounds\n• Keep alive in background: keep a foreground notification to reduce system cleanup\n• Transparency toggle: temporarily make the blocker transparent to view target subtitles or picture\n• Auto-restore after transparency: restore blocking automatically\n• Auto-restore seconds: how long transparency lasts\n• Language: follow system or lock to a language\n• Import/Export: save or restore settings via clipboard</string>
 </resources>

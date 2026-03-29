@@ -86,6 +86,11 @@ public final class OverlayRuntime {
             }
 
             @Override
+            public void onMinimizeToggle() {
+                viewModel.onMinimizeToggleRequested();
+            }
+
+            @Override
             public void onDragStart() {
                 viewModel.onDragStart();
             }

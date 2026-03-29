@@ -30,6 +30,7 @@ public final class OverlayState {
     public final boolean isDragging;
     /** 是否正在被缩放 */
     public final boolean isResizing;
+    public final boolean isMinimized;
 
     /**
      * 全参数构造函数。
@@ -46,7 +47,8 @@ public final class OverlayState {
             boolean transparencyToggleEnabled,
             boolean transparentMode,
             boolean isDragging,
-            boolean isResizing
+            boolean isResizing,
+            boolean isMinimized
     ) {
         this.widthPx = widthPx;
         this.heightPx = heightPx;
@@ -60,6 +62,25 @@ public final class OverlayState {
         this.transparentMode = transparentMode;
         this.isDragging = isDragging;
         this.isResizing = isResizing;
+        this.isMinimized = isMinimized;
+    }
+
+    public OverlayState withMinimized(boolean minimized) {
+        return new OverlayState(
+                widthPx,
+                heightPx,
+                xPx,
+                yPx,
+                visible,
+                closeButtonPosition,
+                soundEnabled,
+                keepAliveEnabled,
+                transparencyToggleEnabled,
+                transparentMode,
+                isDragging,
+                isResizing,
+                minimized
+        );
     }
 
     /**
@@ -82,7 +103,8 @@ public final class OverlayState {
                 transparencyToggleEnabled,
                 transparentMode,
                 isDragging,
-                isResizing
+                isResizing,
+                isMinimized
         );
     }
 
@@ -106,7 +128,8 @@ public final class OverlayState {
                 transparencyToggleEnabled,
                 transparentMode,
                 isDragging,
-                isResizing
+                isResizing,
+                isMinimized
         );
     }
 
@@ -129,7 +152,8 @@ public final class OverlayState {
                 transparencyToggleEnabled,
                 transparentMode,
                 isDragging,
-                isResizing
+                isResizing,
+                isMinimized
         );
     }
 
@@ -152,7 +176,8 @@ public final class OverlayState {
                 transparencyToggleEnabled,
                 transparentMode,
                 isDragging,
-                isResizing
+                isResizing,
+                isMinimized
         );
     }
 
@@ -175,7 +200,8 @@ public final class OverlayState {
                 transparencyToggleEnabled,
                 transparentMode,
                 isDragging,
-                isResizing
+                isResizing,
+                isMinimized
         );
     }
 
@@ -198,7 +224,8 @@ public final class OverlayState {
                 transparencyToggleEnabled,
                 transparentMode,
                 isDragging,
-                isResizing
+                isResizing,
+                isMinimized
         );
     }
 
@@ -215,7 +242,8 @@ public final class OverlayState {
                 enabled,
                 transparentMode,
                 isDragging,
-                isResizing
+                isResizing,
+                isMinimized
         );
     }
 
@@ -232,7 +260,8 @@ public final class OverlayState {
                 transparencyToggleEnabled,
                 enabled,
                 isDragging,
-                isResizing
+                isResizing,
+                isMinimized
         );
     }
 
@@ -255,7 +284,8 @@ public final class OverlayState {
                 transparencyToggleEnabled,
                 transparentMode,
                 dragging,
-                isResizing
+                isResizing,
+                isMinimized
         );
     }
 
@@ -278,7 +308,8 @@ public final class OverlayState {
                 transparencyToggleEnabled,
                 transparentMode,
                 isDragging,
-                resizing
+                resizing,
+                isMinimized
         );
     }
 }

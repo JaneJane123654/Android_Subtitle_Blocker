@@ -28,9 +28,14 @@
     <string name="action_enable_overlay">Activer le masquage</string>
     <string name="action_disable_overlay">Désactiver le masquage</string>
     <string name="action_open_permission">Activer l’autorisation d’affichage flottant</string>
+    <string name="action_check_update">Vérifier les mises à jour</string>
+    <string name="action_checking_update">Vérification en cours...</string>
     <string name="action_export_config">Exporter la configuration</string>
     <string name="action_import_config">Importer la configuration</string>
     <string name="action_toggle_transparency">Basculer la transparence</string>
+    <string name="action_update_now">Mettre à jour</string>
+    <string name="action_remind_next_version">Me rappeler à la prochaine version</string>
+    <string name="action_cancel">Annuler</string>
     <string name="label_close_button_position">Position du bouton de fermeture</string>
     <string name="label_close_button_left">En haut à gauche</string>
     <string name="label_close_button_right">En haut à droite</string>
@@ -39,11 +44,27 @@
     <string name="label_transparency_toggle">Bouton de transparence</string>
     <string name="label_transparency_auto_restore">Rétablissement automatique après transparence</string>
     <string name="label_transparency_restore_seconds">Secondes avant rétablissement</string>
+    <string name="label_minimize_dot_rotate">Rotation du point lumineux minimisé</string>
     <string name="notification_keep_alive_title">Bloqueur de sous-titres actif</string>
     <string name="notification_keep_alive_text">Appuyez pour revenir à l’application</string>
     <string name="toast_import_success">Configuration importée</string>
     <string name="toast_import_failed">Configuration du presse-papiers invalide</string>
     <string name="toast_exported">Configuration copiée dans le presse-papiers</string>
+    <string name="toast_update_checking">Vérification des mises à jour</string>
+    <string name="toast_update_check_failed">Échec de la vérification. Réessayez plus tard.</string>
+    <string name="toast_already_latest">Vous avez déjà la dernière version</string>
+    <string name="toast_update_ignored_until_newer">Rappel reporté à une version plus récente</string>
+    <string name="toast_update_ignore_set">Rappel activé pour une version plus récente</string>
+    <string name="toast_update_downloading">Téléchargement de la mise à jour</string>
+    <string name="toast_update_download_failed">Téléchargement échoué. Ouverture de la page de publication.</string>
+    <string name="toast_update_download_unavailable">Aucun APK trouvé. Ouverture de la page de publication.</string>
+    <string name="toast_update_install_start">Programme d’installation ouvert</string>
+    <string name="toast_update_install_failed">Impossible d’ouvrir l’installateur. Installez manuellement.</string>
+    <string name="update_dialog_title">Nouvelle version disponible</string>
+    <string name="update_dialog_message">Version actuelle : %1$s
+Dernière version : %2$s
+
+Télécharger et installer maintenant ?</string>
     <string name="usage_title">Guide d’utilisation</string>
     <string name="usage_content">Cas d’usage : lors du visionnage de vidéos bilingues, masquez les sous-titres dans la langue maternelle tout en conservant ceux de la langue cible ou l’image pour faciliter l’apprentissage.\n\nActions principales :\n• Activer le masquage : afficher le masque et le déplacer/redimensionner\n• Désactiver le masquage : masquer le masque\n• Autorisation d’affichage flottant : requise au premier usage\n\nRéglages :\n• Position du bouton de fermeture : choisir l’emplacement du bouton\n• Effets sonores : activer ou couper les sons\n• Maintien en arrière-plan : conserver une notification au premier plan pour limiter la fermeture par le système\n• Bouton de transparence : rendre le masque transparent temporairement pour voir les sous-titres de la langue cible ou l’image\n• Rétablissement automatique après transparence : revenir au masquage automatiquement\n• Secondes avant rétablissement : durée de la transparence\n• Langue : suivre le système ou fixer une langue\n• Importer/Exporter : sauvegarder ou restaurer via le presse-papiers</string>
 </resources>

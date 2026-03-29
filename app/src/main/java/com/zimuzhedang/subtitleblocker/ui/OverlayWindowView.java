@@ -1,10 +1,13 @@
 package com.zimuzhedang.subtitleblocker.ui;
 
 import android.content.Context;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
@@ -28,6 +31,7 @@ public final class OverlayWindowView extends FrameLayout {
         /** 点击关闭按钮时触发 */
         void onClose();
         void onTransparencyToggle();
+        void onMinimizeToggle();
 
         /** 开始拖拽悬浮窗时触发 */
         void onDragStart();
@@ -61,6 +65,8 @@ public final class OverlayWindowView extends FrameLayout {
     private Listener listener;
     private final ImageButton closeButton;
     private final ImageButton transparencyButton;
+    private final ImageButton minimizeButton;
+    private final GlowDotView minimizedDot;
     private final View overlayRoot;
     private final View resizeHandle;
     private final View resizeHandleRight;
@@ -68,6 +74,7 @@ public final class OverlayWindowView extends FrameLayout {
     private boolean draggingActive;
     private boolean resizingActive;
     private boolean transparencyToggleEnabled;
+    private boolean minimized;
     private boolean possibleClick;
     private float downRawX;
     private float downRawY;
@@ -76,6 +83,12 @@ public final class OverlayWindowView extends FrameLayout {
     private float lastResizeX;
     private float lastResizeY;
     private final int touchSlop;
+    private ObjectAnimator glowScaleXAnimator;
+    private ObjectAnimator glowScaleYAnimator;
+    private ObjectAnimator glowAlphaAnimator;
+    private ObjectAnimator glowRotationAnimator;
+    private ValueAnimator glowFlickerAnimator;
+    private boolean minimizeDotRotateEnabled = false;
 
     /**
      * 构造函数。
@@ -89,6 +102,13 @@ public final class OverlayWindowView extends FrameLayout {
         overlayRoot = findViewById(R.id.overlayRoot);
         closeButton = findViewById(R.id.btnClose);
         transparencyButton = findViewById(R.id.btnTransparency);
+        minimizeButton = findViewById(R.id.btnMinimize);
+        minimizedDot = findViewById(R.id.minimizedDot);
+        minimizeButton.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onMinimizeToggle();
+            }
+        });
         resizeHandle = findViewById(R.id.resizeHandle);
         resizeHandleRight = findViewById(R.id.resizeHandleRight);
         resizeHandleBottom = findViewById(R.id.resizeHandleBottom);
@@ -103,6 +123,7 @@ public final class OverlayWindowView extends FrameLayout {
             }
         });
         setOnTouchListener(this::handleDragTouch);
+        minimizedDot.setOnTouchListener(this::handleDragTouch);
         resizeHandle.setOnTouchListener(this::handleResizeTouch);
         resizeHandleRight.setOnTouchListener(this::handleResizeRightTouch);
         resizeHandleBottom.setOnTouchListener(this::handleResizeBottomTouch);
@@ -166,10 +187,19 @@ public final class OverlayWindowView extends FrameLayout {
                 }
                 return true;
             case MotionEvent.ACTION_UP:
-            case MotionEvent.ACTION_CANCEL:
-                if (possibleClick && transparencyToggleEnabled && listener != null) {
-                    listener.onTransparencyToggle();
+                if (draggingActive && listener != null) {
+                    listener.onDragEnd();
                 }
+                if (possibleClick && listener != null) {
+                    if (minimized) {
+                        listener.onMinimizeToggle();
+                    } else if (transparencyToggleEnabled) {
+                        listener.onTransparencyToggle();
+                    }
+                }
+                draggingActive = false;
+                return true;
+            case MotionEvent.ACTION_CANCEL:
                 if (draggingActive && listener != null) {
                     listener.onDragEnd();
                 }
@@ -266,4 +296,125 @@ public final class OverlayWindowView extends FrameLayout {
                 return false;
         }
     }
+
+    public void updateMinimized(boolean isMinimized, int dotSizeDp, boolean rotateEnabled) {
+        minimized = isMinimized;
+        minimizeDotRotateEnabled = rotateEnabled;
+        if (isMinimized) {
+            overlayRoot.setVisibility(View.GONE);
+            minimizedDot.setVisibility(View.VISIBLE);
+
+            float density = getContext().getResources().getDisplayMetrics().density;
+            int sizePx = Math.round(dotSizeDp * density);
+            FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) minimizedDot.getLayoutParams();
+            if (lp.width != sizePx || lp.height != sizePx) {
+                lp.width = sizePx;
+                lp.height = sizePx;
+                minimizedDot.setLayoutParams(lp);
+            }
+            startGlowAnimation();
+        } else {
+            stopGlowAnimation();
+            overlayRoot.setVisibility(View.VISIBLE);
+            updateTransparencyToggleEnabled(transparencyToggleEnabled);
+            minimizedDot.setVisibility(View.GONE);
+        }
+    }
+
+    private void startGlowAnimation() {
+        if (glowScaleXAnimator == null) {
+            glowScaleXAnimator = ObjectAnimator.ofFloat(minimizedDot, View.SCALE_X, 1.0f, 1.06f, 1.0f);
+            glowScaleXAnimator.setDuration(1500L);
+            glowScaleXAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        }
+        if (glowScaleYAnimator == null) {
+            glowScaleYAnimator = ObjectAnimator.ofFloat(minimizedDot, View.SCALE_Y, 1.0f, 1.06f, 1.0f);
+            glowScaleYAnimator.setDuration(1500L);
+            glowScaleYAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        }
+        if (glowAlphaAnimator == null) {
+            glowAlphaAnimator = ObjectAnimator.ofFloat(minimizedDot, View.ALPHA, 0.92f, 1.0f, 0.92f);
+            glowAlphaAnimator.setDuration(1500L);
+            glowAlphaAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        }
+        if (glowRotationAnimator == null) {
+            glowRotationAnimator = ObjectAnimator.ofFloat(minimizedDot, "rayRotation", 0.0f, 360.0f);
+            glowRotationAnimator.setInterpolator(new LinearInterpolator());
+            glowRotationAnimator.setDuration(9000L);
+            glowRotationAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        }
+        if (glowFlickerAnimator == null) {
+            glowFlickerAnimator = ValueAnimator.ofFloat(0.96f, 1.08f, 0.88f, 1.12f, 0.94f);
+            glowFlickerAnimator.setDuration(1800L);
+            glowFlickerAnimator.setRepeatCount(ValueAnimator.INFINITE);
+            glowFlickerAnimator.addUpdateListener(animation ->
+                    minimizedDot.setFlickerStrength((float) animation.getAnimatedValue())
+            );
+        }
+
+        minimizedDot.setRayTwinkleEnabled(minimizeDotRotateEnabled);
+
+        if (!glowAlphaAnimator.isRunning()) {
+            glowAlphaAnimator.start();
+        }
+
+        if (minimizeDotRotateEnabled) {
+            if (!glowScaleXAnimator.isRunning()) {
+                glowScaleXAnimator.start();
+            }
+            if (!glowScaleYAnimator.isRunning()) {
+                glowScaleYAnimator.start();
+            }
+            if (!glowRotationAnimator.isRunning()) {
+                glowRotationAnimator.start();
+            }
+            if (!glowFlickerAnimator.isRunning()) {
+                glowFlickerAnimator.start();
+            }
+        } else {
+            glowScaleXAnimator.cancel();
+            glowScaleYAnimator.cancel();
+            glowRotationAnimator.cancel();
+            glowFlickerAnimator.cancel();
+            minimizedDot.setScaleX(1.0f);
+            minimizedDot.setScaleY(1.0f);
+            minimizedDot.setRayRotation(0.0f);
+            minimizedDot.setFlickerStrength(1.0f);
+        }
+    }
+
+    private void stopGlowAnimation() {
+        if (glowScaleXAnimator != null) {
+            glowScaleXAnimator.cancel();
+            glowScaleXAnimator = null;
+        }
+        if (glowScaleYAnimator != null) {
+            glowScaleYAnimator.cancel();
+            glowScaleYAnimator = null;
+        }
+        if (glowAlphaAnimator != null) {
+            glowAlphaAnimator.cancel();
+            glowAlphaAnimator = null;
+        }
+        if (glowRotationAnimator != null) {
+            glowRotationAnimator.cancel();
+            glowRotationAnimator = null;
+        }
+        if (glowFlickerAnimator != null) {
+            glowFlickerAnimator.cancel();
+            glowFlickerAnimator = null;
+        }
+        minimizedDot.setScaleX(1.0f);
+        minimizedDot.setScaleY(1.0f);
+        minimizedDot.setAlpha(1.0f);
+        minimizedDot.setRayRotation(0.0f);
+        minimizedDot.setFlickerStrength(1.0f);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        stopGlowAnimation();
+        super.onDetachedFromWindow();
+    }
+
 }
