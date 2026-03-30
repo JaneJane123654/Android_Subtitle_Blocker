@@ -5,6 +5,8 @@ build/
 
 # Local environment
 local.properties
+.signing_secrets
+*.keystore
 
 # IDE runtime files
 .idea/caches/
