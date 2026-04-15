@@ -4,9 +4,13 @@ plugins {
 
 def signingSecrets = new Properties()
 def signingSecretsFile = rootProject.file(".signing_secrets")
+def releaseStoreFilePath
+def releaseKeyAlias
 
 if (signingSecretsFile.exists()) {
     signingSecretsFile.withInputStream { signingSecrets.load(it) }
+    releaseStoreFilePath = signingSecrets.getProperty("STORE_FILE", "app/release.keystore")
+    releaseKeyAlias = signingSecrets.getProperty("KEY_ALIAS", "release")
 } else {
     throw new GradleException(".signing_secrets not found in project root")
 }
@@ -19,17 +23,17 @@ android {
         applicationId "com.zimuzhedang.subtitleblocker"
         minSdk 21
         targetSdk 34
-        versionCode 5
-        versionName "1.0.4"
+$16
+$11.0.5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
         release {
-            storeFile file("./release.keystore")
+            storeFile rootProject.file(releaseStoreFilePath)
             storePassword signingSecrets.getProperty("STORE_PASSWORD")
-            keyAlias "release"
+            keyAlias releaseKeyAlias
             keyPassword signingSecrets.getProperty("KEY_PASSWORD")
             v1SigningEnabled true
             v2SigningEnabled true

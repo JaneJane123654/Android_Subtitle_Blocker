@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
@@ -25,12 +26,15 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.zip.ZipFile;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -79,6 +83,7 @@ public final class MainActivity extends AppCompatActivity {
     private static final int UPDATE_READ_TIMEOUT_MS = 30000;
     private static final String UPDATE_APK_DIR = "updates";
     private static final String UPDATE_APK_FILE_NAME = "subtitle-blocker-latest.apk";
+    private static final String UPDATE_APK_TMP_FILE_NAME = "subtitle-blocker-latest.apk.part";
 
     private OverlayViewModel viewModel;
     /** 权限导航器 */
@@ -495,45 +500,64 @@ public final class MainActivity extends AppCompatActivity {
         }
 
         File target = new File(updateDir, UPDATE_APK_FILE_NAME);
-        HttpURLConnection connection = null;
-        InputStream inputStream = null;
-        FileOutputStream outputStream = null;
-        try {
-            connection = (HttpURLConnection) new URL(apkUrl).openConnection();
-            connection.setRequestMethod("GET");
-            connection.setConnectTimeout(UPDATE_CONNECT_TIMEOUT_MS);
-            connection.setReadTimeout(UPDATE_READ_TIMEOUT_MS);
-            connection.setRequestProperty("User-Agent", "subtitle-blocker-android");
+        File tempTarget = new File(updateDir, UPDATE_APK_TMP_FILE_NAME);
+        if (tempTarget.exists() && !tempTarget.delete()) {
+            throw new IllegalStateException("remove stale temp apk failed");
+        }
 
+        HttpURLConnection connection = (HttpURLConnection) new URL(apkUrl).openConnection();
+        connection.setRequestMethod("GET");
+        connection.setInstanceFollowRedirects(true);
+        connection.setConnectTimeout(UPDATE_CONNECT_TIMEOUT_MS);
+        connection.setReadTimeout(UPDATE_READ_TIMEOUT_MS);
+        connection.setRequestProperty("User-Agent", "subtitle-blocker-android");
+
+        try {
             int responseCode = connection.getResponseCode();
             if (responseCode < 200 || responseCode >= 300) {
                 throw new IllegalStateException("download http code=" + responseCode);
             }
 
-            inputStream = connection.getInputStream();
-            outputStream = new FileOutputStream(target, false);
-            byte[] buffer = new byte[8192];
-            int len;
-            while ((len = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, len);
+            try (InputStream inputStream = connection.getInputStream();
+                 FileOutputStream outputStream = new FileOutputStream(tempTarget, false)) {
+                byte[] buffer = new byte[8192];
+                int len;
+                while ((len = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, len);
+                }
+                outputStream.flush();
             }
-            outputStream.flush();
+
+            if (!tempTarget.exists() || tempTarget.length() <= 0L) {
+                throw new IllegalStateException("downloaded apk is empty");
+            }
+            if (!isLikelyApkFile(tempTarget)) {
+                throw new IllegalStateException("downloaded file is not a valid apk");
+            }
+
+            if (target.exists() && !target.delete()) {
+                throw new IllegalStateException("replace target apk failed");
+            }
+            if (!tempTarget.renameTo(target)) {
+                throw new IllegalStateException("move apk file failed");
+            }
             return target;
         } finally {
-            if (inputStream != null) {
-                inputStream.close();
-            }
-            if (outputStream != null) {
-                outputStream.close();
-            }
-            if (connection != null) {
-                connection.disconnect();
-            }
+            connection.disconnect();
+        }
+    }
+
+    private boolean isLikelyApkFile(File file) {
+        try (ZipFile zipFile = new ZipFile(file)) {
+            return zipFile.getEntry("AndroidManifest.xml") != null;
+        } catch (IOException e) {
+            Logger.e("verify downloaded apk failed", e);
+            return false;
         }
     }
 
     private void installDownloadedApk(File apkFile) {
-        if (!apkFile.exists()) {
+        if (!apkFile.exists() || apkFile.length() <= 0L) {
             Toast.makeText(this, R.string.toast_update_download_failed, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -542,15 +566,33 @@ public final class MainActivity extends AppCompatActivity {
                 getPackageName() + ".fileprovider",
                 apkFile
         );
-        Intent installIntent = new Intent(Intent.ACTION_VIEW);
-        installIntent.setDataAndType(apkUri, "application/vnd.android.package-archive");
+        Intent installIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
+        installIntent.setData(apkUri);
+        installIntent.setType("application/vnd.android.package-archive");
         installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         installIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        installIntent.setClipData(ClipData.newUri(getContentResolver(), "apk", apkUri));
+        installIntent.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true);
+
+        List<ResolveInfo> resolvers = getPackageManager().queryIntentActivities(installIntent, PackageManager.MATCH_DEFAULT_ONLY);
+        for (ResolveInfo resolver : resolvers) {
+            if (resolver.activityInfo != null) {
+                grantUriPermission(
+                        resolver.activityInfo.packageName,
+                        apkUri,
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION
+                );
+            }
+        }
+
         try {
             startActivity(installIntent);
             Toast.makeText(this, R.string.toast_update_install_start, Toast.LENGTH_SHORT).show();
         } catch (ActivityNotFoundException e) {
             Logger.e("no installer activity found", e);
+            Toast.makeText(this, R.string.toast_update_install_failed, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Logger.e("open installer failed", e);
             Toast.makeText(this, R.string.toast_update_install_failed, Toast.LENGTH_SHORT).show();
         }
     }

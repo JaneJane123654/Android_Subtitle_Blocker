@@ -1,0 +1,13 @@
+{
+  "@@locale": "en",
+  "appTitle": "Subtitle Blocker",
+  "shellReadyTitle": "Project shell ready",
+  "shellReadyBody": "Step 01 established the Flutter bootstrap, shell structure, and package stack. Real feature logic begins in the next migration step.",
+  "shellLegacyMappingTitle": "Legacy shell mapping",
+  "shellLegacyMainMapping": "MainActivity -> planned /home Flutter entry",
+  "shellLegacyUsageMapping": "UsageActivity -> planned /usage Flutter page",
+  "shellEnvironmentTitle": "Environment note",
+  "shellEnvironmentBody": "Flutter SDK is not installed in this workspace yet, so platform folders still need to be generated later with flutter create.",
+  "shellNextStepTitle": "Next unlocked work",
+  "shellNextStepBody": "Define failure contracts, shared constants, immutable domain baselines, and tests."
+}

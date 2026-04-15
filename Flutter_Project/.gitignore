@@ -1,0 +1,15 @@
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub/
+build/
+coverage/
+
+# Platform shell artifacts added by `flutter create`.
+android/local.properties
+ios/Flutter/.last_build_id
+
+# IDE and OS noise.
+.DS_Store
+*.iml
