@@ -18,6 +18,20 @@ function Require-Command {
     return $command
 }
 
+function Invoke-Checked {
+    param(
+        [string]$Executable,
+        [string[]]$Arguments,
+        [string]$ErrorMessage
+    )
+
+    & $Executable @Arguments | Out-Host
+    $exitCode = $LASTEXITCODE
+    if ($exitCode -ne 0) {
+        throw "$ErrorMessage (exit code $exitCode)"
+    }
+}
+
 function New-RandomSecret {
     param([int]$Length = 16)
     $chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789"
@@ -217,15 +231,18 @@ try {
         $keystorePath = $appKeystorePath
         $keyAlias = if ($secrets.ContainsKey("KEY_ALIAS") -and -not [string]::IsNullOrWhiteSpace([string]$secrets["KEY_ALIAS"])) { [string]$secrets["KEY_ALIAS"] } else { "key0" }
         Write-Step "Creating release keystore at $keystorePath"
-        & keytool -genkeypair -v `
-            -keystore $keystorePath `
-            -storepass $secrets["STORE_PASSWORD"] `
-            -keypass $secrets["KEY_PASSWORD"] `
-            -alias $keyAlias `
-            -keyalg RSA `
-            -keysize 2048 `
-            -validity 36500 `
-            -dname "CN=localhost, OU=Unknown, O=Unknown, L=Unknown, S=Unknown, C=US" | Out-Host
+        Invoke-Checked -Executable "keytool" -Arguments @(
+            "-genkeypair",
+            "-v",
+            "-keystore", $keystorePath,
+            "-storepass", $secrets["STORE_PASSWORD"],
+            "-keypass", $secrets["KEY_PASSWORD"],
+            "-alias", $keyAlias,
+            "-keyalg", "RSA",
+            "-keysize", "2048",
+            "-validity", "36500",
+            "-dname", "CN=localhost, OU=Unknown, O=Unknown, L=Unknown, S=Unknown, C=US"
+        ) -ErrorMessage "Failed to create release keystore"
 
         $secrets["KEY_ALIAS"] = $keyAlias
         $secretsUpdated = $true
@@ -278,14 +295,23 @@ try {
     $nameParts[$nameParts.Length - 1] = ([int]$nameParts[$nameParts.Length - 1] + 1).ToString()
     $newVersionName = [string]::Join(".", $nameParts)
 
-    $buildGradle = [System.Text.RegularExpressions.Regex]::new('(?m)^(\s*versionCode\s+)\d+\s*$').Replace(
+    $versionCodeRegex = [System.Text.RegularExpressions.Regex]::new('(?m)^(\s*versionCode\s+)\d+\s*$')
+    $buildGradle = $versionCodeRegex.Replace(
         $buildGradle,
-        "`$1$newVersionCode",
+        [System.Text.RegularExpressions.MatchEvaluator]{
+            param($m)
+            return "$($m.Groups[1].Value)$newVersionCode"
+        },
         1
     )
-    $buildGradle = [System.Text.RegularExpressions.Regex]::new('(?m)^(\s*versionName\s+")([^"]+)("\s*)$').Replace(
+
+    $versionNameRegex = [System.Text.RegularExpressions.Regex]::new('(?m)^(\s*versionName\s+")([^"]+)("\s*)$')
+    $buildGradle = $versionNameRegex.Replace(
         $buildGradle,
-        "`$1$newVersionName`$3",
+        [System.Text.RegularExpressions.MatchEvaluator]{
+            param($m)
+            return "$($m.Groups[1].Value)$newVersionName$($m.Groups[3].Value)"
+        },
         1
     )
 
@@ -293,7 +319,7 @@ try {
     [System.IO.File]::WriteAllText($buildGradlePath, $buildGradle, $utf8NoBom)
 
     Write-Step "Running assembleRelease"
-    & .\gradlew.bat assembleRelease --console=plain | Out-Host
+    Invoke-Checked -Executable ".\\gradlew.bat" -Arguments @("assembleRelease", "--console=plain") -ErrorMessage "assembleRelease failed"
 
     $releaseDir = Join-Path $repoRoot "app/build/outputs/apk/release"
     $apkPath = Join-Path $releaseDir "app-release.apk"
@@ -307,18 +333,18 @@ try {
 
     $tagName = "v$newVersionName"
     Write-Step "Committing release changes"
-    git add . | Out-Host
-    git commit -m "chore: auto-release v$newVersionName" | Out-Host
+    Invoke-Checked -Executable "git" -Arguments @("add", ".") -ErrorMessage "git add failed"
+    Invoke-Checked -Executable "git" -Arguments @("commit", "-m", "chore: auto-release v$newVersionName") -ErrorMessage "git commit failed"
 
     $existingTag = (git tag -l $tagName)
     if (-not [string]::IsNullOrWhiteSpace($existingTag)) {
         throw "Tag already exists: $tagName"
     }
-    git tag $tagName | Out-Host
-    git push origin main --tags | Out-Host
+    Invoke-Checked -Executable "git" -Arguments @("tag", $tagName) -ErrorMessage "git tag failed"
+    Invoke-Checked -Executable "git" -Arguments @("push", "origin", "main", "--tags") -ErrorMessage "git push failed"
 
     Write-Step "Creating GitHub Release"
-    gh release create $tagName $apkPath --title "Release $tagName" --generate-notes | Out-Host
+    Invoke-Checked -Executable "gh" -Arguments @("release", "create", $tagName, $apkPath, "--title", "Release $tagName", "--generate-notes") -ErrorMessage "gh release create failed"
     $releaseUrl = (gh release view $tagName --json url --jq .url).Trim()
 
     Write-Host "AUTO_RELEASE_VERSION=$newVersionName"
