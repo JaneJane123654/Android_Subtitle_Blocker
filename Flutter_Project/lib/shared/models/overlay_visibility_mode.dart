@@ -1,0 +1,1 @@
+enum OverlayVisibilityMode { hidden, visible }

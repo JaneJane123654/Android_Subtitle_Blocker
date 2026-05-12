@@ -12,15 +12,13 @@ abstract final class AppTheme {
       useMaterial3: true,
       colorScheme: colorScheme,
       scaffoldBackgroundColor: const Color(0xFFF5F7F4),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: Colors.white,
         elevation: 0,
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
-          side: BorderSide(
-            color: colorScheme.outlineVariant,
-          ),
+          side: BorderSide(color: colorScheme.outlineVariant),
         ),
       ),
       appBarTheme: AppBarTheme(
@@ -41,9 +39,9 @@ abstract final class AppTheme {
         ),
       ),
       textTheme: ThemeData.light().textTheme.apply(
-            bodyColor: const Color(0xFF10251F),
-            displayColor: const Color(0xFF10251F),
-          ),
+        bodyColor: const Color(0xFF10251F),
+        displayColor: const Color(0xFF10251F),
+      ),
     );
   }
 }
